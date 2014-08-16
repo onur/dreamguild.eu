@@ -187,22 +187,11 @@
             <div class="line"></div>
             % }
             <form role="form" action="/application/<%= $application->{app_id} %>/comment" method="post">
-              <div class="form-group"><a href="#" class="btn btn-default btn-block" id="make-a-comment-button">Make a comment</a></div>
-              <div id="application-comment-form">
-                <div class="form-group">
-                  <textarea name="comment" class="form-control"></textarea>
-                </div>
-                <button type="submit" class="btn btn-default">Submit</button>
+              <div class="form-group">
+                <textarea name="comment" class="form-control"></textarea>
               </div>
+              <button type="submit" class="btn btn-default">Submit</button>
             </form>
-
-            <script>
-              $("#make-a-comment-button").click (function () {
-                $("#application-comment-form").show ();
-                $(this).hide ();
-                return false;
-              });
-            </script>
 
           </div>
 
