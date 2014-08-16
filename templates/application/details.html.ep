@@ -1,6 +1,7 @@
 
 
 % my $application = stash ('application');
+% title $application->{name};
 % my $user = stash ('user');
 % my $time = time ();
 
