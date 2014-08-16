@@ -1,0 +1,219 @@
+
+
+% my $application = stash ('application');
+% my $user = stash ('user');
+% my $time = time ();
+
+<div class="container">
+
+  <div class="row">
+
+
+
+    <div class="col-xs-12 col-sm-6 col-md-4">
+
+      <div class="well">
+
+        <div class="row">
+
+          <div class="col-sm-4 col-md-4 col-xs-3 col-lg-4">
+
+            <img class="character-portrait" src="https://eu.battle.net/static-render/eu/<%= $application->{thumbnail} %>" alt="<%= $application->{name} %>" />
+
+          </div>
+
+          <div class="col-sm-8 col-md-8 col-xs-9 col-lg-8">
+
+            <h4 class="color-c<%= $application->{class} %> app-character-title"><%= $application->{name} %></h4>
+
+            %# Spec
+            % if (defined $application->{talents}->[0]->{selected}) {
+            %= $application->{talents}->[0]->{spec}->{name}
+            % } else {
+            %= $application->{talents}->[1]->{spec}->{name}
+            % }
+
+            %# Class
+            % if ($application->{class} == 1) {
+            Warrior
+            % } elsif ($application->{class} == 2) {
+            Paladin
+            % } elsif ($application->{class} == 3) {
+            Hunter
+            % } elsif ($application->{class} == 4) {
+            Rogue
+            % } elsif ($application->{class} == 5) {
+            Priest
+            % } elsif ($application->{class} == 6) {
+            Death Knight
+            % } elsif ($application->{class} == 7) {
+            Shaman
+            % } elsif ($application->{class} == 8) {
+            Mage
+            % } elsif ($application->{class} == 9) {
+            Warlock
+            % } elsif ($application->{class} == 10) {
+            Monk
+            % } elsif ($application->{class} == 11) {
+            Druid
+            % }
+
+            <br />
+
+            Ilvl: <%= $application->{eilvl} %>/<%= $application->{ailvl} %>
+
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-md-12">
+
+            % for my $progress (@{$application->{progress}}) {
+            <b class="line"></b>
+
+            <strong><%= $progress->{name} %></strong>
+            <br />
+
+              % if (defined ($progress->{heroic_count})) {
+              HC: <%= $progress->{heroic_count} %>/<%= $progress->{boss_count} %><br />
+              % } if (defined ($progress->{normal_count})) {
+              NM: <%= $progress->{normal_count} %>/<%= $progress->{boss_count} %><br />
+              % } if (defined ($progress->{flex_count})) {
+              FLEX: <%= $progress->{flex_count} %>/<%= $progress->{boss_count} %><br />
+              % }
+
+            % }
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="well">
+
+        <div class="status status-<%= $application->status %>">
+          % if ($application->{status} == 1) {
+          OPEN
+          % } elsif ($application->{status} == 2) {
+          ACCEPTED
+          % } elsif ($application->{status} == 3) {
+          REJECTED
+          % }
+        </div>
+
+        <div class="text-center">
+          Submitted: <%= relative_date ($application->{time}, $time) %>
+        </div>
+
+        <div class="line"></div>
+        <div class="text-center">
+          <a class="label label-success"><%= $application->{yes} %></a>
+          <a class="label label-danger"><%= $application->{no} %></a>
+        </div>
+
+        % if ($user->level >= 5) {
+        <div class="line"></div>
+        <h4>Vote</h4>
+
+        <div class="btn-group btn-group-justified">
+          <a href="#" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-ok"></span></a>
+          <a href="#" class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-remove"></span></a>
+        </div>
+        % }
+
+        % if ($user->level >= 20) {
+        <div class="line"></div>
+        <h4>GM</h4>
+
+        <div class="btn-group btn-group-justified">
+          <a href="#" class="btn btn-success">Accept</a>
+          <a href="#" class="btn btn-danger">Decline</a>
+        </div>
+        % }
+
+      </div>
+
+    </div>
+
+
+
+    <!-- questions -->
+    <div class="col-xs-12 col-sm-12 col-md-8">
+
+      <ul class="nav nav-tabs application-tabs">
+        <li class="active"><a href="#application-details" data-toggle="tab">Application</a></li>
+        <li class=""><a href="#application-comments" data-toggle="tab">Comments <% if (defined ($comments) && scalar (@{$comments}) > 0) { %><span class="badge"><%= scalar (@{$comments}) %></span><% } %></a></li>
+      </ul>
+
+      <div class="well">
+
+        <div class="tab-content">
+
+          <div class="tab-pane fade active in" id="application-details">
+
+          % my $questions = $application->{questions};
+          % for my $section (@{$questions}) {
+          <h3><%= $section->{section} %></h3>
+            % for my $question (@{$section->{questions}}) {
+            <p>
+              <strong><%= $question->{question} %></strong><br />
+              <%= $question->{answer} %>
+            </p>
+
+
+            % }
+
+          % }
+
+          </div>
+
+          <div class="tab-pane fade in" id="application-comments">
+
+            % my $comments = stash ('comments');
+            % for my $comment (@{$comments}) {
+            <div class="row">
+              <div class="col-xs-6  col-md-6">
+                <h5><img class="character-portrait" src="https://eu.battle.net/static-render/eu/<%= $comment->{main}->{thumbnail} %>" style="max-height: 20px"><span class="color-c<%= $comment->{main}->{class} %>" alt="<%= $comment->{main}->{name} %>"> <%= $comment->{main}->{name} %></span></h5>
+              </div>
+              <div class="col-xs-6 col-md-6 text-right">
+                <span class="comment-time"><%= relative_date ($comment->{time}, $time); %></span>
+              </div>
+            </div>
+            <p><%= $comment->{comment} %></p>
+            <div class="line"></div>
+            % }
+            <form role="form" action="/application/<%= $application->{app_id} %>/comment" method="post">
+              <div class="form-group"><a href="#" class="btn btn-default btn-block" id="make-a-comment-button">Make a comment</a></div>
+              <div id="application-comment-form">
+                <div class="form-group">
+                  <textarea name="comment" class="form-control"></textarea>
+                </div>
+                <button type="submit" class="btn btn-default">Submit</button>
+              </div>
+            </form>
+
+            <script>
+              $("#make-a-comment-button").click (function () {
+                $("#application-comment-form").show ();
+                $(this).hide ();
+                return false;
+              });
+            </script>
+
+          </div>
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+
+  </div> <!-- / row -->
+
+
+</div>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Dream Guild @ Grim Batol EU">
+    <meta name="keywords" content="wow, world of warcraft, guild, grim batol">
+    <meta name="author" content="Onur Aslan">
+    <title><%= title %>Dream Guild</title>
+    <link href="//cdnjs.cloudflare.com/ajax/libs/bootswatch/3.2.0+1/slate/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/dreamguild.css" rel="stylesheet">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/js/bootstrap.min.js"></script>
+  </head>
+
+  <body>
+
+    <div class="container">
+      <div class="logo">
+        <a href="/">DreamGuild.eu</a>
+      </div>
+    </div>
+
+    <div class="container main-container">
+
+      <div class="navbar navbar-default">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Dream</a>
+        </div>
+        <div class="navbar-collapse collapse navbar-responsive-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="#">Home</a></li>
+            <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">Roster</a></li>
+          </ul>
+
+          % my $user = stash ('user');
+          % if (!$user) {
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/apply">Join us</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sign in <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li class="login-dropdown">
+
+                  %= include 'login-form'
+                
+                </li>
+              </ul>
+            </li>
+          </ul>
+          % } else {
+          <ul class="nav navbar-nav navbar-right">
+            % if ($user->{level} >= 5) {
+            <li><a href="/application">Applications <span class="badge"><%= stash ('open_application_count'); %></span></a></li>
+            % }
+            % if (defined ($user->{mainc})) {
+            <li class="dropdown">
+            <a href="#" class="dropdown-toggle user-profile-a" data-toggle="dropdown">
+              <img class="user-profile-pic" src="https://eu.battle.net/static-render/eu/<%= $user->{mainc}->{thumbnail} %>" alt="" />
+              <%= $user->{mainc}->{name} %> <b class="caret"></b>
+            </a>
+              <ul class="dropdown-menu">
+                <li><a href="/logout">Logout</a></li>
+              </ul>
+            </li>
+            % } else {
+            <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= $user->email %> <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="/logout">Logout</a></li>
+              </ul>
+            </li>
+            % }
+          </ul>
+          % }
+        </div>
+      </div>
+
+    </div> <!-- /container -->
+
+    <%= content %>
+
+  </body>
+</html>

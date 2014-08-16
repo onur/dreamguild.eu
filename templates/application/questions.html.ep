@@ -1,0 +1,156 @@
+
+
+% my $application = stash ('application');
+
+<div class="container">
+
+
+ <form role="form" action="" method="post">
+
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 col-md-4">
+
+        <div class="well">
+
+          <div class="row">
+
+            <div class="col-sm-4 col-md-4 col-xs-3 col-lg-4">
+
+              <img class="character-portrait" src="https://eu.battle.net/static-render/eu/<%= $application->{thumbnail} %>" alt="<%= $application->{name} %>" />
+
+            </div>
+
+            <div class="col-sm-8 col-md-8 col-xs-9 col-lg-8">
+
+              <h4 class="color-c<%= $application->{class} %> app-character-title"><%= $application->{name} %></h4>
+
+              %# Spec
+              % if (defined $application->{talents}->[0]->{selected}) {
+              %= $application->{talents}->[0]->{spec}->{name}
+              % } else {
+              %= $application->{talents}->[1]->{spec}->{name}
+              % }
+
+              %# Class
+              % if ($application->{class} == 1) {
+              Warrior
+              % } elsif ($application->{class} == 2) {
+              Paladin
+              % } elsif ($application->{class} == 3) {
+              Hunter
+              % } elsif ($application->{class} == 4) {
+              Rogue
+              % } elsif ($application->{class} == 5) {
+              Priest
+              % } elsif ($application->{class} == 6) {
+              Death Knight
+              % } elsif ($application->{class} == 7) {
+              Shaman
+              % } elsif ($application->{class} == 8) {
+              Mage
+              % } elsif ($application->{class} == 9) {
+              Warlock
+              % } elsif ($application->{class} == 10) {
+              Monk
+              % } elsif ($application->{class} == 11) {
+              Druid
+              % }
+
+              <br />
+
+              Ilvl: <%= $application->{eilvl} %>/<%= $application->{ailvl} %>
+
+            </div>
+
+          </div>
+
+          <div class="row">
+
+
+            <div class="col-md-12">
+
+              % for my $progress (@{$application->{progress}}) {
+              <b class="line"></b>
+
+              <strong><%= $progress->{name} %></strong>
+              <br />
+
+                % if (defined ($progress->{heroic_count})) {
+                HC: <%= $progress->{heroic_count} %>/<%= $progress->{boss_count} %><br />
+                % } if (defined ($progress->{normal_count})) {
+                NM: <%= $progress->{normal_count} %>/<%= $progress->{boss_count} %><br />
+                % } if (defined ($progress->{flex_count})) {
+                FLEX: <%= $progress->{flex_count} %>/<%= $progress->{boss_count} %><br />
+                % }
+
+              % }
+
+            </div>
+
+          </div>
+
+        </div>
+      
+      </div>
+
+      <div class="col-sm-12 col-md-8 col-xs-12">
+
+        <div class="well">
+
+          <%== stash ('questions_description') %>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    % my $questions = stash ('questions');
+    % my $c = 0;
+
+    % for (@{$questions}) {
+
+    %   my $section = $_;
+
+    <div class="panel panel-default">
+      <div class="panel-heading"><%= $section->{section} %></div>
+      <div class="panel-body">
+
+        % for my $question (@{$section->{questions}}) {
+
+        <div class="form-group">
+          <label for="ApplyQuestion<%= $c %>"><%= $question->{question} %></label>
+          % if (!defined ($question->{type}) || $question->{type} ne 'textarea') {
+          <input type="text" name="ApplyQuestion<%= $c %>"
+                 class="form-control" id="ApplyQuestion<%= $c %>"
+                 value="<%= param ('ApplyQuestion' . $c) %>"
+                 required>
+          % } else {
+          <textarea type="text" name="ApplyQuestion<%= $c %>"
+                    class="form-control" id="ApplyQuestion<%= $c %>"
+                    required><%= param ('ApplyQuestion' . $c) %></textarea>
+          % }
+        </div>
+
+        % ++$c;
+        % }
+
+      </div>
+    </div>
+
+    % }
+
+
+    <div class="well">
+      <button type="submit" class="btn btn-default btn-lg">Send application</button>
+    </div>
+
+
+  </form>
+
+
+
+
+
+
+</div>

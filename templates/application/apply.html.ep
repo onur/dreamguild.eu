@@ -1,0 +1,22 @@
+
+<div class="container">
+
+  <div class="well">
+
+    % if (stash ('error')) {
+    <div class="alert alert-danger" role="alert">
+      %= stash ('error')
+    </div>
+    % }
+
+    <form role="form" action="" method="post">
+      <div class="form-group">
+        <label for="ApplyCharName">Enter your main character name</label>
+        <input type="text" class="form-control" id="ApplyCharName" placeholder="" name="character" autofocus>
+      </div>
+      <button type="submit" class="btn btn-success">Join us</button>
+    </form>
+
+  </div>
+
+</div>

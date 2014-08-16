@@ -1,0 +1,194 @@
+
+
+/*
+body {
+  background-image: url('/img/wod-2.jpg');
+  background-size: 1280px 800px;
+  background-repeat: no-repeat;
+  background-attachment:fixed;
+  background-position: 50% -100px;
+}
+*/
+
+body {
+  background-image: url('/img/pw_maze_black.png');
+}
+
+div.main-container {
+}
+
+
+
+li.login-dropdown {
+  min-width: 300px;
+}
+
+
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+  margin-bottom: 10px;
+}
+.form-signin .checkbox {
+  font-weight: normal;
+}
+.form-signin .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+
+img.character-portrait {
+  display: inline-block;
+  overflow: hidden;
+  padding: 1px;
+  background-color: #000;
+  background-position: 1px 1px;
+  background-repeat: no-repeat;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  border: 1px solid #434445;
+  border-bottom-color: #2f3032;
+  border-top-color: #b1b2b4;
+}
+
+
+/* item quality */
+.color-q0, .color-q0 a { color: #9d9d9d !important; } /* poor (gray) */
+.color-q1, .color-q1 a { color: #ffffff !important; } /* common (white) */
+.color-q2, .color-q2 a { color: #1eff00 !important; } /* uncommon (green) */
+.color-q3, .color-q3 a { color: #0081ff !important; } /* #0070dd rare (blue) */
+.color-q4, .color-q4 a { color: #c600ff !important; } /* #a335ee epic (purple) */
+.color-q5, .color-q5 a { color: #ff8000 !important; } /* lengendary (orange) */
+.color-q6, .color-q6 a { color: #e5cc80 !important; } /* artifact (gold) */
+.color-q7, .color-q7 a { color: #e5cc80 !important; } /* heirloom (gold) */
+
+/* class */
+.color-c1,  .color-c1 a { color: #c69b6d !important; } /* warrior */
+.color-c2,  .color-c2 a { color: #f48cba !important; } /* paladin */
+.color-c3,  .color-c3 a, .color-g2 { color: #aad372 !important; } /* hunter */
+.color-c4,  .color-c4 a, .color-g1 { color: #fff468 !important; } /* rogue */
+.color-c5,  .color-c5 a { color: #f0ebe0 !important; } /* priest */
+.color-c6,  .color-c6 a { color: #c41e3b !important; } /* death knight */
+.color-c7,  .color-c7 a { color: #2359ff !important; } /* shaman */
+.color-c8,  .color-c8 a, .color-g3 { color: #68ccef !important; } /* mage */
+.color-c9,  .color-c9 a { color: #9382c9 !important; } /* warlock */
+.color-c10, .color-c10 a { color: #00ffba !important; } /* monk */
+.color-c11, .color-c11 a, .color-g4 { color: #ff7c0a !important; } /* druid */
+
+
+.app-character-title {
+  margin-top: 0;;
+  border-bottom: 1px solid #333;
+  padding-bottom: 3px;
+  margin-bottom: 2px;
+}
+
+.navbar-nav>li>a.user-profile-a {
+  padding: 5px 10px 5px 10px;
+}
+
+.user-profile-pic {
+  display: inline-block;
+  overflow: hidden;
+  padding: 1px;
+  background-color: #000;
+  background-position: 1px 1px;
+  background-repeat: no-repeat;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  border: 1px solid #434445;
+  border-bottom-color: #2f3032;
+  border-top-color: #b1b2b4;
+  max-height: 40px;
+  width: 40px;
+  height: 40px;
+}
+
+.line {
+  display: block;
+  border-top: 1px solid #333;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+
+.status {
+  text-align: center;
+  font-size: 2em;
+}
+
+.status-1 {
+  color: #5882FA;
+}
+
+.status-1 {
+  color: #5882FA;
+}
+
+.status-2 {
+  color: #58FA82;
+
+}
+
+.status-3 {
+  color: #FA5858;
+}
+
+#application-comment-form {
+  display: none;
+}
+
+div.logo {
+  text-align: center;
+  padding: 100px 0 100px 0;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  background-image: url('/img/logo-bg.jpg');
+  background-position: 50% -180px;
+  border-radius: 5px;
+}
+
+div.logo a {
+  display: block;
+  background-image: url('/img/logo-350.png');
+  width: 350px;
+  height: 70px;
+  background-repeat: none;
+  text-indent:-9999px;
+  margin: 0 auto;
+}
+
+ul.application-tabs {
+  border-bottom: none;
+
+}
+
+span.comment-time {
+  font-size: 0.9em;
+  color: #666;
+}

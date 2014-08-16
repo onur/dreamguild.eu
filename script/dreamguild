@@ -1,0 +1,30 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+
+use FindBin;
+BEGIN { unshift @INC, "$FindBin::Bin/../lib" }
+
+chdir "$FindBin::Bin/..";
+
+sub create_db {
+  system ('rm -rf share/data/database.db');
+  system ('sqlite3 share/data/database.db < share/data/database.sql');
+}
+
+sub update_roster {
+  require DreamGuild::Utils::Roster;
+  DreamGuild::Utils::Roster->new->update_roster;
+}
+
+
+sub main {
+  return if not defined $ARGV[0];
+  return create_db ()       if $ARGV[0] eq '--create-db';
+  return update_roster ()   if $ARGV[0] eq '--update-roster';
+}
+
+
+&main;
+0;
