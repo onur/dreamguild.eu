@@ -120,8 +120,8 @@
         <h4>Vote</h4>
 
         <div class="btn-group btn-group-justified">
-          <a href="#" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-ok"></span></a>
-          <a href="#" class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-remove"></span></a>
+          <a href="#" id="application-vote-yes" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-ok"></span></a>
+          <a href="#" id="application-vote-no"  class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-remove"></span></a>
         </div>
         % }
 
