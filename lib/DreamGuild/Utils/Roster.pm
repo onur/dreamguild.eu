@@ -7,6 +7,7 @@ use LWP::Simple;
 use JSON::XS;
 use Data::Dumper;
 use DreamGuild::DB;
+use File::Path qw/make_path/;
 
 
 
@@ -60,6 +61,20 @@ sub update_ilvl {
     )->insert;
     
   };
+}
+
+
+sub download_avatar {
+
+  my ($self, $avatar) = @_;
+
+  my ($dir, $file) = $avatar =~ /^(.*)\/(.*?)$/;
+  make_path ('share/data/avatars/' . $dir);
+
+  my $ua = LWP::UserAgent->new;
+  $ua->get ('https://eu.battle.net/static-render/eu/' . $avatar,
+            ':content_file' => 'share/data/avatars/' . $avatar);
+
 }
 
 
