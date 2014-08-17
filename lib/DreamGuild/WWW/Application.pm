@@ -235,7 +235,7 @@ sub application_vote {
 
   $vote = ($vote eq 'yes' ? 1 : 0);
 
-  return $self->render (json => { error    => 'Application does not exist!' })
+  return $self->render (json => { error => 'Application does not exist!' })
     if (!scalar (@{$app}));
 
   return $self->render (json => { error => 'You don\'t have permission to vote' })
