@@ -72,18 +72,33 @@
           <div class="col-md-12">
 
             % for my $progress (@{$application->{progress}}) {
-            <b class="line"></b>
+            <div class="line"></div>
 
-            <strong><%= $progress->{name} %></strong>
-            <br />
-
-              % if (defined ($progress->{heroic_count})) {
-              HC: <%= $progress->{heroic_count} %>/<%= $progress->{boss_count} %><br />
-              % } if (defined ($progress->{normal_count})) {
-              NM: <%= $progress->{normal_count} %>/<%= $progress->{boss_count} %><br />
-              % } if (defined ($progress->{flex_count})) {
-              FLEX: <%= $progress->{flex_count} %>/<%= $progress->{boss_count} %><br />
-              % }
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <td colspan="2" class="text-center"><strong><%= $progress->{name} %></strong></td>
+                </tr>
+              </thead>
+              <tbody>
+                % if (defined ($progress->{heroic_count})) {
+                <tr>
+                  <td class="text-right">HC</td>
+                  <td><%= $progress->{heroic_count} %>/<%= $progress->{boss_count} %></td>
+                </tr>
+                % } if (defined ($progress->{normal_count})) {
+                <tr>
+                  <td class="text-right">Normal</td>
+                  <td><%= $progress->{normal_count} %>/<%= $progress->{boss_count} %></td>
+                </tr>
+                % } if (defined ($progress->{flex_count})) {
+                <tr>
+                  <td class="text-right">Flex</td>
+                  <td><%= $progress->{flex_count} %>/<%= $progress->{boss_count} %></td>
+                </tr>
+                % }
+              </tbody>
+            </table>
 
             % }
 
