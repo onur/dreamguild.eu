@@ -8,6 +8,7 @@ use DreamGuild::Utils::Progress;
 use LWP::UserAgent;
 use Digest::SHA qw/sha1_hex/;
 use JSON::XS;
+use File::Path qw/make_path/;
 
 
 sub new {
@@ -79,6 +80,20 @@ sub generate_id {
 }
 
 
+sub download_avatar {
+
+  my ($self, $avatar) = @_;
+
+  my ($dir, $file) = $avatar =~ /^(.*)\/(.*?)$/;
+  make_path ('share/data/avatars/' . $dir);
+
+  my $ua = LWP::UserAgent->new;
+  $ua->get ('https://eu.battle.net/static-render/eu/' . $avatar,
+            ':content_file' => 'share/data/avatars/' . $avatar);
+
+}
+
+
 sub create_app {
   my $self = shift;
 
@@ -122,6 +137,8 @@ sub create_app {
   )->insert;
 
   $self->{app_id} = $row->id;
+
+  $self->download_avatar ($_->{thumbnail});
 
   return 1;
 }
