@@ -128,6 +128,8 @@ sub update_roster {
       $uid = $row->id;
     }
 
+    $self->download_avatar ($_->{character}->{thumbnail});
+
     $self->update_ilvl ($uid, $_->{character}->{details}->{items}->{averageItemLevel} || 0);
 
   }
