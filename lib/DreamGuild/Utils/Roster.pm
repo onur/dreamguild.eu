@@ -3,7 +3,6 @@ package DreamGuild::Utils::Roster;
 
 use strict;
 use warnings;
-use LWP::Simple;
 use JSON::XS;
 use Data::Dumper;
 use DreamGuild::DB;
@@ -14,6 +13,21 @@ use File::Path qw/make_path/;
 sub new {
   my $class = shift;
   bless {}, $class;
+}
+
+
+sub get {
+
+  my $url = shift;
+  my $ua = LWP::UserAgent->new;
+  my $response = $ua->get ($url);
+
+  if ($response->is_success) {
+    return $response->decoded_content;
+  } else {
+    return undef;
+  }
+
 }
 
 
