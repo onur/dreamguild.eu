@@ -129,6 +129,13 @@ sub application {
     }
   }
 
+  # Get user vote for this application
+  my $vote_row = DreamGuild::DB::ApplicationVotes->select ('where uid = ? and appid = ?',
+                                                           $user->{id},
+                                                           $app->[0]->{id});
+  my $vote = -1;
+  $vote = $vote_row->[0]->vote if (scalar (@{$vote_row}));
+
   $app->[0]->{talents}   = decode_json ($app->[0]->{talents});
   $app->[0]->{items}     = decode_json ($app->[0]->{items});
   $app->[0]->{questions} = decode_json ($app->[0]->{questions});
@@ -136,7 +143,8 @@ sub application {
 
   return $self->render (template    => 'application/details',
                         application => $app->[0],
-                        comments    => $comments);
+                        comments    => $comments,
+                        vote        => $vote);
 
 }
 
