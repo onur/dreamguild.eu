@@ -23,42 +23,7 @@
             % for my $application (@{$applications}) {
             <tr>
               <td><a href="/application/<%= $application->{app_id} %>" class="color-c<%= $application->{class} %>"><%= $application->{name} %></a></td>
-              <td>
-
-                %# Spec
-                % if (defined $application->{talents}->[0]->{selected}) {
-                %= $application->{talents}->[0]->{spec}->{name}
-                % } else {
-                %= $application->{talents}->[1]->{spec}->{name}
-                % }
-
-                %# Class
-                % if ($application->{class} == 1) {
-                Warrior
-                % } elsif ($application->{class} == 2) {
-                Paladin
-                % } elsif ($application->{class} == 3) {
-                Hunter
-                % } elsif ($application->{class} == 4) {
-                Rogue
-                % } elsif ($application->{class} == 5) {
-                Priest
-                % } elsif ($application->{class} == 6) {
-                Death Knight
-                % } elsif ($application->{class} == 7) {
-                Shaman
-                % } elsif ($application->{class} == 8) {
-                Mage
-                % } elsif ($application->{class} == 9) {
-                Warlock
-                % } elsif ($application->{class} == 10) {
-                Monk
-                % } elsif ($application->{class} == 11) {
-                Druid
-                % }
-                    
-                    
-              </td>
+              <td><%= class_name ($application->{class}, $application->{talents}) %></td>
               <td class="status-<%= $application->status %>">
 
                 % if ($application->{status} == 1) {
