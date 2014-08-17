@@ -252,6 +252,17 @@ sub application_vote {
         vote => $vote,
         time => time ()
       );
+
+      if ($vote == 1) {
+        $app->[0]->update (yes => $app->[0]->{yes} + 1,
+                           no  => $app->[0]->{no} - 1);
+
+      } else {
+        $app->[0]->update (yes => $app->[0]->{yes} - 1,
+                           no  => $app->[0]->{no} + 1);
+      }
+
+
     }
   } else {
 
@@ -262,6 +273,12 @@ sub application_vote {
       points => 0,
       time => time ()
     )->insert;
+
+    if ($vote == 1) {
+      $app->[0]->update (yes => $app->[0]->{yes} + 1);
+    } else {
+      $app->[0]->update (no  => $app->[0]->{no} + 1);
+    }
 
   }
 
