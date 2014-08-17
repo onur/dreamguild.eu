@@ -5,7 +5,7 @@ use strict;
 use warnings;
 use DreamGuild::DB;
 use DreamGuild::Utils::Progress;
-use LWP::Simple;
+use LWP::UserAgent;
 use Digest::SHA qw/sha1_hex/;
 use JSON::XS;
 
@@ -43,11 +43,13 @@ sub check_roster {
 
 sub check_battlenet {
   my $self = shift;
-  my $raw_content = get ('http://eu.battle.net/api/wow/character/Grim-Batol/' .
-                       $self->{name} . '?fields=items,progression,talents');
-  return 0 unless $raw_content;
+  my $ua = LWP::UserAgent->new;
+  my $response = $ua->get ('http://eu.battle.net/api/wow/character/Grim-Batol/'
+                           . $self->{name} . '?fields=items,progression,talents');
+                       
+  return 0 unless $response->is_success;
 
-  $self->{json_content} = decode_json ($raw_content);
+  $self->{json_content} = decode_json ($response->decoded_content);
 
   return 1;
 }
