@@ -16,7 +16,7 @@ sub apply {
   my $self = shift;
 
   if ($self->stash ('user')) {
-    return $self->render (template => 'application/apply',
+    return $self->render (template => 'error',
                           error    => 'Please logout to send an application');
   }
 
