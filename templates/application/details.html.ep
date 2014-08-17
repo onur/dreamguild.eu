@@ -106,6 +106,20 @@
 
         </div>
 
+        <div class="row">
+
+          <div class="col-md-12">
+
+            <ul>
+              <li><a href="http://eu.battle.net/wow/en/character/grim-batol/<%= $application->{name} %>/advanced" target="_blank">See in Armory</a></li>
+              <li><a href="http://www.wowprogress.com/character/eu/grim-batol/<%= $application->{name} %>/advanced" target="_blank">See in WoWProgress</a></li>
+            </ul>
+
+          </div>
+
+
+        </div>
+
       </div>
 
       <div class="well">
