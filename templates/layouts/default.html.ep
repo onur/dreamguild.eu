@@ -62,7 +62,7 @@
             % if (defined ($user->{mainc})) {
             <li class="dropdown">
             <a href="#" class="dropdown-toggle user-profile-a" data-toggle="dropdown">
-              <img class="user-profile-pic" src="https://eu.battle.net/static-render/eu/<%= $user->{mainc}->{thumbnail} %>" alt="" />
+              <img class="user-profile-pic" src="/img/avatars/<%= $user->{mainc}->{thumbnail} %>" alt="" />
               <%= $user->{mainc}->{name} %> <b class="caret"></b>
             </a>
               <ul class="dropdown-menu">
