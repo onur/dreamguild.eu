@@ -12,7 +12,7 @@ sub register {
   my ($self, $app) = @_;
 
   $app->helper (relative_date => \&relative_date);
-
+  $app->helper (class_name => \&class_name);
 
 }
 
@@ -49,6 +49,49 @@ sub relative_date {
     return int ($elapsed/$sPerYear) . " years ago";
   }
 
+}
+
+
+
+sub class_name {
+
+  my ($self, $class, $talents) = @_;
+
+  my $str = '';
+
+  if (defined ($talents)) {
+    if (defined $talents->[0]->{selected}) {
+     $str .= $talents->[0]->{spec}->{name} . ' ';
+    } else {
+     $str .= $talents->[1]->{spec}->{name} . ' ';
+    }
+  }
+
+  if ($class == 1) {
+    $str .= 'Warrior';
+  } elsif ($class == 2) {
+    $str .= 'Paladin';
+  } elsif ($class == 3) {
+    $str .= 'Hunter';
+  } elsif ($class == 4) {
+    $str .= 'Rogue';
+  } elsif ($class == 5) {
+    $str .= 'Priest';
+  } elsif ($class == 6) {
+    $str .= 'Death Knight';
+  } elsif ($class == 7) {
+    $str .= 'Shaman';
+  } elsif ($class == 8) {
+    $str .= 'Mage';
+  } elsif ($class == 9) {
+    $str .= 'Warlock';
+  } elsif ($class == 10) {
+    $str .= 'Monk';
+  } elsif ($class == 11) {
+    $str .= 'Druid';
+  }
+ 
+  return $str;
 }
 
 
