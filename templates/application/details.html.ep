@@ -111,18 +111,75 @@
 
         <div class="line"></div>
         <div class="text-center">
-          <a class="label label-success"><%= $application->{yes} %></a>
-          <a class="label label-danger"><%= $application->{no} %></a>
+          <a class="label label-success" id="application-votes-yes"><%= $application->{yes} %></a>
+          <a class="label label-danger" id="application-votes-no"><%= $application->{no} %></a>
         </div>
 
         % if ($user->level >= 5) {
         <div class="line"></div>
+        % my $vote = stash ('vote');
         <h4>Vote</h4>
 
-        <div class="btn-group btn-group-justified">
-          <a href="#" id="application-vote-yes" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-ok"></span></a>
-          <a href="#" id="application-vote-no"  class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-remove"></span></a>
+        <div id="application-vote-status">
+          <div id="vote-alert-no" class="vote-alert alert alert-dismissable alert-danger text-center">
+            You voted <strong>NO</strong> for this application
+          </div>
+          <div id="vote-alert-yes" class="vote-alert alert alert-dismissable alert-success text-center">
+            You voted <strong>YES</strong> for this application
+          </div>
         </div>
+
+        <div id="application-vote-buttons" class="btn-group btn-group-justified">
+          <a href="#" id="application-vote-yes" data-vote="yes" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-ok"></span></a>
+          <a href="#" id="application-vote-no" data-vote="no"  class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-remove"></span></a>
+        </div>
+
+        <script>
+
+           var uservote = <%= $vote %>;
+
+           function show_alert () {
+             if (uservote == 1) {
+               $('#vote-alert-yes').show ();
+               $('#vote-alert-no').hide ();
+             } else if (uservote == 0) {
+               $('#vote-alert-yes').hide ();
+               $('#vote-alert-no').show ();
+             }
+
+           }
+
+           function vote_click () {
+             var vote = $(this).attr ('data-vote');
+             $.getJSON (window.location.pathname + '/vote/' + vote);
+
+             if (uservote >= 0) {
+               if (vote == 'yes' && uservote == 0) {
+                 $('#application-votes-yes').text (parseInt ($('#application-votes-yes').text ()) + 1);
+                 $('#application-votes-no').text (parseInt ($('#application-votes-no').text ()) - 1);
+               } else if (vote == 'no' && uservote == 1) {
+                 $('#application-votes-yes').text (parseInt ($('#application-votes-yes').text ()) - 1);
+                 $('#application-votes-no').text (parseInt ($('#application-votes-no').text ()) + 1);
+               }
+             } else {
+               if (vote == 'yes') {
+                 $('#application-votes-yes').text (parseInt ($('#application-votes-yes').text ()) + 1);
+               } else {
+                 $('#application-votes-no').text (parseInt ($('#application-votes-no').text ()) + 1);
+               }
+             }
+
+             uservote = (vote == 'yes' ? 1 : 0);
+             show_alert ();
+
+             return false;
+           }
+
+           show_alert ();
+           $('#application-vote-buttons a').each (function () { return $(this).click (vote_click); });
+
+
+        </script>
         % }
 
         % if ($user->level >= 20) {
