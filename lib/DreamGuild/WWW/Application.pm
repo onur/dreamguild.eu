@@ -129,8 +129,6 @@ sub application {
     }
   }
 
-  warn $self->dumper ($comments);
-
   $app->[0]->{talents}   = decode_json ($app->[0]->{talents});
   $app->[0]->{items}     = decode_json ($app->[0]->{items});
   $app->[0]->{questions} = decode_json ($app->[0]->{questions});
