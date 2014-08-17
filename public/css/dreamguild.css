@@ -188,3 +188,7 @@ span.comment-time {
   font-size: 0.9em;
   color: #666;
 }
+
+div.vote-alert {
+  display: none;
+}
