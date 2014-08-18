@@ -5,12 +5,15 @@
 % my $time = time ();
 <div class="container">
 
+
+  % if (!$user) {
   <div class="jumbotron">
     <h1>Dream</h1>
     <p>Dream is a guild consisting of good people who have been playing together since 2011. </p>
     <p>With our new arrival into the Official World of Warcraft realms, we are optimistic that we can build our own community instead of involving ourselves in the currently existing prominent communities.</p>
     <p><a class="btn btn-primary btn-lg" href="/apply">Apply now</a></p>
   </div>
+  % }
   
 
   <div class="row">
