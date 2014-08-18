@@ -107,6 +107,14 @@ CREATE TABLE application_comments (
 );
 
 
+CREATE TABLE news (
+  id         INTEGER PRIMARY KEY AUTOINCREMENT,
+  uid        INTEGER NOT NULL,
+  title      TEXT,
+  content    TEXT,
+  time       INTEGER
+);
+
 
 
 -- FACEBOOK FEEDS
