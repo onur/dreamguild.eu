@@ -1,0 +1,74 @@
+
+
+% my $news = stash ('news');
+% my $user = stash ('user');
+% my $time = time ();
+<div class="container">
+
+  <div class="jumbotron">
+    <h1>Dream</h1>
+    <p>Dream is a guild consisting of good people who have been playing together since 2011. </p>
+    <p>With our new arrival into the Official World of Warcraft realms, we are optimistic that we can build our own community instead of involving ourselves in the currently existing prominent communities.</p>
+    <p><a class="btn btn-primary btn-lg" href="/apply">Apply now</a></p>
+  </div>
+  
+
+  <div class="row">
+
+    <div class="col-xs-12 col-sm-8 col-md-9">
+
+    % for my $new (@{$news}) {
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"><%= $new->{title} %></h3>
+        </div>
+        <div class="panel-body">
+          <%== $new->{content} %>
+        </div>
+        <div class="panel-footer">
+          <div class="row">
+            <div class="col-xs-6 col-sm-6 col-md-6">
+              <span class="comment-time"><%= relative_date ($new->{time}, $time); %></span>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6 text-right">
+              <img class="character-portrait" src="/img/avatars/<%= $new->{thumbnail} %>" style="max-height: 20px">
+              <span class="color-c<%= $new->{class} %>"><%= $new->{name} %></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    % }
+
+    </div>
+
+
+    <div class="col-xs-12 col-sm-4 col-md-3">
+
+      <div class="well">
+        % my @server_time = localtime (time);
+        <p class="text-center">Server time<br />
+        <strong><%= $server_time[2] %>:<%= $server_time[1] %></strong></p>
+      </div>
+
+      % if (!$user) {
+      <div class="well">
+
+        <form role="form" action="/apply" method="post">
+          <div class="form-group">
+            <label for="ApplyCharName">Enter your main character name</label>
+            <input type="text" class="form-control" id="ApplyCharName" placeholder="" name="character">
+          </div>
+          <button type="submit" class="btn btn-success">Join us</button>
+        </form>
+
+      </div>
+      % }
+
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,30 @@
+
+<div class="container">
+  <div class="well">
+
+    % if (stash ('error')) {
+    <div class="alert alert-danger" role="alert">
+      %= stash ('error')
+    </div>
+    % }
+
+    <form role="form" action="<%== url_for %>" method="post">
+      <div class="form-group">
+        <label for="news-title">Title</label>
+        <input type="text" class="form-control" id="news-title" placeholder="" name="title" value="<%= param 'title' %>" autofocus>
+      </div>
+
+      <div class="form-group">
+        <label for="news-content">Content</label>
+        <textarea class="form-control" id="news-content" placeholder="" name="content" rows="10"><%= param 'content' %></textarea>
+      </div>
+
+      <script>
+        CKEDITOR.replace ('news-content');
+      </script>
+
+      <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+
+  </div>
+</div>
