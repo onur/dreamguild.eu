@@ -115,13 +115,21 @@ sub application {
 
 
   my $comments = DreamGuild::DB::ApplicationComments->select ('where appid = ?', $app->[0]->{id});
-  for (@{$comments}) {
-    my $sth = DreamGuild::DB->dbh->prepare ('SELECT name, class, thumbnail FROM roster INNER JOIN user ON roster.id = user.main WHERE user.id = ?');
-    $sth->execute ($_->{uid});
-    $_->{main} = $sth->fetchrow_hashref;
 
-    if (!defined ($_->{main})) {
-      $_->{main} = {
+  for my $comment (@{$comments}) {
+    DreamGuild::DB->iterate (
+      'SELECT name, class, thumbnail FROM roster INNER JOIN user ON roster.id = user.main WHERE user.id = ?', $comment->{uid},
+      sub {
+        $comment->{main} = {
+          name  => $_->[0],
+          class => $_->[1],
+          thumbnail => $_->[2]
+        };
+      } 
+    );
+
+    if (!defined ($comment->{main})) {
+      $comment->{main} = {
         class => $app->[0]->{class},
         name  => $app->[0]->{name},
         thumbnail => $app->[0]->{thumbnail}
