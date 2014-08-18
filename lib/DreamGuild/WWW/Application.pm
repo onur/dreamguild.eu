@@ -117,6 +117,7 @@ sub application {
   my $comments = DreamGuild::DB::ApplicationComments->select ('where appid = ?', $app->[0]->{id});
 
   for my $comment (@{$comments}) {
+    # FIXME: using a sql query per comment, yeaa sure!
     DreamGuild::DB->iterate (
       'SELECT name, class, thumbnail FROM roster INNER JOIN user ON roster.id = user.main WHERE user.id = ?', $comment->{uid},
       sub {
