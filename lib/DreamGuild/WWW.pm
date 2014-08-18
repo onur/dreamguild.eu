@@ -46,7 +46,11 @@ sub startup {
   my $r = $self->routes;
 
   # Normal route to controller
-  $r->get ('/')->to('example#welcome');
+  $r->get ('/')->to('News#list');
+
+  $r->get ('/news/post')->to('News#post_get');
+  $r->post ('/news/post')->to('News#post_post');
+
   $r->get ('/register')->to ('user#register');
   $r->post ('/register')->to ('user#register_post');
 
