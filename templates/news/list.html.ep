@@ -56,20 +56,6 @@
         <strong><%= $server_time[2] %>:<%= $server_time[1] %></strong></p>
       </div>
 
-      % if (!$user) {
-      <div class="well">
-
-        <form role="form" action="/apply" method="post">
-          <div class="form-group">
-            <label for="ApplyCharName">Enter your main character name</label>
-            <input type="text" class="form-control" id="ApplyCharName" placeholder="" name="character">
-          </div>
-          <button type="submit" class="btn btn-success">Join us</button>
-        </form>
-
-      </div>
-      % }
-
     </div>
 
   </div>
