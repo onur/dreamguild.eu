@@ -85,7 +85,7 @@ sub register_post {
 
     if ($row->[0]->{status} == 0 && $row->[0]->{uid} == 0) {
       $row->[0]->update (uid => $user_row->id);
-      return $self->redirect_to ('application/' . $row->[0]->{app_id});
+      return $self->redirect_to ('applications/' . $row->[0]->{app_id});
     }
   } elsif (my $main_id = $self->session ('main_id')) {
     my $char = DreamGuild::DB::Roster->load ($main_id);
@@ -139,7 +139,7 @@ sub login_post {
   # And if there's one redirect to application page
   $row = DreamGuild::DB::Application->select ('where uid = ? and status < 2',
                                               $row->[0]->{id});
-  return $self->redirect_to ('/application/' . $row->[0]->{app_id})
+  return $self->redirect_to ('/applications/' . $row->[0]->{app_id})
     if (scalar (@{$row}));
 
 

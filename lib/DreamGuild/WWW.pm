@@ -64,13 +64,13 @@ sub startup {
   $r->get ('/apply')->to ('Application#apply');
   $r->post ('/apply')->to ('Application#apply_post');
 
-  $r->get ('/application')->to ('Application#list');
-  $r->get ('/application/closed')->to ('Application#list', {app_status => 'closed'});
+  $r->get ('/applications')->to ('Application#list');
+  $r->get ('/applications/closed')->to ('Application#list', {app_status => 'closed'});
 
-  $r->get ('/application/:id')->to ('Application#application');
-  $r->post ('/application/:id')->to ('Application#application_questions_post');
-  $r->post ('/application/:id/comment')->to ('Application#application_add_comment');
-  $r->get ('/application/:id/vote/:vote')->to ('Application#application_vote');
+  $r->get ('/applications/:id')->to ('Application#application');
+  $r->post ('/applications/:id')->to ('Application#application_questions_post');
+  $r->post ('/applications/:id/comment')->to ('Application#application_add_comment');
+  $r->get ('/applications/:id/vote/:vote')->to ('Application#application_vote');
 }
 
 

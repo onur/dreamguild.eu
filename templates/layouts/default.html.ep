@@ -60,7 +60,7 @@
           % } else {
           <ul class="nav navbar-nav navbar-right">
             % if ($user->{level} >= 5) {
-            <li><a href="/application">Applications <span class="badge"><%= stash ('open_application_count'); %></span></a></li>
+            <li><a href="/applications">Applications <span class="badge"><%= stash ('open_application_count'); %></span></a></li>
             % }
             % if (defined ($user->{mainc})) {
             <li class="dropdown">

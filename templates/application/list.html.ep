@@ -22,7 +22,7 @@
           <tbody>
             % for my $application (@{$applications}) {
             <tr>
-              <td><a href="/application/<%= $application->{app_id} %>" class="color-c<%= $application->{class} %>"><%= $application->{name} %></a></td>
+              <td><a href="/applications/<%= $application->{app_id} %>" class="color-c<%= $application->{class} %>"><%= $application->{name} %></a></td>
               <td><%= class_name ($application->{class}, $application->{talents}) %></td>
               <td class="status-<%= $application->status %>">
 
@@ -51,11 +51,11 @@
 
       % my $app_status = stash ('app_status');
       <div class="list-group">
-        <a href="/application" class="list-group-item<%= !defined ($app_status) ? ' active' : '' %>">
+        <a href="/applications" class="list-group-item<%= !defined ($app_status) ? ' active' : '' %>">
           Open Applications
           <span class="badge"><%= stash ('open_application_count'); %></span></a>
         </a>
-        <a href="/application/closed" class="list-group-item<%= (defined ($app_status) and $app_status eq 'closed') ? ' active' : '' %>">Closed Applications
+        <a href="/applications/closed" class="list-group-item<%= (defined ($app_status) and $app_status eq 'closed') ? ' active' : '' %>">Closed Applications
         </a>
       </div>
 
