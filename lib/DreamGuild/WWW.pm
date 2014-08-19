@@ -52,6 +52,8 @@ sub startup {
   $r->get ('/news/post')->to('News#post_get');
   $r->post ('/news/post')->to('News#post_post');
 
+  $r->get ('/roster')->to('Roster#list');
+
   $r->get ('/register')->to ('user#register');
   $r->post ('/register')->to ('user#register_post');
 
