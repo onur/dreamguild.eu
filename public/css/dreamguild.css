@@ -193,3 +193,7 @@ span.comment-time {
 div.vote-alert {
   display: none;
 }
+
+select.my-select {
+  background-color: #282828;
+}

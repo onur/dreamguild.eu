@@ -131,12 +131,17 @@ sub update_roster {
       progress      => (defined $_->{character}->{details}->{progression} ?
                             encode_json ($_->{character}->{details}->{progression}) : undef),
       achievement_points  => $_->{character}->{details}->{achievementPoints} || 0,
-      last_update   => $self->{last_update}
+      last_update   => $self->{last_update},
+
+      uid           => 0,
+      is_main       => 0
 
     );
 
     if ($uid) {
       my $row = DreamGuild::DB::Roster->load ($uid);
+      delete ($user{uid});
+      delete ($user{is_main});
       $row->update (%user);
     } else {
       my $row = DreamGuild::DB::Roster->new (%user)->insert;
