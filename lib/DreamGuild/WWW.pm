@@ -48,6 +48,7 @@ sub startup {
   # Normal route to controller
   $r->get ('/')->to('News#list');
 
+  $r->get ('/news')->to ('News#list');
   $r->get ('/news/post')->to('News#post_get');
   $r->post ('/news/post')->to('News#post_post');
 
