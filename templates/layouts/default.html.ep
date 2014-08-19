@@ -39,7 +39,7 @@
         <div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav">
             <li><a href="/news">News</a></li>
-            <li><a href="/roster" class="dropdown-toggle" data-toggle="dropdown">Roster</a></li>
+            <li><a href="/roster">Roster</a></li>
           </ul>
 
           % my $user = stash ('user');
