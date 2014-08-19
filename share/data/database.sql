@@ -41,7 +41,9 @@ CREATE TABLE roster (
   items      TEXT,
   progress   TEXT,
   achievement_points INTEGER DEFAULT 0,
-  last_update INTEGER DEFAULT 0
+  last_update INTEGER DEFAULT 0,
+  is_main        INTEGER DEFAULT 0,
+  lottery_ticket INTEGER DEFAULT 0
 );
 
 
