@@ -242,7 +242,7 @@
             <p><%= $comment->{comment} %></p>
             <div class="line"></div>
             % }
-            <form role="form" action="/application/<%= $application->{app_id} %>/comment" method="post">
+            <form role="form" action="<%== url_for %>/comment" method="post">
               <div class="form-group">
                 <textarea name="comment" class="form-control"></textarea>
               </div>
