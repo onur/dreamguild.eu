@@ -38,7 +38,7 @@
         </div>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="/news">News</a></li>
+            <li><a href="/guild-rules">Guild Rules</a></li>
             <li><a href="/roster">Roster</a></li>
           </ul>
 
