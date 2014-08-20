@@ -49,8 +49,8 @@ sub startup {
   $r->get ('/')->to('News#list');
 
   $r->get ('/news')->to ('News#list');
-  $r->get ('/news/post')->to('News#post_get');
-  $r->post ('/news/post')->to('News#post_post');
+  $r->get ('/news/add')->to('News#post_get');
+  $r->post ('/news/add')->to('News#post_post');
 
   $r->get ('/roster')->to('Roster#list');
 
