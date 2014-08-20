@@ -31,7 +31,7 @@ sub list {
 }
 
 
-sub post_get {
+sub add {
   my $self = shift;
   my $user = $self->stash ('user');
 
@@ -44,7 +44,7 @@ sub post_get {
 }
 
 
-sub post_post {
+sub add_post {
   my $self = shift;
   my $user = $self->stash ('user');
 
@@ -56,7 +56,7 @@ sub post_post {
   my $title = $self->param ('title');
   my $content = $self->param ('content');
 
-  return $self->render (template => 'news/post_get',
+  return $self->render (template => 'news/add',
                         error => 'Title or content is empty!')
     if (!$title || !$content);
 
