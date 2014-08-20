@@ -5,6 +5,9 @@ use DreamGuild::DB;
 use DreamGuild::WWW::Helpers;
 
 
+our $VERSION = '0.1';
+
+
 sub before_filter {
   my $self = shift;
 
