@@ -20,6 +20,8 @@
 
   <body>
 
+    % my $user = stash ('user');
+
     <div class="container">
       <div class="logo">
         <a href="/">DreamGuild.eu</a>
@@ -39,6 +41,7 @@
         </div>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav">
+            <% if ($user) { %><li><a href="https://www.facebook.com/groups/dreamguild.eu" target="_blank">FB Group</a></li><% } %>
             <li><a href="/guild-rules">Guild Rules</a></li>
             <li><a href="/roster">Roster</a></li>
           </ul>
@@ -46,8 +49,6 @@
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#" id="server-time"></a></li>
             <script>DreamGuild.update_server_time ();</script>
-
-            % my $user = stash ('user');
             % if (!$user) {
             <li><a href="/apply">Join us</a></li>
             <li class="dropdown">
