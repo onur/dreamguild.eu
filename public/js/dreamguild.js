@@ -10,7 +10,7 @@ var DreamGuild = {
     if (hour < 10) hour = '0' + hour;
     if (min < 10) min = '0' + min;
     if (second < 10) second = '0' + second;
-    $('#server-time').text (hour + ':' + min + ':' + second);
+    $('#server-time').text (hour + (second % 2 == 0 ? ':' : ' ') + min);
     setTimeout (DreamGuild.update_server_time, 1000);
   }
 
