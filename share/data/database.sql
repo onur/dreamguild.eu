@@ -86,7 +86,8 @@ CREATE TABLE application (
   no         INTEGER DEFAULT 0,
   points     INTEGER DEFAULT 0,
   issued_by  INTEGER DEFAULT 0,
-  reason     TEXT
+  reason     TEXT,
+  ip         TEXT
 );
 
 
