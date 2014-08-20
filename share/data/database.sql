@@ -138,6 +138,13 @@ CREATE TABLE facebook (
 
 
 
+CREATE TABLE pages (
+  slug       TEXT PRIMARY KEY,
+  title      TEXT,
+  content    TEXT
+);
+
+
 CREATE TABLE options (
   option TEXT PRIMARY KEY NOT NULL,
   value  TEXT NOT NULL
