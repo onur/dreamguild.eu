@@ -66,6 +66,12 @@ CREATE TABLE progress_history (
 CREATE TABLE application (
   id         INTEGER PRIMARY KEY AUTOINCREMENT,
   uid        INTEGER DEFAULT 0,
+
+  -- app status
+  -- 0: application created, no question answered
+  -- 1: application is in progress
+  -- 2: accepted
+  -- 3: declined
   status     INTEGER DEFAULT 0,
   app_id     TEXT UNIQUE,
   name       TEXT,
