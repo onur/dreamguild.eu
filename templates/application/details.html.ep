@@ -217,7 +217,7 @@
                     % }
                     <option>Other</option>
                   </select>
-                  <div class="form-group" style="display: none;" id="other-reject-reason">
+                  <div class="form-group" style="display: none; margin-top: 10px;" id="other-reject-reason">
                     <textarea name="other-reason" id="reject-reason" class="form-control" placeholder="State your reason here"></textarea>
                   </div>
                   <script>
