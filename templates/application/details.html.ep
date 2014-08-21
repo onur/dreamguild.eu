@@ -224,6 +224,7 @@
                      $('#reject-reason-select').change (function () {
                        if ($('#reject-reason-select option:selected').text () == 'Other') {
                          $('#other-reject-reason').show ();
+                         $('#reject-reason').focus ();
                        } else {
                          $('#other-reject-reason').hide ();
                        }
