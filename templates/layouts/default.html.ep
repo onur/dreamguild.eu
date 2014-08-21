@@ -41,8 +41,8 @@
         </div>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav">
-            <% if ($user) { %><li><a href="https://www.facebook.com/groups/dreamguild.eu" target="_blank">FB Group</a></li><% } %>
-            <li><a href="/guild-rules">Guild Rules</a></li>
+            <% if ($user) { %><li><a href="https://www.facebook.com/groups/dreamguild.eu" target="_blank">Discussion</a></li><% } %>
+            <li><a href="/guild-rules">Rules</a></li>
             <li><a href="/roster">Roster</a></li>
           </ul>
 
