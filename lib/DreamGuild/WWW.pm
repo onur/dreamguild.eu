@@ -68,7 +68,8 @@ sub startup {
   $r->post ('/apply')->to ('Application#apply_post');
 
   $r->get ('/applications')->to ('Application#list');
-  $r->get ('/applications/closed')->to ('Application#list', {app_status => 'closed'});
+  $r->get ('/applications/accepted')->to ('Application#list', {app_status => 'accepted'});
+  $r->get ('/applications/rejected')->to ('Application#list', {app_status => 'rejected'});
 
   $r->get ('/applications/:id')->to ('Application#application');
   $r->post ('/applications/:id')->to ('Application#application_questions_post');
