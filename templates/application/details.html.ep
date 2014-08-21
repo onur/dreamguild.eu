@@ -186,8 +186,57 @@
         <h4>GM</h4>
 
         <div class="btn-group btn-group-justified">
-          <a href="#" class="btn btn-success">Accept</a>
-          <a href="#" class="btn btn-danger">Decline</a>
+          <a href="<%== url_for %>/accept" class="btn btn-success">Accept</a>
+          <a href="#" data-toggle="modal" data-target="#decline-modal" class="btn btn-danger">Decline</a>
+        </div>
+
+        <!-- Modal for decline -->
+        <div class="modal fade" id="decline-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <form role="form" action="<%== url_for %>/decline" method="post">
+            <div class="modal-dialog" style="padding-top: 40%">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                  <h4 class="modal-title" id="myModalLabel">Decline <%= $application->{name} %></h4>
+                </div>
+                <div class="modal-body">
+                  <label for="decline-reason-select">Reason</label>
+                  <select id="decline-reason-select" name="reason" class="form-control">
+                    % my @decline_reasons = (
+                    %   'Invasions by Barbarian tribes',
+                    %   'Economic troubles and overreliance on slave labor',
+                    %   'The rise of the Eastern Empire',
+                    %   'Overexpansion and military overspending',
+                    %   'Government corruption and political instability',
+                    %   'The arrival of the Huns and the migration of the Barbarian tribes',
+                    %   'Christianity and the loss of traditional values',
+                    %   'Weakening of the Roman legions'
+                    % );
+                    % for (@decline_reasons) {
+                    <option><%= $_ %></option>
+                    % }
+                    <option>Other</option>
+                  </select>
+                  <div class="form-group" style="display: none;" id="other-decline-reason">
+                    <textarea name="other-reason" id="decline-reason" class="form-control" placeholder="State your reason here"></textarea>
+                  </div>
+                  <script>
+                     $('#decline-reason-select').change (function () {
+                       if ($('#decline-reason-select option:selected').text () == 'Other') {
+                         $('#other-decline-reason').show ();
+                       } else {
+                         $('#other-decline-reason').hide ();
+                       }
+                     });
+                  </script>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                  <button type="submit" class="btn btn-default btn-danger">Decline</button>
+                </div>
+              </div>
+            </div>
+          </form>
         </div>
         % }
 
