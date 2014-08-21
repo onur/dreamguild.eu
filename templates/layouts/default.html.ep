@@ -90,6 +90,17 @@
 
     </div> <!-- /container -->
 
+    % my $flash_text = flash 'text';
+    % my $flash_type = flash 'type';
+    % if ($flash_text) {
+    <div class="container main-container">
+      <div class="alert alert-dismissable alert-<%= $flash_type || 'success' %>">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        %== $flash_text
+      </div>
+    </div>
+    % }
+
     <%= content %>
 
   </body>
