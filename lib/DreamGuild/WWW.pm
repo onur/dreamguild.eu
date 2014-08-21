@@ -74,6 +74,8 @@ sub startup {
   $r->post ('/applications/:id')->to ('Application#application_questions_post');
   $r->post ('/applications/:id/comment')->to ('Application#application_add_comment');
   $r->get ('/applications/:id/vote/:vote')->to ('Application#application_vote');
+  $r->get ('/applications/:id/accept')->to ('Application#application_accept');
+  $r->post ('/applications/:id/decline')->to ('Application#application_decline');
 
   # Pages
   $r->get ('/pages/add')->to ('Pages#add');
