@@ -304,6 +304,67 @@ sub application_vote {
 
 
 
+sub application_accept {
+  my $self = shift;
+  my $user = $self->stash ('user');
+  my $app = DreamGuild::DB::Application->select ('where app_id = ?', $self->param ('id'));
+
+  return $self->render (template => 'error',
+                        error    => 'You don\'t have permission to accept or decline applications')
+    if (!defined ($user) ||
+        ($user->level < 20));
+
+  return $self->render (template => 'error',
+                        error    => 'Application does not exist!')
+    if (!scalar (@{$app}));
+
+
+  $app->[0]->update (
+    status    => 2,
+    issued_by => $user->{id}
+  );
+
+  $self->flash (text => 'You successfully accepted <strong>' . $app->[0]->name . '</strong>.');
+  return $self->redirect_to ('/applications/' . $app->[0]->{app_id});
+}
+
+
+sub application_decline {
+  my $self = shift;
+  my $user = $self->stash ('user');
+  my $app = DreamGuild::DB::Application->select ('where app_id = ?', $self->param ('id'));
+
+  my $reason = $self->param ('reason');
+  my $other_reason = $self->param ('other-reason');
+
+  return $self->render (template => 'error',
+                        error    => 'You don\'t have permission to accept or decline applications')
+    if (!defined ($user) ||
+        ($user->level < 20));
+
+  return $self->render (template => 'error',
+                        error    => 'Application does not exist!')
+    if (!scalar (@{$app}));
+
+  return $self->render (template => 'error',
+                        error    => 'Reason cannot be empty')
+    if (!$reason || ($reason eq 'Other' && !$other_reason));
+
+  $reason = $other_reason if ($reason eq 'Other');
+
+  $app->[0]->update (
+    status    => 3,
+    issued_by => $user->{id},
+    reason    => $reason
+  );
+
+  $self->flash (type => 'danger',
+                text => 'You successfully declined <strong>' . $app->[0]->name . '</strong>.');
+
+  return $self->redirect_to ('/applications/' . $app->[0]->{app_id});
+}
+
+
 
 sub list {
   my $self = shift;
