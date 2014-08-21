@@ -89,6 +89,12 @@ sub download_avatar {
   my $ua = LWP::UserAgent->new;
   $ua->get ('https://eu.battle.net/static-render/eu/' . $avatar,
             ':content_file' => 'share/data/avatars/' . $avatar);
+  
+  # FIXME: code repeat
+  # Get profile picture
+  $avatar =~ s/avatar/profilemain/;
+  $ua->get ('https://eu.battle.net/static-render/eu/' . $avatar,
+            ':content_file' => 'share/data/avatars/' . $avatar);
 
 }
 
