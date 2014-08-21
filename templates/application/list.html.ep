@@ -55,8 +55,8 @@
           Open Applications
           <span class="badge"><%= stash ('open_application_count'); %></span></a>
         </a>
-        <a href="/applications/closed" class="list-group-item<%= (defined ($app_status) and $app_status eq 'closed') ? ' active' : '' %>">Closed Applications
-        </a>
+        <a href="/applications/accepted" class="list-group-item<%= (defined ($app_status) and $app_status eq 'accepted') ? ' active' : '' %>">Accepted Applications</a>
+        <a href="/applications/rejected" class="list-group-item<%= (defined ($app_status) and $app_status eq 'rejected') ? ' active' : '' %>">Rejected Applications</a>
       </div>
 
     </div>
