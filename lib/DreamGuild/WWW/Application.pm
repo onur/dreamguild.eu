@@ -329,7 +329,7 @@ sub application_accept {
 }
 
 
-sub application_decline {
+sub application_reject {
   my $self = shift;
   my $user = $self->stash ('user');
   my $app = DreamGuild::DB::Application->select ('where app_id = ?', $self->param ('id'));
