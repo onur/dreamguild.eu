@@ -187,22 +187,22 @@
 
         <div class="btn-group btn-group-justified">
           <a href="<%== url_for %>/accept" class="btn btn-success">Accept</a>
-          <a href="#" data-toggle="modal" data-target="#decline-modal" class="btn btn-danger">Decline</a>
+          <a href="#" data-toggle="modal" data-target="#reject-modal" class="btn btn-danger">Reject</a>
         </div>
 
-        <!-- Modal for decline -->
-        <div class="modal fade" id="decline-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-          <form role="form" action="<%== url_for %>/decline" method="post">
+        <!-- Modal for reject -->
+        <div class="modal fade" id="reject-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <form role="form" action="<%== url_for %>/reject" method="post">
             <div class="modal-dialog" style="padding-top: 40%">
               <div class="modal-content">
                 <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                  <h4 class="modal-title" id="myModalLabel">Decline <%= $application->{name} %></h4>
+                  <h4 class="modal-title" id="myModalLabel">Reject <%= $application->{name} %></h4>
                 </div>
                 <div class="modal-body">
-                  <label for="decline-reason-select">Reason</label>
-                  <select id="decline-reason-select" name="reason" class="form-control">
-                    % my @decline_reasons = (
+                  <label for="reject-reason-select">Reason</label>
+                  <select id="reject-reason-select" name="reason" class="form-control">
+                    % my @reject_reasons = (
                     %   'Invasions by Barbarian tribes',
                     %   'Economic troubles and overreliance on slave labor',
                     %   'The rise of the Eastern Empire',
@@ -212,20 +212,20 @@
                     %   'Christianity and the loss of traditional values',
                     %   'Weakening of the Roman legions'
                     % );
-                    % for (@decline_reasons) {
+                    % for (@reject_reasons) {
                     <option><%= $_ %></option>
                     % }
                     <option>Other</option>
                   </select>
-                  <div class="form-group" style="display: none;" id="other-decline-reason">
-                    <textarea name="other-reason" id="decline-reason" class="form-control" placeholder="State your reason here"></textarea>
+                  <div class="form-group" style="display: none;" id="other-reject-reason">
+                    <textarea name="other-reason" id="reject-reason" class="form-control" placeholder="State your reason here"></textarea>
                   </div>
                   <script>
-                     $('#decline-reason-select').change (function () {
-                       if ($('#decline-reason-select option:selected').text () == 'Other') {
-                         $('#other-decline-reason').show ();
+                     $('#reject-reason-select').change (function () {
+                       if ($('#reject-reason-select option:selected').text () == 'Other') {
+                         $('#other-reject-reason').show ();
                        } else {
-                         $('#other-decline-reason').hide ();
+                         $('#other-reject-reason').hide ();
                        }
                      });
                   </script>
