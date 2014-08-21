@@ -372,7 +372,13 @@ sub list {
   my $user = $self->stash ('user');
   my $status = $self->stash ('app_status');
 
-  $status = ((defined ($status) and $status eq 'closed') ? 2 : 1);
+  if (!$status) {
+    $status = 1;
+  } elsif ($status eq 'accepted') {
+    $status = 2;
+  } elsif ($status eq 'rejected') {
+    $status = 3;
+  }
 
   my $applications = DreamGuild::DB::Application->select ('where status = ?',
                                                           $status);
