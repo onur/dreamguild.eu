@@ -7,7 +7,7 @@
 
   <div class="row">
 
-    <div class="col-xs-12 col-sm-8 col-md-8">
+    <div class="col-xs-12 col-sm-9 col-md-9">
 
       <div class="well">
 
@@ -47,16 +47,16 @@
     </div>
 
 
-    <div class="col-xs-12 col-sm-4 col-md-4">
+    <div class="col-xs-12 col-sm-3 col-md-3">
 
       % my $app_status = stash ('app_status');
       <div class="list-group">
         <a href="/applications" class="list-group-item<%= !defined ($app_status) ? ' active' : '' %>">
-          Open Applications
+          Open
           <span class="badge"><%= stash ('open_application_count'); %></span></a>
         </a>
-        <a href="/applications/accepted" class="list-group-item<%= (defined ($app_status) and $app_status eq 'accepted') ? ' active' : '' %>">Accepted Applications</a>
-        <a href="/applications/rejected" class="list-group-item<%= (defined ($app_status) and $app_status eq 'rejected') ? ' active' : '' %>">Rejected Applications</a>
+        <a href="/applications/accepted" class="list-group-item<%= (defined ($app_status) and $app_status eq 'accepted') ? ' active' : '' %>">Accepted</a>
+        <a href="/applications/rejected" class="list-group-item<%= (defined ($app_status) and $app_status eq 'rejected') ? ' active' : '' %>">Rejected</a>
       </div>
 
     </div>
