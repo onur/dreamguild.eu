@@ -1,5 +1,5 @@
 
-
+% title 'News';
 % my $news = stash ('news');
 % my $user = stash ('user');
 % my $time = time ();
