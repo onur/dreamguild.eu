@@ -10,6 +10,8 @@
 * Add player of the week (based on XP contribution to guild for the week).
 * Add remove/edit function to comments for it's owner and admins.
 * Show comment tab after a comment posted.
+* Make nav items visible for everyone. I don't think this is a good idea.
+* Add FB Fan page link to somewhere. It must be only visible to strangers.
 
 
 # New Features for Admins
