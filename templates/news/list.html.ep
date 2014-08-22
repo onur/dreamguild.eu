@@ -39,12 +39,6 @@
 
     <div class="col-xs-12 col-sm-4 col-md-3">
 
-      <div class="well">
-        % my @server_time = localtime (time);
-        <p class="text-center">Server time<br />
-        <strong><%= $server_time[2] %>:<%= $server_time[1] %></strong></p>
-      </div>
-
     </div>
 
   </div>
