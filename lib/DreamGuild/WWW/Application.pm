@@ -54,7 +54,7 @@ sub apply_post {
 
   if ($app_status == 0) {
     return $self->render (template => 'application/apply',
-                          error    => 'This character don\'t exist in ' .
+                          error    => 'This character doesn\'t exist in ' .
                                       'Grim Batol EU');
   }
   
@@ -243,7 +243,7 @@ sub application_add_comment {
     time     => time ()
   )->insert;
 
-  return $self->redirect_to ('/application/' . $app->[0]->{app_id});
+  return $self->redirect_to ('/applications/' . $app->[0]->{app_id});
 }
 
 
