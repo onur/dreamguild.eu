@@ -19,6 +19,7 @@
 ----------------
 
 * People from Aggra realm cannot apply ATM. Needs to be resolved asap.
+* Fix s usage in relative date function.
 * Battle.net doesn't provide rendered avatars and/or backgrounds for some
   characters. (Probably Level 60- characters). Need to place a 'placeholder'
   avatar for this characters.
