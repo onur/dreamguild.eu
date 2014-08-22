@@ -1,5 +1,10 @@
 
+0.003  2014-08-22
+  - Hotfix release.
+  - Only guild members can see roster and lottery pages.
+
 0.002  2014-08-22
+  - Hotfix release.
   - Fix typo.
   - Redirect to /applications/:appid after comment.
 
