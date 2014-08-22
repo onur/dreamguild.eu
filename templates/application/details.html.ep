@@ -128,10 +128,12 @@
           </div>
         </div>
 
+        % if ($application->{status} == 1) {
         <div id="application-vote-buttons" class="btn-group btn-group-justified">
           <a href="#" id="application-vote-yes" data-vote="yes" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-ok"></span></a>
           <a href="#" id="application-vote-no" data-vote="no"  class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-remove"></span></a>
         </div>
+        % }
 
         <script>
 
@@ -181,7 +183,7 @@
         </script>
         % }
 
-        % if ($user->level >= 20) {
+        % if ($user->level >= 20 && $application->{status} == 1) {
         <div class="line"></div>
         <h4>GM</h4>
 
