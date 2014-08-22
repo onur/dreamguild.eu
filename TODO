@@ -27,6 +27,9 @@
 * Roster must be visible to only guild members
 * Check app status for votes in controller
 * Check password lenght on register
-* Use over to check authentication and refactor code repeats
+* Use over[1] to check authentication and refactor code repeats
   in Application.pm
-  over: http://mojolicio.us/perldoc/Mojolicious/Routes/Route#over
+
+
+
+1: http://mojolicio.us/perldoc/Mojolicious/Routes/Route#over
