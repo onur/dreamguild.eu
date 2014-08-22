@@ -1,0 +1,28 @@
+
+% title 'Assign characters';
+% my $characters = stash ('characters');
+% my $account = stash ('account');
+
+<div class="container">
+
+  <div class="list-group">
+    <div class="well">
+      <form role="form" action="<%== url_for %>/give" method="post">
+         <label for="account-main-select">Select main character</label>
+         <select name="main" id="account-main-select" class="form-control">
+         % for (@{$characters}) {
+         <option value="<%= $_->{id} %>" <%= $_->{name} eq $account ? 'selected' : '' %>><%= $_->{name} %></option>
+         % }
+         </select>
+         <br>
+         <label for="account-alt-select">Select alt characters</label>
+         <select style="height: 200px;" name="main" id="account-alt-select" class="form-control" multiple>
+         % for (@{$characters}) {
+         <option value="<%= $_->{id} %>"><%= $_->{name} %></option>
+         % }
+         </select>
+      </form>
+    </div>
+  </div>
+
+</div>
