@@ -228,6 +228,10 @@ sub application_add_comment {
          $user->id != $app->[0]->uid));
 
   return $self->render (template => 'error',
+                        error    => 'You can\'t add comments to closed applications')
+    if ($app->[0]->status != 1);
+
+  return $self->render (template => 'error',
                         error    => 'Please enter a comment')
     if (!$self->param ('comment'));
 
