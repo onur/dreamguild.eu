@@ -16,6 +16,7 @@
 # Under the hood
 ----------------
 
+* People from Aggra realm cannot apply atm. Needs to be resolved asap.
 * Roster must be visible to only guild members
 * Check app status for votes in controller
 * Check password lenght on register
