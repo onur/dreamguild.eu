@@ -56,6 +56,8 @@ sub startup {
   $r->post ('/news/add')->to('News#add_post');
 
   $r->get ('/roster')->to('Roster#list');
+  $r->get ('/lottery')->to('Roster#lottery');
+  $r->post ('/lottery/give')->to('Roster#lottery_give');
 
   $r->get ('/register')->to ('user#register');
   $r->post ('/register')->to ('user#register_post');
