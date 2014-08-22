@@ -9,24 +9,16 @@ use ORLite {
   unicode => 1
 };
 
-my $options = {};
-
-
-sub load_options {
-
-  DreamGuild::DB::Options->iterate (sub {
-    $options->{$_->option} = $_->{value};
-  });
-
-}
 
 
 sub get_option {
   my ($self, $option) = @_;
-  return $options->{$option} if (defined $options->{$option});
-  return undef;
+
+  my $option_row = DreamGuild::DB::Options->select ('where option = ?', $option);
+  return unless (scalar (@{$option_row}));
+
+  return $option_row->[0]->{value};
 }
 
-load_options ();
 
 1;
