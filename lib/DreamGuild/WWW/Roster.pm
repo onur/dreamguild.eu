@@ -90,4 +90,58 @@ sub list {
 
 
 
+sub lottery {
+  my $self = shift;
+
+  my $users = [];
+
+  DreamGuild::DB->iterate (
+    'SELECT id, name, class, lottery_ticket FROM roster ORDER BY name ASC',
+    sub {
+      push @{$users}, {
+        id     => $_->[0],
+        name   => $_->[1],
+        class  => $_->[2],
+        ticket => $_->[3]
+      };
+    }
+  );
+
+  my $users_with_ticket = 0;
+  $_->{ticket} and ++$users_with_ticket for (@{$users});
+
+  $self->render (count => $users_with_ticket,
+                 users => $users,
+                 next_ticket_number => DreamGuild::DB->get_option ('next_ticket_number') || 1);
+}
+
+
+sub lottery_give {
+  my $self = shift;
+  my $user = $self->stash ('user');
+  my $cid  = $self->param ('cid');
+
+  return $self->render (template => 'error',
+                        error    => 'You don\'t have permission to see this page. Try to log in.')
+    if (!defined ($user) ||
+        $user->level < 30);
+
+  my $char = DreamGuild::DB::Roster->load ($cid);
+
+  return $self->render (template => 'error',
+                        error    => 'Invalid character')
+    unless ($char);
+
+  my $next_ticket_number = DreamGuild::DB->get_option ('next_ticket_number') || 1;
+  $char->update (
+    lottery_ticket => $next_ticket_number
+  );
+
+  DreamGuild::DB->save_option ('next_ticket_number', $next_ticket_number + 1);
+
+  $self->flash (text => 'You successfully gave a ticket to <strong>' . $char->name . '</strong>.<br>His ticket number is: ' . $next_ticket_number);
+  $self->redirect_to ('/lottery');
+}
+
+
 1;
