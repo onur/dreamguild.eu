@@ -1,0 +1,77 @@
+
+% title 'Lottery';
+% my $user = stash ('user');
+%# FIXME: I can use better variable name for this
+%#        Users are actually ticket buyers
+% my $users = stash ('users');
+% my $count = stash ('count');
+
+<div class="container">
+
+  <div class="row">
+    <div class="col-xs-12 col-sm-9 col-md-9">
+
+      <div class="well">
+
+        % unless ($count) {
+
+        <div class="alert alert-warning" role="alert">
+          Nobody seems to have a lottery ticket.
+        </div>
+
+        % } else {
+
+        % my @sorted_users = sort { $a->{ticket} cmp $b->{ticket} } @{$users};
+
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <td>#</td>
+              <td>Name</td>
+            </tr>
+          </thead>
+          <tbody>
+            % for my $character (@sorted_users) {
+            %   next unless $character->{ticket};
+            <tr>
+              <td><%= $character->{ticket} %></td>
+              <td><a href="/roster/<%= $character->{name} %>" class="color-c<%= $character->{class} %>"><%= $character->{name} %></a></td>
+            </tr>
+            % }
+          </tbody>
+        </table>
+
+        % }
+
+      </div>
+
+    </div>
+
+    <div class="col-xs-12 col-sm-3 col-md-3">
+
+      <div class="well text-center">
+
+        <p>Jackpot</p>
+        <p class="lead"><%= $count * 250 %>g</p>
+
+      </div>
+
+      % if ($user && $user->{level} >= 30) {
+      <div class="well">
+        <form role="form" action="<%== url_for %>/give" method="post">
+         <p>Next ticket number: <%= stash ('next_ticket_number') %></p>
+         <select name="cid" class="form-control">
+         % for (@{$users}) {
+         <option value="<%= $_->{id} %>"><%= $_->{name} %></option>
+         % }
+         </select>
+         %# FIXME: why the fuck I need br
+         <br>
+         <button type="submit" class="btn btn-default btn-block" data-dismiss="modal">Give ticket</button>
+        </form>
+      </div>
+      % }
+    </div>
+  </div>
+
+</div>
