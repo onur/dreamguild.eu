@@ -26,7 +26,7 @@
         <table class="table table-striped">
           <thead>
             <tr>
-              <td>#</td>
+              <td>Ticket number</td>
               <td>Name</td>
             </tr>
           </thead>

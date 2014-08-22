@@ -1,4 +1,8 @@
 
+0.004  2014-08-23
+  - Hotfix release.
+  - Show 'Ticket number' instead of '#' in lottery list template.
+
 0.003  2014-08-22
   - Hotfix release.
   - Only guild members can see roster and lottery pages.
