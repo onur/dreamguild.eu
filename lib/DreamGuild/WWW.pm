@@ -90,6 +90,9 @@ sub startup {
   $r->post ('/pages/add')->to ('Pages#add_post');
 
   $r->get ('/:slug')->to ('Pages#page');
+
+  $r->get ('/admin/assign')->to ('Admin#assign');
+  $r->get ('/admin/assign/:account')->to ('Admin#assign_account');
 }
 
 

@@ -2,25 +2,47 @@
 # New Features
 --------------
 
-* Add who is online in website
-* Add who is online in mumble
-* Add "what we need" information to somewhere
-* Add lottery jackpot and participant info to news sidebar
-* Add function to edit page/news
-* Add remove application button for admins
-* Add IP information of applicant
-* Add player of the week (based on XP contribution to guild for the week)
-* Add function to edit 'questions' or options
-* Add rank to text editor for admins
+* Add who is online in website.
+* Add who is online in mumble.
+* Add "what we need" information to somewhere.
+* Add lottery jackpot and participant info to news sidebar.
+* Add IP information of application for GM+ user level.
+* Add player of the week (based on XP contribution to guild for the week).
+* Add remove/edit function to comments for it's owner and admins.
+* Show comment tab after a comment posted.
+
+
+# New Features for Admins
+-------------------------
+
+* Add rank number to text editor.
+* Add method to edit 'questions' or options.
+* Add method to edit page/news.
+* Add option to update roster.
+* Add 'remove application' button for applications.
 
 
 # Under the hood
 ----------------
 
-* People from Aggra realm cannot apply atm. Needs to be resolved asap.
-* Roster must be visible to only guild members
-* Check app status for votes in controller
-* Check password lenght on register
-* Use over to check authentication and refactor code repeats
+* Roster must be visible to only guild members.
+* People from Aggra realm cannot apply ATM. Needs to be resolved asap.
+* After an application accepted, nothing is happening. Something must happen.
+  Possible route:
+    App -> Accept -> Update roster -> Assign Acc -> Select his main
+  I need to get 'accepted and not in guild yet' accounts from user table
+  and show it in assign method.
+* Fix 's' usage in relative date function.
+* Fix multiline texts in application fields and comments.
+* Battle.net doesn't provide rendered avatars and/or backgrounds for some
+  characters. (Probably Level 60- characters). Need to add 'placeholder'
+  avatar for this characters.
+* Add crontab's to update roster automatically.
+* Check app status for votes in controller.
+* Check password lenght on register.
+* Use over[1] to check authentication and refactor code repeats
   in Application.pm
-  over: http://mojolicio.us/perldoc/Mojolicious/Routes/Route#over
+
+
+
+1: http://mojolicio.us/perldoc/Mojolicious/Routes/Route#over
