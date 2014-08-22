@@ -49,7 +49,7 @@ sub startup {
   my $r = $self->routes;
 
   # Normal route to controller
-  $r->get ('/')->to('News#list');
+  $r->get ('/')->to('News#home');
 
   $r->get ('/news')->to ('News#list');
   $r->get ('/news/add')->to('News#add');
