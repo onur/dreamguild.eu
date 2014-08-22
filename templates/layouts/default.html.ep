@@ -41,7 +41,7 @@
         </div>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav">
-            <% if ($user && $user->{leve} >= 5) { %><li><a href="https://www.facebook.com/groups/dreamguild.eu" target="_blank">Discussion</a></li><% } %>
+            <% if ($user && $user->{level} >= 5) { %><li><a href="https://www.facebook.com/groups/dreamguild.eu" target="_blank">Discussion</a></li><% } %>
             <li><a href="/guild-rules">Rules</a></li>
             <li><a href="/roster">Roster</a></li>
           </ul>
