@@ -6,6 +6,28 @@ use DreamGuild::DB;
 
 
 
+
+sub home {
+  my $self = shift;
+  my $user = $self->stash ('user');
+
+  # redirect to news if its already a user
+  return $self->redirect_to ('/news') if (defined ($user) && $user->level >= 5);
+
+
+  # Check if user have a application
+  # And if there's one redirect to application page
+  if (defined ($user) && $user->{level} <= 1) {
+    my $row = DreamGuild::DB::Application->select ('where uid = ? ORDER BY id DESC',
+                                                   $user->{id});
+    return $self->redirect_to ('/applications/' . $row->[0]->{app_id})
+      if (scalar (@{$row}));
+  }
+
+  $self->render;
+}
+
+
 sub list {
   my $self = shift;
 
