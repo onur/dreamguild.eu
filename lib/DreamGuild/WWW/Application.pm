@@ -243,7 +243,7 @@ sub application_add_comment {
     time     => time ()
   )->insert;
 
-  return $self->redirect_to ('/application/' . $app->[0]->{app_id});
+  return $self->redirect_to ('/applications/' . $app->[0]->{app_id});
 }
 
 
