@@ -54,7 +54,7 @@ sub apply_post {
 
   if ($app_status == 0) {
     return $self->render (template => 'application/apply',
-                          error    => 'This character don\'t exist in ' .
+                          error    => 'This character doesn\'t exist in ' .
                                       'Grim Batol EU');
   }
   
