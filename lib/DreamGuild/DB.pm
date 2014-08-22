@@ -21,4 +21,24 @@ sub get_option {
 }
 
 
+sub save_option {
+  my ($self, $option, $value) = @_;
+
+  return if !$option || !$value;
+
+  my $option_row = DreamGuild::DB::Options->select ('where option = ?', $option);
+  if (scalar (@{$option_row})) {
+    $option_row->[0]->update (
+      value => $value
+    );
+  } else {
+    DreamGuild::DB::Options->new (
+      option => $option,
+      value  => $value
+    )->insert;
+  }
+
+}
+
+
 1;
