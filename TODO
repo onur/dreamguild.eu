@@ -18,7 +18,10 @@
 # Under the hood
 ----------------
 
-* People from Aggra realm cannot apply atm. Needs to be resolved asap.
+* People from Aggra realm cannot apply ATM. Needs to be resolved asap.
+* Battle.net doesn't provide rendered avatars and/or backgrounds for some
+  characters. (Probably Level 60- characters). Need to place a 'placeholder'
+  avatar for this characters.
 * Roster must be visible to only guild members
 * Check app status for votes in controller
 * Check password lenght on register
