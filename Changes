@@ -1,4 +1,8 @@
 
+0.005  2014-08-23
+  - Add restart command to script/dreamguild
+  - Remove -server subfix from start and stop commands in script/dreamguild
+
 0.004  2014-08-23
   - Hotfix release.
   - Show 'Ticket number' instead of '#' in lottery list template.
