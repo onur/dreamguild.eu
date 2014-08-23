@@ -27,7 +27,6 @@
 # Under the hood
 ----------------
 
-* Roster must be visible to only guild members.
 * People from Aggra realm cannot apply ATM. Needs to be resolved asap.
 * After an application accepted, nothing is happening. Something must happen.
   Possible route:
