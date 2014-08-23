@@ -7,7 +7,12 @@
 
   <div class="list-group">
     <div class="well">
-      <form role="form" action="<%== url_for %>/give" method="post">
+      <div class="alert alert-warning">
+        <h4>Warning!</h4>
+        <p>You are about to assign characters to <strong><%= $account %></strong>'s account</p>
+        <p><strong>Do not change main unless you know what you are doing!</strong></p>
+      </div>
+      <form role="form" action="<%== url_for %>" method="post">
          <label for="account-main-select">Select main character</label>
          <select name="main" id="account-main-select" class="form-control">
          % for (@{$characters}) {
@@ -15,12 +20,15 @@
          % }
          </select>
          <br>
-         <label for="account-alt-select">Select alt characters</label>
-         <select style="height: 200px;" name="main" id="account-alt-select" class="form-control" multiple>
+         <label for="account-alt-select">Select all characters of this account (main and alts)</label>
+         <select style="height: 200px;" name="alts" id="account-alt-select" class="form-control" multiple>
          % for (@{$characters}) {
-         <option value="<%= $_->{id} %>"><%= $_->{name} %></option>
+         <option value="<%= $_->{id} %>"<%= $_->{owner} ? ' selected' : '' %>><%= $_->{name} %></option>
          % }
          </select>
+         <br>
+         <button type="submit" class="btn btn-default">Submit</button>
+         <button type="reset" class="btn btn-default">Reset</button>
       </form>
     </div>
   </div>
