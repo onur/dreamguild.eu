@@ -71,6 +71,7 @@ sub assign_account_post {
 
   my $success_message = '';
 
+
   # First select main account of $account (main character name)
   DreamGuild::DB->iterate (
     'SELECT uid FROM roster WHERE name = ?', $account,
@@ -114,8 +115,10 @@ sub assign_account_post {
   # If user chaged his main
   if ($current_main != $new_main) {
     my $user = DreamGuild::DB::User->load ($user_id);
-    $user->update (main => $new_main);
-    $success_message .= "<br>$account\'s new main changed to $new_main_name";
+    if ($user->{main} != $new_main) {
+      $user->update (main => $new_main);
+      $success_message .= "<br>$account\'s new main changed to $new_main_name";
+    }
   }
 
   $self->flash ('text' => $success_message);
