@@ -12,7 +12,7 @@
       <p>If main user of this characters is not a registered member, ask them to register before it's too late.</p>
       <p>This is the main reason why people must have a guild website account!</p>
       <p>This list must be empty all the time.</p>
-      <p><a class="btn btn-default" href="/admin/assign">Assign character</a></p>
+      <p><a class="btn btn-default" href="/admin/assign">Assign characters</a></p>
     </div>
   </div>
 
