@@ -34,8 +34,6 @@ sub admin_bridge_callback {
   my $self = shift;
   my $user = $self->stash ('user');
 
-  warn "ADMIN CALLBACK";
-
   if (defined ($user) &&
       $user->{level} >= 30) {
     return 1;
