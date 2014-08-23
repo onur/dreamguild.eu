@@ -30,6 +30,7 @@ sub home {
 
 sub list {
   my $self = shift;
+  my $user = $self->stash ('user');
 
   my $news = ();
   DreamGuild::DB->iterate (
@@ -49,7 +50,14 @@ sub list {
     }
   );
 
-  $self->render (news => $news);
+
+  my $unassigned_character_count = 0;
+  # If user is admin get unassigned_character_count
+  $unassigned_character_count = DreamGuild::DB::Roster->count ('where uid = 0')
+    if ($user->{level} >= 30);
+
+  $self->render (news => $news,
+                 unassigned_character_count => $unassigned_character_count);
 }
 
 
