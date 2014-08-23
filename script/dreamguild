@@ -30,6 +30,11 @@ sub start_morbo {
   system ('morbo script/dreamguild-www');
 }
 
+sub restart_server {
+  stop_server ();
+  start_server ();
+}
+
 
 sub main {
   return if not defined $ARGV[0];
@@ -37,6 +42,7 @@ sub main {
   return update_roster ()   if $ARGV[0] eq '--update-roster';
   return start_server ()    if $ARGV[0] eq '--start-server';
   return stop_server ()     if $ARGV[0] eq '--stop-server';
+  return restart_server ()  if $ARGV[0] eq '--restart';
   return start_morbo ()     if $ARGV[0] eq '--morbo';
 }
 
