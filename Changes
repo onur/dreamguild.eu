@@ -4,6 +4,7 @@
   - Remove -server subfix from start and stop commands in script/dreamguild
   - Add assign character function for admins.
   - Fix a warning in class_name helper when checking talents.
+  - Set is_main after registration of a guild member.
 
 0.004  2014-08-23
   - Hotfix release.
