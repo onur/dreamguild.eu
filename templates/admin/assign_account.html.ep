@@ -2,6 +2,7 @@
 % title 'Assign characters';
 % my $characters = stash ('characters');
 % my $account = stash ('account');
+% my $uid = stash ('uid');
 
 <div class="container">
 
@@ -16,6 +17,7 @@
          <label for="account-main-select">Select main character</label>
          <select name="main" id="account-main-select" class="form-control">
          % for (@{$characters}) {
+         %  next if $_->{uid} != $uid;
          <option value="<%= $_->{id} %>" <%= $_->{name} eq $account ? 'selected' : '' %>><%= $_->{name} %></option>
          % }
          </select>
