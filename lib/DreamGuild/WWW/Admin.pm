@@ -47,6 +47,10 @@ sub assign_account {
     }
   );
 
+  return $self->render (template => 'error',
+                        error    => 'Unable to find user')
+      if (!$uid);
+
   for (@{$characters}) {
     $_->{owner} = 1 if ($uid == $_->{uid});
   }
