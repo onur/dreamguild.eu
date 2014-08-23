@@ -5,7 +5,7 @@ use DreamGuild::DB;
 use DreamGuild::WWW::Helpers;
 
 
-our $VERSION = '0.008';
+our $VERSION = '0.009';
 
 
 sub before_filter {
