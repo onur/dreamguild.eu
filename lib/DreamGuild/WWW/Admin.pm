@@ -71,8 +71,6 @@ sub assign_account_post {
 
   my $success_message = '';
 
-  warn "MAIN $new_main";
-
   # First select main account of $account (main character name)
   DreamGuild::DB->iterate (
     'SELECT uid FROM roster WHERE name = ?', $account,
