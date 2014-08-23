@@ -125,4 +125,19 @@ sub assign_account_post {
 }
 
 
+sub assign_unassigned_list {
+  my $self = shift;
+  my $characters = [];
+
+  DreamGuild::DB->iterate (
+    'SELECT name, thumbnail, class FROM roster WHERE uid = 0 ORDER BY name ASC',
+    sub {
+      push @{$characters}, [ $_->[0], $_->[1], $_->[2] ];
+    }
+  );
+
+  $self->render (characters => $characters);
+}
+
+
 1;
