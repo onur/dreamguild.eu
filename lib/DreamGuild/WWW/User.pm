@@ -89,7 +89,7 @@ sub register_post {
     }
   } elsif (my $main_id = $self->session ('main_id')) {
     my $char = DreamGuild::DB::Roster->load ($main_id);
-    $char->update (uid => $user_row->id);
+    $char->update (uid => $user_row->id, is_main => 1);
   }
 
   delete $self->session->{app_id} if defined ($self->session ('app_id'));
