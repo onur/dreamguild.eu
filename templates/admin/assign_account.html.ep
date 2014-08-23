@@ -3,6 +3,7 @@
 % my $characters = stash ('characters');
 % my $account = stash ('account');
 % my $uid = stash ('uid');
+% my $show_all = param ('all') || 0;
 
 <div class="container">
 
@@ -25,12 +26,13 @@
          <label for="account-alt-select">Select all characters of this account (main and alts)</label>
          <select style="height: 200px;" name="alts" id="account-alt-select" class="form-control" multiple>
          % for (@{$characters}) {
-         %  next if ($_->{uid});
+         %  next if ($_->{uid} && !$show_all);
          <option value="<%= $_->{id} %>"<%= $_->{owner} ? ' selected' : '' %>><%= $_->{name} %></option>
          % }
          </select>
          <br>
          <button type="submit" class="btn btn-default">Submit</button>
+         <a href="<%== url_for %>?all=1" class="btn btn-default">Show all characters</a>
          <button type="reset" class="btn btn-default">Reset</button>
       </form>
     </div>
