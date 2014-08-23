@@ -110,7 +110,7 @@ sub assign_account_post {
   }
 
   
-  $success_message = "Successfully assigned: <br> $account => " . join (', ', @alt_names);
+  $success_message = "Successfully assigned: <br> $account =&gt; " . join (', ', @alt_names);
 
   # If user chaged his main
   if ($current_main != $new_main) {
