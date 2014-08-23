@@ -43,6 +43,7 @@
 * Check password lenght on register.
 * Use over[1] to check authentication and refactor code repeats
   in Application.pm
+* Post new applications to facebook.
 
 
 
