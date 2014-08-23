@@ -1,0 +1,38 @@
+
+<div class="container">
+
+  <div class="panel panel-danger">
+    <div class="panel-heading">
+      <h3 class="panel-title">Security warning</h3>
+    </div>
+    <div class="panel-body">
+      <p>Following characters doesn't belong an account in website!</p>
+      <p><strong>This is causing a serious <span class="text-danger">security risk</span>. Strangers can use this character names to apply website and become a member automatically!</strong></p>
+      <p>If main user of this characters already registered, use assign character.</p>
+      <p>If main user of this characters is not a registered member, ask them to register before it's too late.</p>
+      <p>This is the main reason why people must have a guild website account!</p>
+      <p>This list must be empty all the time.</p>
+      <p><a class="btn btn-default" href="/admin/assign">Assign character</a></p>
+    </div>
+  </div>
+
+  % my $characters = stash ('characters');
+  % my $c = 0;
+
+
+  <div class="well">
+
+    <div class="row">
+
+      % for (@{$characters}) {
+
+      <div class="col-xs-4 col-sm-2 col-md-2 col-lg-1">
+        <p class="color-c<%= $_->[2] %>"><%= $_->[0] %></p>
+      </div>
+      % }
+
+    </div>
+
+  </div>
+
+</div>
