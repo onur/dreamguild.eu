@@ -59,10 +59,13 @@ sub class_name {
 
   my $str = '';
 
+  # FIXME: this looks like crap
   if (defined ($talents)) {
-    if (defined $talents->[0]->{selected}) {
+    if (defined ($talents->[0]->{selected}) &&
+        defined ($talents->[0]->{spec}->{name})) {
      $str .= $talents->[0]->{spec}->{name} . ' ';
-    } else {
+    } elsif (defined ($talents->[1]->{selected}) &&
+             defined ($talents->[1]->{spec}->{name})) {
      $str .= $talents->[1]->{spec}->{name} . ' ';
     }
   }
