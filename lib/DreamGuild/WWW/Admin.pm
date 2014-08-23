@@ -55,7 +55,8 @@ sub assign_account {
     $_->{owner} = 1 if ($uid == $_->{uid});
   }
 
-  $self->render (account => $account,
+  $self->render (uid        => $uid,
+                 account    => $account,
                  characters => $characters);
 }
 
