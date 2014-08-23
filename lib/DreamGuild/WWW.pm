@@ -30,6 +30,23 @@ sub before_filter {
 
 
 
+sub admin_bridge_callback {
+  my $self = shift;
+  my $user = $self->stash ('user');
+
+  warn "ADMIN CALLBACK";
+
+  if (defined ($user) &&
+      $user->{level} >= 30) {
+    return 1;
+  }
+
+  $self->render (template => 'error',
+                 error    => 'You don\'t have permission to see this page. Try to log in.');
+  return undef;
+}
+
+
 
 # This method will run once at server start
 sub startup {
@@ -91,8 +108,12 @@ sub startup {
 
   $r->get ('/:slug')->to ('Pages#page');
 
-  $r->get ('/admin/assign')->to ('Admin#assign');
-  $r->get ('/admin/assign/:account')->to ('Admin#assign_account');
+
+  # Admin bridge
+  my $admin_bridge = $r->bridge ('/admin')->to (cb => \&admin_bridge_callback);
+  $admin_bridge->get ('/assign')->to ('Admin#assign');
+  $admin_bridge->get ('/assign/:account')->to ('Admin#assign_account');
+  $admin_bridge->post ('/assign/:account')->to ('Admin#assign_account_post');
 }
 
 
