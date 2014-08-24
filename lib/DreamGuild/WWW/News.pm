@@ -79,6 +79,7 @@ sub list {
 
   $self->render (news => $news,
                  who_is_online => $who_is_online,
+                 next_ticket_number => DreamGuild::DB->get_option ('next_ticket_number'),
                  unassigned_character_count => $unassigned_character_count);
 }
 
