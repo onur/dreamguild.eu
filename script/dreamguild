@@ -44,7 +44,7 @@ sub update {
   die "Usage: $0 --update {version}\n" unless (defined ($ARGV[1]));
   stop_server ();
   system ('git pull');
-  system ("git checkout", $ARGV[1]);
+  system ('git', 'checkout', $ARGV[1]);
   start_server ();
 }
 
