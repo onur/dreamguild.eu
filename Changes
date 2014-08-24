@@ -1,6 +1,6 @@
 
 0.012  2014-08-24
-  - Hotfix release.
+  - Add update command to script/dreamguild 
   - Show realms if apply_post goes wrong.
   - Better error message if character not found.
 
