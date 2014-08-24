@@ -40,6 +40,14 @@ sub restart_server {
   start_server ();
 }
 
+sub update {
+  die "Usage: $0 --update {version}\n" unless (defined ($ARGV[1]));
+  stop_server ();
+  system ('git pull');
+  system ("git checkout", $ARGV[1]);
+  start_server ();
+}
+
 
 sub main {
   return if not defined $ARGV[0];
@@ -50,6 +58,7 @@ sub main {
   return stop_server ()     if $ARGV[0] eq '--stop';
   return restart_server ()  if $ARGV[0] eq '--restart';
   return start_morbo ()     if $ARGV[0] eq '--morbo';
+  return update ()          if $ARGV[0] eq '--update';
 }
 
 
