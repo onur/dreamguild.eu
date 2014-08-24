@@ -12,8 +12,9 @@ use DreamGuild::Utils::Roster;
 
 
 sub new {
-  my ($class, $name) = @_;
-  bless { name => $name }, $class;
+  my ($class, $name, $realm) = @_;
+  bless { name => $name,
+          realm => $realm }, $class;
 }
 
 
@@ -45,7 +46,8 @@ sub check_roster {
 sub check_battlenet {
   my $self = shift;
   my $ua = LWP::UserAgent->new;
-  my $response = $ua->get ('http://eu.battle.net/api/wow/character/Grim-Batol/'
+  my $response = $ua->get ('http://eu.battle.net/api/wow/character/'
+                           . $self->{realm} . '/'
                            . $self->{name} . '?fields=items,progression,talents');
                        
   return 0 unless $response->is_success;
@@ -120,7 +122,10 @@ sub create_app {
     status        => 0,
     yes           => 0,
     no            => 0,
-    points        => 0
+    points        => 0,
+
+    # realm
+    realm         => $self->{realm}
   )->insert;
 
   $self->{app_id} = $row->id;
