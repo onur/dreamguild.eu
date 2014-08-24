@@ -1,4 +1,9 @@
 
+0.012  2014-08-24
+  - Hotfix release.
+  - Show realms if apply_post goes wrong.
+  - Better error message if character not found.
+
 0.011  2014-08-24
   - Hotfix release.
   - Sort lottery users alphabetically on 'Give ticket' box.
