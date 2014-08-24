@@ -107,7 +107,7 @@ sub lottery {
   my $users = [];
 
   DreamGuild::DB->iterate (
-    'SELECT id, name, class, lottery_ticket FROM roster ORDER BY name ASC',
+    'SELECT id, name, class, lottery_ticket FROM roster ORDER BY lottery_ticket ASC',
     sub {
       push @{$users}, {
         id     => $_->[0],
