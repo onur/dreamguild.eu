@@ -23,7 +23,7 @@ sub apply {
   delete $self->session->{app_id} if defined ($self->session ('app_id'));
   delete $self->session->{main_id} if defined ($self->session ('main_id'));
 
-  $self->render;
+  $self->render ('realms' => decode_json (DreamGuild::DB->get_option ('realm-list')));
 }
 
 
