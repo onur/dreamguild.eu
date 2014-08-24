@@ -1,5 +1,6 @@
 
 0.015  2014-08-24  UNRELEASED
+  - Add hypnotoad.pid to .gitignore
 
 0.014  2014-08-24
   - Fix git checkout command in script/dreamguild
