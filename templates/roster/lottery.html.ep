@@ -59,7 +59,8 @@
         <form role="form" action="<%== url_for %>/give" method="post">
          <p>Next ticket number: <%= stash ('next_ticket_number') %></p>
          <select name="cid" class="form-control">
-         % for (@{$users}) {
+         % my @sorted_users = sort { $a->{name} cmp $b->{name} } @{$users};
+         % for (@sorted_users) {
          <option value="<%= $_->{id} %>"><%= $_->{name} %></option>
          % }
          </select>
