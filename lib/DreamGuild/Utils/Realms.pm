@@ -4,7 +4,6 @@ package DreamGuild::Utils::Realms;
 use LWP::Simple;
 use JSON::XS;
 use DreamGuild::DB;
-use Data::Dumper;
 
 
 sub update_realm_list () {
