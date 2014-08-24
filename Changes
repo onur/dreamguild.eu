@@ -1,4 +1,7 @@
 
+0.014  2014-08-24  UNRELEASED
+  - Fix git checkout command in script/dreamguild
+
 0.013  2014-08-24
   - Add backup database function to script/dreamguild
   - Add changes page: /changes
