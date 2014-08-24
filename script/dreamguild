@@ -63,6 +63,16 @@ sub backup_database {
   system ("gzip -c9 share/data/database.db | gpg -e -r onur\@onur.im --batch > share/data/backups/db-$filename.gz.enc");
 }
 
+sub release {
+  die "Usage: $0 --release {version}\n" unless (defined ($ARGV[1]));
+  system ('git', 'tag', $ARGV[1]);
+  system ('git push github');
+  system ('git push github --tags');
+  system ('ssh', 'dream@onur.im', '~/dreamguild.eu/script/dreamguild',
+          '--update', $ARGV[1]);
+
+}
+
 
 sub main {
   return if not defined $ARGV[0];
@@ -75,6 +85,7 @@ sub main {
   return start_morbo ()     if $ARGV[0] eq '--morbo';
   return update ()          if $ARGV[0] eq '--update';
   return backup_database () if $ARGV[0] eq '--backup-database';
+  return release ()         if $ARGV[0] eq '--release';
 }
 
 
