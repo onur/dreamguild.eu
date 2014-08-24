@@ -1,4 +1,7 @@
 
+0.013  2014-08-24
+  - Add backup database function to script/dreamguild
+
 0.012  2014-08-24
   - Add update command to script/dreamguild 
   - Show realms if apply_post goes wrong.
