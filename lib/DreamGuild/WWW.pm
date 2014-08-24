@@ -52,6 +52,25 @@ sub admin_bridge_callback {
 }
 
 
+my $changes = '';
+
+sub about {
+  my $self = shift;
+
+  if (!$changes) {
+    open my $fh, 'Changes' or return $self->redirect_to ('/');
+    $changes .= $_ while (<$fh>);
+    close $fh;
+  }
+
+
+  $self->render (template => 'about',
+                 version => $VERSION,
+                 mojolicious_version => $Mojolicious::VERSION,
+                 perl_version => $^V,
+                 changes => $changes);
+}
+
 
 # This method will run once at server start
 sub startup {
@@ -111,6 +130,7 @@ sub startup {
   $r->get ('/pages/add')->to ('Pages#add');
   $r->post ('/pages/add')->to ('Pages#add_post');
 
+  $r->get ('/changes')->to (cb => \&about);
   $r->get ('/:slug')->to ('Pages#page');
 
 
