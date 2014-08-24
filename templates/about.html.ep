@@ -1,0 +1,47 @@
+
+<div class="container">
+
+  <div class="row">
+
+    <div class="col-xs-12 col-sm-4 col-md-3">
+
+      <div class="well">
+        <table class="table">
+          <thead>
+            <tr>
+              <td colspan="2" class="text-center"><strong>Version</strong></td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="text-right"><a href="https://github.com/onuraslan/dreamguild.eu" target="_blank">DreamGuild</a></td>
+              <td>v<%= stash ('version'); %></td>
+            </tr>
+            <tr>
+              <td class="text-right"><a href="http://www.perl.org/" target="_blank">Perl</a></td>
+              <td><%= stash ('perl_version'); %></td>
+            </tr>
+            <tr>
+              <td class="text-right"><a href="http://mojolicio.us/" target="_blank">Mojolicious</a></td>
+              <td>v<%= stash ('mojolicious_version'); %></td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+
+    </div>
+
+    <div class="col-xs-12 col-sm-8 col-md-9">
+
+      <div class="well">
+        <p class="lead">Changes</p>
+        <pre><%== stash ('changes') %></pre>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
