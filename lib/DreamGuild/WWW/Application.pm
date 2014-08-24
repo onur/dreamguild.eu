@@ -36,14 +36,15 @@ sub apply_post {
   }
 
   my $character = $self->param ('character');
+  my $realm = $self->param ('realm');
 
-  if (!$character) {
+  if (!$character || !$realm) {
     return $self->render (template => 'application/apply',
                           error    => 'Please enter a character name');
   }
 
 
-  my $app = DreamGuild::Helpers::Application->new ($character);
+  my $app = DreamGuild::Helpers::Application->new ($character, $realm);
   my $app_status = $app->check;
 
   # $app_status
