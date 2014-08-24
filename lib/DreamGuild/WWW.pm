@@ -52,16 +52,14 @@ sub admin_bridge_callback {
 }
 
 
-my $changes = '';
-
 sub about {
   my $self = shift;
 
-  if (!$changes) {
-    open my $fh, 'Changes' or return $self->redirect_to ('/');
-    $changes .= $_ while (<$fh>);
-    close $fh;
-  }
+  my $changes = '';
+
+  open my $fh, 'Changes' or return $self->redirect_to ('/');
+  $changes .= $_ while (<$fh>);
+  close $fh;
 
 
   $self->render (template => 'about',
