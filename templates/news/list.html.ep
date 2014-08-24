@@ -51,6 +51,19 @@
       </div>
       % }
 
+
+      %# Who is online
+      % my $who_is_online = stash ('who_is_online');
+      <h3 class="text-center">Who is online</h3>
+      <div class="list-group">
+        % for (@{$who_is_online}) {
+        <a href="#" class="list-group-item">
+          <img class="character-portrait" src="/img/avatars/<%= $_->{thumbnail} %>" alt="<%= $_->{name} %>" style="max-height: 30px" />
+          <%= $_->{name} %>
+        </a>
+        % }
+      </div>
+
     </div>
 
   </div>
