@@ -59,8 +59,7 @@ sub apply_post {
   if ($app_status == 0) {
     return $self->render (template => 'application/apply',
                           realms   => $realms,
-                          error    => 'This character doesn\'t exist in ' .
-                                      'Grim Batol EU');
+                          error    => 'This character doesn\'t exist!');
   }
   
   elsif ($app_status == 1) {
