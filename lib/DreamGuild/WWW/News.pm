@@ -32,6 +32,11 @@ sub list {
   my $self = shift;
   my $user = $self->stash ('user');
 
+  return $self->render (template => 'error',
+                        error    => 'You don\'t have permission to see this page. Try to log in.')
+    if (!defined ($user) ||
+        $user->level < 5);
+
   my $news = ();
   DreamGuild::DB->iterate (
     'SELECT name, class, title, content, time, thumbnail FROM news ' .
