@@ -23,7 +23,13 @@
       % }
       </select>
       <br>
-      <button type="submit" class="btn btn-success">Join us</button>
+      <button type="submit" id="submit-button" class="btn btn-success">Join us</button>
+      <script>
+        $('#submit-button').click (function () {
+          $(this).addClass ('disabled');
+          $(this).text ('Please wait...');
+        });
+      </script>
     </form>
 
   </div>
