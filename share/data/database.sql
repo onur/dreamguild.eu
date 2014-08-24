@@ -94,7 +94,8 @@ CREATE TABLE application (
   points     INTEGER DEFAULT 0,
   issued_by  INTEGER DEFAULT 0,
   reason     TEXT,
-  ip         TEXT
+  ip         TEXT,
+  realm      TEXT NOT NULL
 );
 
 
