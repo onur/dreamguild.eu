@@ -27,7 +27,6 @@
 # Under the hood
 ----------------
 
-* People from Aggra realm cannot apply ATM. Needs to be resolved asap.
 * After an application accepted, nothing is happening. Something must happen.
   Possible route:
     App -> Accept -> Update roster -> Assign Acc -> Select his main
