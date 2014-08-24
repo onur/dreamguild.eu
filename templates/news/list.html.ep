@@ -51,6 +51,14 @@
       </div>
       % }
 
+      <div class="well text-center">
+
+        <p>Lottery Jackpot</p>
+        <p class="lead"><%= (stash ('next_ticket_number') - 1) * 250 %>g</p>
+        <p><a class="btn btn-default btn-block" href="lottery">See tickets</a></p>
+
+      </div>
+
 
       %# Who is online
       % my $who_is_online = stash ('who_is_online');
