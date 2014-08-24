@@ -59,7 +59,9 @@ sub apply_post {
   if ($app_status == 0) {
     return $self->render (template => 'application/apply',
                           realms   => $realms,
-                          error    => 'This character doesn\'t exist!');
+                          error    => "Unable to find $character. " .
+                                      'Make sure you entered the correct ' .
+                                      'character name and realm.');
   }
   
   elsif ($app_status == 1) {
