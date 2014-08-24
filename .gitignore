@@ -3,3 +3,4 @@ share/data/database.db*
 share/data/backups
 share/doc
 share/data/avatars
+script/hypnotoad.pid
