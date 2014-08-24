@@ -56,7 +56,24 @@ sub list {
   $unassigned_character_count = DreamGuild::DB::Roster->count ('where uid = 0')
     if ($user->{level} >= 30);
 
+
+  # Get who is online
+  my $who_is_online = [];
+  DreamGuild::DB->iterate (
+    'SELECT name, class, thumbnail FROM user INNER JOIN roster ON roster.id = user.main WHERE last_active >= ? ORDER BY name ASC',
+    time () - 3600,
+    sub {
+      push @{$who_is_online}, {
+        name      => $_->[0],
+        class     => $_->[1],
+        thumbnail => $_->[2]
+      };
+    }
+  );
+
+
   $self->render (news => $news,
+                 who_is_online => $who_is_online,
                  unassigned_character_count => $unassigned_character_count);
 }
 
