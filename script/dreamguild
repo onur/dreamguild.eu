@@ -18,6 +18,11 @@ sub update_roster {
   DreamGuild::Utils::Roster->new->update_roster;
 }
 
+sub update_realm_list {
+  require DreamGuild::Utils::Realms;
+  DreamGuild::Utils::Realms->update_realm_list;
+}
+
 sub start_server {
   system ('hypnotoad script/dreamguild-www');
 }
@@ -40,6 +45,7 @@ sub main {
   return if not defined $ARGV[0];
   return create_db ()       if $ARGV[0] eq '--create-db';
   return update_roster ()   if $ARGV[0] eq '--update-roster';
+  return update_realm_list () if $ARGV[0] eq '--update-realm-list';
   return start_server ()    if $ARGV[0] eq '--start';
   return stop_server ()     if $ARGV[0] eq '--stop';
   return restart_server ()  if $ARGV[0] eq '--restart';
