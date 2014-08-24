@@ -38,8 +38,11 @@ sub apply_post {
   my $character = $self->param ('character');
   my $realm = $self->param ('realm');
 
+  my $realms = decode_json (DreamGuild::DB->get_option ('realm-list'));
+
   if (!$character || !$realm) {
     return $self->render (template => 'application/apply',
+                          realms   => $realms,
                           error    => 'Please enter a character name');
   }
 
@@ -55,6 +58,7 @@ sub apply_post {
 
   if ($app_status == 0) {
     return $self->render (template => 'application/apply',
+                          realms   => $realms,
                           error    => 'This character doesn\'t exist in ' .
                                       'Grim Batol EU');
   }
@@ -62,6 +66,7 @@ sub apply_post {
   elsif ($app_status == 1) {
     if ($app->{uid}) {
       return $self->render (template => 'application/apply',
+                            realms   => $realms,
                             error    => 'You can\'t apply as ' . $character);
     }
     $self->session ('main_id' => $app->{main_id});
@@ -71,6 +76,7 @@ sub apply_post {
   elsif ($app_status == 2) {
     # FIXME: show login
     return $self->render (template => 'application/apply',
+                          realms   => $realms,
                           error    => 'This application is in progress. ' .
                                       'Please log in to see application ' .
                                       'details');
@@ -83,12 +89,14 @@ sub apply_post {
 
   else {
     return $self->render (template => 'application/apply',
+                          realms   => $realms,
                           error    => 'Unknown error. ' .
                                       'Please contact web master.');
   }
 
 
-  return $self->render (template => "application/apply");
+  return $self->render (template => "application/apply",
+                        realms   => $realms);
 }
 
 
