@@ -21,6 +21,13 @@ sub before_filter {
   $user_row->[0]->{mainc} = DreamGuild::DB::Roster->load ($user_row->[0]->{main})
     if ($user_row->[0]->{main});
 
+  # Update last active column
+  my $now = time ();
+  if ($user_row->[0]->last_active + 3600 < $now) {
+    $user_row->[0]->update (last_active => $now);
+  }
+
+
   # Getting open application count
   my $open_application_count = DreamGuild::DB::Application->count ('where status = 1');
 
