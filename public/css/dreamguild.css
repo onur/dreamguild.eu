@@ -197,3 +197,7 @@ div.vote-alert {
 select.my-select {
   background-color: #282828;
 }
+
+pre.changelog {
+  max-height: 500px;
+}
