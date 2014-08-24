@@ -81,8 +81,8 @@
           <div class="col-md-12">
 
             <div class="btn-group btn-group-justified">
-              <a class="btn btn-default" href="http://eu.battle.net/wow/en/character/grim-batol/<%= $application->{name} %>/advanced" target="_blank">Armory</a>
-              <a class="btn btn-default" href="http://www.wowprogress.com/character/eu/grim-batol/<%= $application->{name} %>/advanced" target="_blank">WoWProgress</a>
+              <a class="btn btn-default" href="http://eu.battle.net/wow/en/character/<%= $application->{realm} %>/<%= $application->{name} %>/advanced" target="_blank">Armory</a>
+              <a class="btn btn-default" href="http://www.wowprogress.com/character/eu/<%= $application->{realm} %>/<%= $application->{name} %>/advanced" target="_blank">WoWProgress</a>
             </div>
 
           </div>
