@@ -1,6 +1,8 @@
 
 0.014  2014-08-24  UNRELEASED
   - Fix git checkout command in script/dreamguild
+  - Add max height to changelog pre tag.
+  - Remove caching Changes.
 
 0.013  2014-08-24
   - Add backup database function to script/dreamguild
