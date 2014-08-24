@@ -15,6 +15,14 @@
         <label for="ApplyCharName">Enter your main character name</label>
         <input type="text" class="form-control" id="ApplyCharName" placeholder="" name="character" autofocus>
       </div>
+      % my $realms = stash ('realms');
+      <label for="ApplyRealm">Select your realm</label>
+      <select name="realm" id="ApplyRealm" class="form-control">
+      % for (@{$realms}) {
+      <option value="<%= $_->[1] %>"<%= $_->[1] eq 'grim-batol' ? ' selected' : '' %>><%= $_->[0] %></option>
+      % }
+      </select>
+      <br>
       <button type="submit" class="btn btn-success">Join us</button>
     </form>
 
