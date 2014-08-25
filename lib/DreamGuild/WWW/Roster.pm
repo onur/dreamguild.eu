@@ -105,7 +105,7 @@ sub lottery {
         $user->level < 5);
 
   my $users = [];
-  my $tickets = [];    # ticket's of current user
+  my $tickets = [];    # ticket numbers of current user
 
   DreamGuild::DB->iterate (
     'SELECT id, name, class, lottery_ticket, uid FROM roster ORDER BY lottery_ticket ASC',
