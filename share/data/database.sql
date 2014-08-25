@@ -95,7 +95,8 @@ CREATE TABLE application (
   issued_by  INTEGER DEFAULT 0,
   reason     TEXT,
   ip         TEXT,
-  realm      TEXT NOT NULL
+  realm      TEXT NOT NULL,
+  user_agent TEXT
 );
 
 
