@@ -6,7 +6,7 @@
 
 0.016  2014-08-25
   - Fix relative date for plural numbers.
-  - Show tickets of user in news and lottery pages.
+  - Show users tickets in news and lottery pages.
 
 0.015  2014-08-25
   - Add hypnotoad.pid to .gitignore
