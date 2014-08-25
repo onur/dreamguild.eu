@@ -1,5 +1,6 @@
 
 0.016  2014-08-25  UNRELEASED
+  - Fix relative date for plural numbers.
 
 0.015  2014-08-25
   - Add hypnotoad.pid to .gitignore
