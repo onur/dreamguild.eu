@@ -49,7 +49,7 @@
       <div class="well text-center">
 
         <p>Jackpot</p>
-        <p class="lead"><%= $count * 250 %>g</p>
+        <p class="lead"><%= (stash ('next_ticket_number') - 1) * 250 %>g</p>
 
       </div>
 
