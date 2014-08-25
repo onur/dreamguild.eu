@@ -1,6 +1,7 @@
 
 0.016  2014-08-25  UNRELEASED
   - Fix relative date for plural numbers.
+  - Show tickets of user in news page.
 
 0.015  2014-08-25
   - Add hypnotoad.pid to .gitignore
