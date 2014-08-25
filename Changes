@@ -1,5 +1,7 @@
 
 0.017  2014-08-25
+
+0.017  2014-08-25
   - Remove padding from reject modal.
   - Show GM panel in application details page even if an application
     is accepted or rejected.
