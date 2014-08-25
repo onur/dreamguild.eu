@@ -1,5 +1,8 @@
 
 0.017  2014-08-25  UNRELEASED
+  - Remove padding from reject modal.
+  - Show GM panel on applications even an application is accepted or rejected.
+  - Add remove application button for GMs.
 
 0.016  2014-08-25
   - Fix relative date for plural numbers.
