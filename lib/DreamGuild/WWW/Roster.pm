@@ -105,9 +105,10 @@ sub lottery {
         $user->level < 5);
 
   my $users = [];
+  my $tickets = [];    # ticket's of current user
 
   DreamGuild::DB->iterate (
-    'SELECT id, name, class, lottery_ticket FROM roster ORDER BY lottery_ticket ASC',
+    'SELECT id, name, class, lottery_ticket, uid FROM roster ORDER BY lottery_ticket ASC',
     sub {
       push @{$users}, {
         id     => $_->[0],
@@ -115,6 +116,8 @@ sub lottery {
         class  => $_->[2],
         ticket => $_->[3]
       };
+      push @{$tickets}, $_->[3] if ($user->{id} == $_->[4] && $_->[3]);
+      return 1;
     }
   );
 
@@ -123,6 +126,7 @@ sub lottery {
 
   $self->render (count => $users_with_ticket,
                  users => $users,
+                 tickets => $tickets,
                  next_ticket_number => DreamGuild::DB->get_option ('next_ticket_number') || 1);
 }
 
