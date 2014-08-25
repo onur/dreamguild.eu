@@ -183,7 +183,7 @@
         </script>
         % }
 
-        % if ($user->level >= 20 && $application->{status} == 1) {
+        % if ($user->level >= 20) {
         <div class="line"></div>
         <h4>GM</h4>
 
