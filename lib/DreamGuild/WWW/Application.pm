@@ -400,6 +400,7 @@ sub application_remove {
   DreamGuild::DB::Application->delete_where ('id = ?', $app->[0]->{id}); 
   DreamGuild::DB::ApplicationVotes->delete_where ('appid = ?', $app->[0]->{id});
   DreamGuild::DB::ApplicationComments->delete_where ('appid = ?', $app->[0]->{id});
+  DreamGuild::DB::User->delete_where ('id = ?', $app->[0]->{uid}); 
 
 
   $self->flash (type => 'danger',
