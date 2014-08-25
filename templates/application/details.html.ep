@@ -190,7 +190,7 @@
         <div class="line"></div>
         <h4>GM</h4>
 
-        <p>IP: <%= $application->{ip} %></p>
+        <p>IP: <a href="http://www.geoiptool.com/en/?IP=<%= $application->{ip} %>" target="_blank"><%= $application->{ip} %></a></p>
         <p>UA: <%= $application->{user_agent} %></p>
 
         <div class="btn-group btn-group-justified">
