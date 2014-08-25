@@ -190,6 +190,9 @@
         <div class="line"></div>
         <h4>GM</h4>
 
+        <p>IP: <%= $application->{ip} %></p>
+        <p>UA: <%= $application->{user_agent} %></p>
+
         <div class="btn-group btn-group-justified">
           <a href="<%== url_for %>/accept" class="btn btn-success">Accept</a>
           <a href="#" data-toggle="modal" data-target="#reject-modal" class="btn btn-danger">Reject</a>
