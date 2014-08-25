@@ -12,9 +12,11 @@ use DreamGuild::Utils::Roster;
 
 
 sub new {
-  my ($class, $name, $realm) = @_;
+  my ($class, $name, $realm, $ip, $user_agent) = @_;
   bless { name => $name,
-          realm => $realm }, $class;
+          realm => $realm,
+          ip    => $ip,
+          user_agent => $user_agent }, $class;
 }
 
 
@@ -125,7 +127,11 @@ sub create_app {
     points        => 0,
 
     # realm
-    realm         => $self->{realm}
+    realm         => $self->{realm},
+
+    # ip and user agent
+    ip            => $self->{ip},
+    user_agent    => $self->{user_agent}
   )->insert;
 
   $self->{app_id} = $row->id;
