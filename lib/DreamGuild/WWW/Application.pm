@@ -380,6 +380,33 @@ sub application_reject {
 
 
 
+sub application_remove {
+  my $self = shift;
+  my $user = $self->stash ('user');
+  my $app = DreamGuild::DB::Application->select ('where app_id = ?', $self->param ('id'));
+
+  return $self->render (template => 'error',
+                        error    => 'You don\'t have permission to remove applications')
+    if (!defined ($user) ||
+        ($user->level < 30));
+
+  return $self->render (template => 'error',
+                        error    => 'Application does not exist!')
+    if (!scalar (@{$app}));
+
+
+  DreamGuild::DB::Application->delete_where ('id = ?', $app->[0]->{id}); 
+  DreamGuild::DB::ApplicationVotes->delete_where ('appid = ?', $app->[0]->{id});
+  DreamGuild::DB::ApplicationComments->delete_where ('appid = ?', $app->[0]->{id});
+
+
+  $self->flash (type => 'danger',
+                text => 'You successfully removed <strong>' . $app->[0]->name . '</strong>\'s application.');
+  return $self->redirect_to ('/applications');
+}
+
+
+
 sub list {
   my $self = shift;
 
