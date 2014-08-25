@@ -32,7 +32,6 @@
     App -> Accept -> Update roster -> Assign Acc -> Select his main
   I need to get 'accepted and not in guild yet' accounts from user table
   and show it in assign method.
-* Fix 's' usage in relative date function.
 * Fix multiline texts in application fields and comments.
 * Battle.net doesn't provide rendered avatars and/or backgrounds for some
   characters. (Probably Level 60- characters). Need to add 'placeholder'
