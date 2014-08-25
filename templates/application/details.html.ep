@@ -105,7 +105,10 @@
         </div>
 
         <div class="text-center">
-          Submitted: <%= relative_date ($application->{time}, $time) %>
+          <p>Submitted: <%= relative_date ($application->{time}, $time) %></p>
+          % if ($application->{status} == 3) {
+          <p>Reason: <%= $application->{reason} %></p>
+          % }
         </div>
 
         <div class="line"></div>
