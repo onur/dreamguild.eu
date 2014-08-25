@@ -4,7 +4,8 @@
 
 * Add who is online in mumble.
 * Add "what we need" information to somewhere.
-* Add lottery jackpot and participant info to news sidebar.
+* Add users ticket numbers to news sidebar. If he didn't participate, tell him
+  he can be rich.
 * Add IP information of application for GM+ user level.
 * Add player of the week (based on XP contribution to guild for the week).
 * Add remove/edit function to comments for it's owner and admins.
