@@ -50,6 +50,14 @@
 
         <p>Jackpot</p>
         <p class="lead"><%= (stash ('next_ticket_number') - 1) * 250 %>g</p>
+        % my $tickets = stash ('tickets');
+        % if (scalar (@{$tickets})) {
+        <p>Your tickets:</p>
+        <p class="lead text-success"><%= join ', ', @{$tickets}  %></p>
+        <p>Chance to win: <%= int (100 * scalar (@{$tickets}) / (stash ('next_ticket_number') - 1)) %>%
+        % } else {
+        <p>You don't have any ticket</p>
+        % }
 
       </div>
 
