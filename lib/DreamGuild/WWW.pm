@@ -123,6 +123,7 @@ sub startup {
   $r->get ('/applications/:id/vote/:vote')->to ('Application#application_vote');
   $r->get ('/applications/:id/accept')->to ('Application#application_accept');
   $r->post ('/applications/:id/reject')->to ('Application#application_reject');
+  $r->get ('/applications/:id/remove')->to ('Application#application_remove');
 
   # Pages
   $r->get ('/pages/add')->to ('Pages#add');
