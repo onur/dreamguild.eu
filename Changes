@@ -1,9 +1,11 @@
 
-0.015  2014-08-24  UNRELEASED
+0.015  2014-08-25  UNRELEASED
   - Add hypnotoad.pid to .gitignore
-  - Use new layout on lottery page.
+  - Use new layout in lottery page.
   - Add release command to script/dream
   - Show lottery jackpot on news page.
+  - Fix lottery jackpot calculation method in lottery page.
+  - Add double click protection to give ticket button in lottery page.
 
 0.014  2014-08-24
   - Fix git checkout command in script/dreamguild
