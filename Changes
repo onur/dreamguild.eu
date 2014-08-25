@@ -3,8 +3,7 @@
 
 0.017  2014-08-25
   - Remove padding from reject modal.
-  - Show GM panel in application details page even if an application
-    is accepted or rejected.
+  - Always show GM panel.
   - Add remove application button for GMs.
   - Show reason if application is rejected.
   - Add IP address and user agent information to applications.
