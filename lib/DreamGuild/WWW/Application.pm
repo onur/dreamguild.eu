@@ -47,7 +47,9 @@ sub apply_post {
   }
 
 
-  my $app = DreamGuild::Helpers::Application->new ($character, $realm);
+  my $app = DreamGuild::Helpers::Application->new ($character, $realm,
+                                                   $self->tx->remote_address,
+                                                   $self->req->headers->user_agent);
   my $app_status = $app->check;
 
   # $app_status
