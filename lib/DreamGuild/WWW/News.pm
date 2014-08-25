@@ -77,8 +77,19 @@ sub list {
   );
 
 
-  $self->render (news => $news,
-                 who_is_online => $who_is_online,
+  # Get ticket numbers of user
+  my $tickets = [];
+  DreamGuild::DB->iterate (
+    'SELECT lottery_ticket FROM roster WHERE lottery_ticket > 0 AND uid = ? ORDER BY lottery_ticket ASC', $user->{id},
+    sub {
+      push @{$tickets}, $_->[0];
+    }
+  );
+
+
+  $self->render (news               => $news,
+                 who_is_online      => $who_is_online,
+                 tickets            => $tickets,
                  next_ticket_number => DreamGuild::DB->get_option ('next_ticket_number'),
                  unassigned_character_count => $unassigned_character_count);
 }
