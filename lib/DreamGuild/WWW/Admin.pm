@@ -3,6 +3,7 @@ package DreamGuild::WWW::Admin;
 use Mojo::Base 'Mojolicious::Controller';
 
 use DreamGuild::DB;
+use JSON::XS;
 
 
 
@@ -139,6 +140,46 @@ sub assign_unassigned_list {
   );
 
   $self->render (characters => $characters);
+}
+
+
+sub edit_option {
+  my $self = shift;
+  my $option = DreamGuild::DB::Options->select ('where option = ?', $self->param ('option'));
+
+  return $self->render (template => 'error',
+                        error    => 'This option doesn\'t exist!')
+    unless (scalar (@{$option}));
+
+  $self->render (option => $option->[0]);
+}
+
+
+sub edit_option_post {
+  my $self = shift;
+  my $option = DreamGuild::DB::Options->select ('where option = ?', $self->param ('option'));
+
+  return $self->render (template => 'error',
+                        error    => 'This option doesn\'t exist!')
+    unless (scalar (@{$option}));
+
+  my $value = $self->param ('value');
+
+  if ($self->param ('option') eq 'questions') {
+    my $json = JSON::XS->new;
+    $json->incr_parse ($value) or
+      return $self->render (template => 'error',
+                            error    => 'Malformed JSON string. This may break ' .
+                                        'whole application process. Please check ' .
+                                        'questions again.');
+  }
+
+  $option->[0]->update (
+    value => $value
+  );
+
+  $self->flash (text => 'Option: ' . $option->[0]->{option} . ' successfully edited.');
+  $self->redirect_to ('/admin');
 }
 
 
