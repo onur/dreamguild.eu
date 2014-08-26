@@ -1,0 +1,6 @@
+
+
+<div class="list-group">
+  <a href="/admin/news" class="list-group-item">News</a>
+  <a href="/admin/pages" class="list-group-item">Pages</a>
+</div>
