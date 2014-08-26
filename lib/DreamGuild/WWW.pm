@@ -126,12 +126,12 @@ sub startup {
   $r->get ('/changes')->to (cb => \&about);
 
 
-  # Pages
-  $r->get ('/:slug')->to ('Pages#page');
-
 
   # Admin bridge
   my $admin_bridge = $r->bridge ('/admin')->to (cb => \&admin_bridge_callback);
+
+  $admin_bridge->get ('/')->to ('Admin#home');
+
   $admin_bridge->get ('/assign')->to ('Admin#assign');
   $admin_bridge->get ('/assign/list')->to ('Admin#assign_unassigned_list');
   $admin_bridge->get ('/assign/:account')->to ('Admin#assign_account');
@@ -150,6 +150,12 @@ sub startup {
   $admin_bridge->get ('/news/edit/:id')->to ('News#edit');
   $admin_bridge->post ('/news/edit/:id')->to ('News#edit_post');
   $admin_bridge->get ('/news/remove/:id')->to ('News#remove');
+
+  $admin_bridge->get ('/options/:option')->to ('Admin#edit_option');
+  $admin_bridge->post ('/options/:option')->to ('Admin#edit_option_post');
+
+  # Pages
+  $r->get ('/:slug')->to ('Pages#page');
 }
 
 
