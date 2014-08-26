@@ -2,8 +2,6 @@
 <div class="container">
   <div class="well">
 
-    <p class="lead">Add Page</p>
-
     % if (stash ('error')) {
     <div class="alert alert-danger" role="alert">
       %= stash ('error')
