@@ -97,13 +97,6 @@ sub list {
 
 sub add {
   my $self = shift;
-  my $user = $self->stash ('user');
-
-  return $self->render (template => 'error',
-                        error    => 'You don\'t have permission to see this page. Try to log in.')
-    if (!defined ($user) ||
-        $user->level < 5);
-
   $self->render (js_ckeditor => 1);
 }
 
@@ -112,11 +105,6 @@ sub add_post {
   my $self = shift;
   my $user = $self->stash ('user');
 
-  return $self->render (template => 'error',
-                        error    => 'You don\'t have permission to see this page. Try to log in.')
-    if (!defined ($user) ||
-        $user->level < 5);
-  
   my $title = $self->param ('title');
   my $content = $self->param ('content');
 
