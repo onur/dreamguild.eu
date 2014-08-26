@@ -134,4 +134,81 @@ sub add_post {
   return $self->redirect_to ('/');
 }
 
+
+sub admin_list {
+
+  my $self = shift;
+
+  my $news = [];
+  DreamGuild::DB->iterate (
+    'SELECT id, title FROM news ORDER BY id DESC',
+    sub {
+      push @{$news}, [ $_->[0], $_->[1] ];
+    }
+  );
+
+
+  $self->render (news => $news);
+}
+
+
+sub edit {
+  my $self = shift;
+
+  my $page_row = DreamGuild::DB::News->select ('where id = ?', $self->param ('id'));
+  
+  return $self->render (status   => '404',
+                        template => 'error',
+                        error    => 'This page doesn\'t exist!')
+    unless (scalar (@{$page_row}));
+
+
+  $self->param (title => $page_row->[0]->{title});
+  $self->param (content => $page_row->[0]->{content});
+
+  return $self->render (template => 'news/add',
+                        page => $page_row->[0],
+                        js_ckeditor => 1);
+}
+
+
+
+sub edit_post {
+  my $self = shift;
+
+  my $new = DreamGuild::DB::News->load ($self->param ('id'));
+  return $self->render (template => 'news/add',
+                        error => 'Not found!',
+                        js_ckeditor => 1)
+    unless ($new);
+
+  my $title = $self->param ('title');
+  my $content = $self->param ('content');
+
+  return $self->render (template => 'news/add',
+                        error => 'Title or content is empty!',
+                        js_ckeditor => 1)
+    if (!$title || !$content);
+
+  $new->update (
+    title   => $title,
+    content => $content,
+  );
+
+  $self->flash (text => $title . ' successfully edited.');
+  return $self->redirect_to ('/admin/news');
+}
+
+
+sub remove {
+  my $self = shift;
+
+  my $new = DreamGuild::DB::News->load ($self->param ('id'));
+
+  DreamGuild::DB::News->delete_where ('id = ?', $self->param ('id'));
+  $self->flash (text => $new->{title} . ' successfully removed.');
+
+  return $self->redirect_to ('/admin/news');
+}
+
 1;
