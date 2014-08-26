@@ -109,7 +109,8 @@ sub add_post {
   my $content = $self->param ('content');
 
   return $self->render (template => 'news/add',
-                        error => 'Title or content is empty!')
+                        error => 'Title or content is empty!',
+                        js_ckeditor => 1)
     if (!$title || !$content);
 
   DreamGuild::DB::News->new (

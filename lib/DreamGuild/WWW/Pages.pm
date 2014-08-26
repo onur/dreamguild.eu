@@ -37,7 +37,8 @@ sub add_post {
   my $content = $self->param ('content');
 
   return $self->render (template => 'pages/add',
-                        error => 'All fields are required')
+                        error => 'All fields are required',
+                        js_ckeditor => 1)
     if (!$slug || !$title || !$content);
 
   DreamGuild::DB::Pages->new (
