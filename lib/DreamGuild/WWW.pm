@@ -125,11 +125,10 @@ sub startup {
   $r->post ('/applications/:id/reject')->to ('Application#application_reject');
   $r->get ('/applications/:id/remove')->to ('Application#application_remove');
 
-  # Pages
-  $r->get ('/pages/add')->to ('Pages#add');
-  $r->post ('/pages/add')->to ('Pages#add_post');
-
   $r->get ('/changes')->to (cb => \&about);
+
+
+  # Pages
   $r->get ('/:slug')->to ('Pages#page');
 
 
@@ -139,6 +138,13 @@ sub startup {
   $admin_bridge->get ('/assign/list')->to ('Admin#assign_unassigned_list');
   $admin_bridge->get ('/assign/:account')->to ('Admin#assign_account');
   $admin_bridge->post ('/assign/:account')->to ('Admin#assign_account_post');
+
+  $admin_bridge->get ('/pages')->to ('Pages#admin_list');
+  $admin_bridge->get ('/pages/add')->to ('Pages#add');
+  $admin_bridge->post ('/pages/add')->to ('Pages#add_post');
+  $admin_bridge->get ('/pages/edit/:slug')->to ('Pages#edit');
+  $admin_bridge->post ('/pages/edit/:slug')->to ('Pages#edit_post');
+  $admin_bridge->get ('/pages/remove/:slug')->to ('Pages#remove');
 }
 
 
