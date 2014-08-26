@@ -1,5 +1,6 @@
 
 % title 'Changes';
+% my $user = stash ('user');
 <div class="container">
 
   <div class="row">
@@ -30,6 +31,10 @@
         </table>
 
       </div>
+
+      % if (defined ($user) && $user->{level} >= 30) {
+      %= include 'admin/left_menu';
+      % }
 
     </div>
 
