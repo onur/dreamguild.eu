@@ -4,3 +4,11 @@
   <a href="/admin/news" class="list-group-item<%= title eq 'News' ? ' active' : '' %>">News</a>
   <a href="/admin/pages" class="list-group-item<%= title eq 'Pages' ? ' active' : '' %>">Pages</a>
 </div>
+
+<div class="list-group">
+% if (title eq 'News') {
+  <a href="/admin/news/add" class="list-group-item">Add new story</a>
+% } elsif (title eq 'Pages') {
+  <a href="/admin/pages/add" class="list-group-item">Add new page</a>
+% }
+</div>
