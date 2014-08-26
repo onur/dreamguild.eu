@@ -1,5 +1,12 @@
 
-0.017  2014-08-25
+0.018  2014-08-26
+  - Add simple admin page.
+  - Add methods to edit/remove news and pages.
+  - Add methods to edit options.
+  - Show CK editor even if something goes wrong when adding pages
+    and news.
+  - Add admin menu to user dropdown.
+  - Add admin menu to changes.
 
 0.017  2014-08-25
   - Remove padding from reject modal.
