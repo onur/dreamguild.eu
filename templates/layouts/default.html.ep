@@ -75,6 +75,10 @@
               <%= $user->{mainc}->{name} %> <b class="caret"></b>
             </a>
               <ul class="dropdown-menu">
+                % if ($user->{level} >= 30) {
+                <li><a href="/admin">Admin</a></li>
+                <li class="divider"></li>
+                % }
                 <li><a href="/logout">Logout</a></li>
               </ul>
             </li>
