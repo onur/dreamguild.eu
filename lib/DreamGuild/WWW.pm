@@ -96,8 +96,6 @@ sub startup {
   $r->get ('/')->to('News#home');
 
   $r->get ('/news')->to ('News#list');
-  $r->get ('/news/add')->to('News#add');
-  $r->post ('/news/add')->to('News#add_post');
 
   $r->get ('/roster')->to('Roster#list');
   $r->get ('/lottery')->to('Roster#lottery');
@@ -145,6 +143,13 @@ sub startup {
   $admin_bridge->get ('/pages/edit/:slug')->to ('Pages#edit');
   $admin_bridge->post ('/pages/edit/:slug')->to ('Pages#edit_post');
   $admin_bridge->get ('/pages/remove/:slug')->to ('Pages#remove');
+
+  $admin_bridge->get ('/news')->to ('News#admin_list');
+  $admin_bridge->get ('/news/add')->to('News#add');
+  $admin_bridge->post ('/news/add')->to('News#add_post');
+  $admin_bridge->get ('/news/edit/:id')->to ('News#edit');
+  $admin_bridge->post ('/news/edit/:id')->to ('News#edit_post');
+  $admin_bridge->get ('/news/remove/:id')->to ('News#remove');
 }
 
 
