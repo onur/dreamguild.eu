@@ -24,7 +24,6 @@
 
         <form role="form" action="<%== url_for %>" method="post">
 
-          % my $option = stash ('option');
           <div class="form-group">
             <label for="news-content">Option: <%= $option->{option} %></label>
             <textarea class="form-control" placeholder="" name="value" rows="40"><%= $option->{value} %></textarea>
