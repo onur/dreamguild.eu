@@ -1,6 +1,6 @@
 
 
 <div class="list-group">
-  <a href="/admin/news" class="list-group-item">News</a>
-  <a href="/admin/pages" class="list-group-item">Pages</a>
+  <a href="/admin/news" class="list-group-item<%= title eq 'News' ? ' active' : '' %>">News</a>
+  <a href="/admin/pages" class="list-group-item<%= title eq 'Pages' ? ' active' : '' %>">Pages</a>
 </div>
