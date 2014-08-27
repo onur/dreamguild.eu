@@ -1,5 +1,6 @@
 
 0.019  2014-08-27  UNRELEASED
+  - Set realm on update roster.
 
 0.018  2014-08-26
   - Add simple admin page.
