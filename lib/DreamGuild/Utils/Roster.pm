@@ -140,7 +140,10 @@ sub update_roster {
       last_update   => $self->{last_update},
 
       uid           => 0,
-      is_main       => 0
+      is_main       => 0,
+
+      # FIXME: everyones realm is grim-batol
+      realm         => 'grim-batol'
 
     );
 
