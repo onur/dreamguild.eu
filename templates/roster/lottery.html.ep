@@ -9,7 +9,7 @@
 <div class="container">
 
   <div class="row">
-    <div class="col-xs-12 col-sm-9 col-md-9">
+    <div class="col-xs-12 col-sm-8 col-md-9">
 
 
       % unless ($count) {
@@ -28,7 +28,7 @@
 
         % for my $character (@{$users}) {
         %   next unless $character->{ticket};
-        <div class="col-xs-4 col-sm-3 col-md-3 col-lg-2">
+        <div class="col-xs-4 col-sm-4 col-md-3 col-lg-2">
           <div class="well text-center">
             <p class="lead"><strong><%= $character->{ticket} %></strong></p>
             <p class="color-c<%= $character->{class} %>"><%= $character->{name} %></p>
@@ -44,7 +44,7 @@
 
     </div>
 
-    <div class="col-xs-12 col-sm-3 col-md-3">
+    <div class="col-xs-12 col-sm-4 col-md-3">
 
       <div class="well text-center">
 
