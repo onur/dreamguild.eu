@@ -16,26 +16,7 @@
 
     <div class="col-xs-12 col-sm-4 col-md-3">
 
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title">Recruiting</h3>
-        </div>
-        <div class="panel-body">
-          <ul style="padding-left: 20px">
-            <li>Enhancement/Elemental <span class="color-c7">Shaman</span></li>
-            <li>Non-plate Tank (<span class="color-c11">Druid</span>/<span class="color-c10">Monk</span>)</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title">Raid Time</h3>
-        </div>
-        <div class="panel-body">
-          <p>Saturday, 20:00 CEST</p>
-        </div>
-      </div>
+      <%== stash ('recruitment'); %>
 
     </div>
   </div>
