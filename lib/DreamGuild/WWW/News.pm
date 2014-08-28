@@ -24,7 +24,11 @@ sub home {
       if (scalar (@{$row}));
   }
 
-  $self->render;
+  # Get recruitment info
+  my $recruitment = DreamGuild::DB::Pages->select ('where slug = ?', 'recruitment');
+
+  $self->render (recruitment => (scalar (@{$recruitment}) ?
+                                 $recruitment->[0]->{content} : ''));
 }
 
 
