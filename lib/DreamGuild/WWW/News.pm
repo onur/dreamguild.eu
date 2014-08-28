@@ -24,11 +24,7 @@ sub home {
       if (scalar (@{$row}));
   }
 
-  # Get recruitment info
-  my $recruitment = DreamGuild::DB::Pages->select ('where slug = ?', 'recruitment');
-
-  $self->render (recruitment => (scalar (@{$recruitment}) ?
-                                 $recruitment->[0]->{content} : ''));
+  $self->render (recruitment => DreamGuild::DB->get_option ('recruitment'));
 }
 
 
@@ -99,8 +95,7 @@ sub list {
                  tickets            => $tickets,
                  next_ticket_number => DreamGuild::DB->get_option ('next_ticket_number'),
                  unassigned_character_count => $unassigned_character_count,
-                 recruitment => (scalar (@{$recruitment}) ?
-                                 $recruitment->[0]->{content} : ''));
+                 recruitment        => DreamGuild::DB->get_option ('recruitment'));
 }
 
 
