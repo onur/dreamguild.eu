@@ -90,12 +90,17 @@ sub list {
     }
   );
 
+  # Get recruitment info
+  my $recruitment = DreamGuild::DB::Pages->select ('where slug = ?', 'recruitment');
+
 
   $self->render (news               => $news,
                  who_is_online      => $who_is_online,
                  tickets            => $tickets,
                  next_ticket_number => DreamGuild::DB->get_option ('next_ticket_number'),
-                 unassigned_character_count => $unassigned_character_count);
+                 unassigned_character_count => $unassigned_character_count,
+                 recruitment => (scalar (@{$recruitment}) ?
+                                 $recruitment->[0]->{content} : ''));
 }
 
 
