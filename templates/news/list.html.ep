@@ -68,6 +68,9 @@
       </div>
 
 
+      <%== stash ('recruitment') %>
+
+
       %# Who is online
       % my $who_is_online = stash ('who_is_online');
       <h3 class="text-center">Who is online</h3>
