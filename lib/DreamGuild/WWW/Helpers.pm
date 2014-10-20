@@ -13,6 +13,7 @@ sub register {
 
   $app->helper (relative_date => \&relative_date);
   $app->helper (class_name => \&class_name);
+  $app->helper (imgur => \&imgur);
 
 }
 
@@ -93,6 +94,43 @@ sub class_name {
   }
  
   return $str;
+}
+
+
+sub imgur {
+
+  my ($self, $raw_imgur_url, $size, $subfix) = @_;
+
+  $size ||= "original";
+  $subfix ||= "jpg";
+
+  my @imgur_parsed = $raw_imgur_url =~ /http.:\/\/(?:i\.imgur\.com\/(.*?)\.(?:jpg|png|gif)|imgur\.com\/(?:gallery\/)?(.*))$/;
+
+  my $imgur_id = (defined ($imgur_parsed[0]) ? $imgur_parsed[0] : $imgur_parsed[1]);
+
+  my $imgur_url = "https://i.imgur.com/$imgur_id";
+
+  # Get more types in: https://api.imgur.com/models/image
+  if ($size eq 'small' || $size eq 's') {
+    $imgur_url .= 's';
+  } elsif ($size eq 'medium' || $size eq 'm') {
+    $imgur_url .= 'm';
+  } elsif ($size eq 'large' || $size eq 'l') {
+    $imgur_url .= 'l';
+  } elsif ($size eq 'huge' || $size eq 'h') {
+    $imgur_url .= 'h';
+  }
+
+  # Subfix is always 
+  if ($subfix eq 'png') {
+    $imgur_url .= '.png';
+  } elsif ($subfix eq 'gif') {
+    $imgur_url .= '.gif';
+  } else {
+    $imgur_url .= '.jpg';
+  }
+
+  return $imgur_url;
 }
 
 
