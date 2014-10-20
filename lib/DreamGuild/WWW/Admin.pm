@@ -245,6 +245,12 @@ sub lottery_winner {
     }
   );
 
+  if (!$self->param ('winner') || !scalar (@{$participant})) {
+    $self->flash (text => 'Nobody have a ticket. I can\'t end this lottery',
+                  type => 'danger');
+    return $self->redirect_to ('/lottery');
+  }
+
   my $row = DreamGuild::DB::Lottery->new (
     jackpot => $last_ticket * 250,
     time    => time (),
