@@ -196,7 +196,7 @@ sub lottery_give {
 
   my $next_ticket_number = DreamGuild::DB->get_option ('next_ticket_number') || 1;
 
-  if (!defined ($char->{lottery_ticket}) || $char->{lottery_ticket} != 0) {
+  if (defined ($char->{lottery_ticket}) && $char->{lottery_ticket} != 0) {
     $self->flash (text => "$char->{name} already have a ticket",
                   type => 'danger');
     return $self->redirect_to ('/lottery');
