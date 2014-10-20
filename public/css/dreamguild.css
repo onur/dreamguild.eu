@@ -201,3 +201,7 @@ select.my-select {
 pre.changelog {
   max-height: 500px;
 }
+
+img.lottery-proof {
+  max-width: 100%;
+}

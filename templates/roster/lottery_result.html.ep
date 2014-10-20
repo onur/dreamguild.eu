@@ -43,7 +43,7 @@
         
         % if ($lottery->{proof}) {
         <p class="lead">Proof</p>
-        <p><a href="<%== $lottery->{proof} %>" target="_blank"><img src="<%== imgur ($lottery->{proof}, 'l'); %>"></a></p>
+        <p><a href="<%== $lottery->{proof} %>" target="_blank"><img class="lottery-proof" src="<%== imgur ($lottery->{proof}, 'l'); %>"></a></p>
         % }
       </div>
 
