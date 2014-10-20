@@ -99,6 +99,7 @@ sub startup {
 
   $r->get ('/roster')->to('Roster#list');
   $r->get ('/lottery')->to('Roster#lottery');
+  $r->get ('/lottery/:id')->to('Roster#lottery_result');
 
   $r->get ('/register')->to ('user#register');
   $r->post ('/register')->to ('user#register_post');
