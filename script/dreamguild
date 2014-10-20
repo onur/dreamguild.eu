@@ -4,6 +4,8 @@ use strict;
 use warnings;
 
 use FindBin;
+use Pod::Usage;
+
 BEGIN { unshift @INC, "$FindBin::Bin/../lib" }
 
 chdir "$FindBin::Bin/..";
@@ -74,8 +76,13 @@ sub release {
 }
 
 
+sub usage {
+  pod2usage (0);
+}
+
+
 sub main {
-  return if not defined $ARGV[0];
+  return usage () if not defined $ARGV[0];
   return create_db ()       if $ARGV[0] eq '--create-db';
   return update_roster ()   if $ARGV[0] eq '--update-roster';
   return update_realm_list () if $ARGV[0] eq '--update-realm-list';
@@ -91,3 +98,60 @@ sub main {
 
 &main;
 0;
+
+
+__END__
+
+=head1 NAME
+
+dreamguild - Management script
+
+=head1 ARGUMENTS
+
+=over 7
+
+=item B<--create-db>
+
+Create SQLite database under I<share/data/database.db> and runs 
+I<share/data/database.sql> script. Old database will be removed with I<rm>
+and a new database will be created.
+
+=item B<--update-roster>
+
+Update roster.
+
+=item B<--update-realm-list>
+
+Update realm list.
+
+=item B<--start>
+
+Start hypnotoad server.
+
+=item B<--stop>
+
+Stop hypnotoad server.
+
+=item B<--restart>
+
+Restart hypnotoad server.
+
+=item B<--morbo>
+
+Start morbo server.
+
+=item B<--update> [I<VERSION>]
+
+Update dreamguild to I<VERSION>. This will:
+Stop server, git pull, git checkout I<VERSION>, start server.
+
+=item B<--backup-database>
+
+Backup database under to share/data/backups/ and encode it with gpg.
+
+=item B<--release> [I<VERSION>]
+
+Release dreamguild I<VERSION>. This will: git tag I<VERSION>, git push github
+git push github --tags, ssh dream@dreamguild.eu --update I<VERSION>
+
+=back
