@@ -1,11 +1,13 @@
+# DreamGuild.eu TODO
 
-# New Core Features
+
+### New Core Features
 
 * Blizzard's old web API is deprecated and it's moved to https://dev.battle.net
   Make dreamguild.eu to compatible with new battle.net API.
 
 
-# New Features
+### New Features
 
 * Add who is online in mumble.
 * Add player of the week (based on XP contribution to guild for the week).
@@ -15,13 +17,13 @@
 * Add FB Fan page link to somewhere. It must be only visible to strangers.
 
 
-# New Features for Admins
+### New Features for Admins
 
 * Add rank number to text editor.
 * Add option to update roster.
 
 
-# Under the hood
+### Under the hood
 
 * After an application accepted, nothing is happening. Something must happen.
   Possible route:
