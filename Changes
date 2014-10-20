@@ -1,5 +1,5 @@
 
-0.021  2014-10-20  UNRELEASED
+0.021  2014-10-20
   - Add "End lottery" and make "Give ticket" modal dialog.
   - Move /lottery/give to /admin/lottery/give.
   - Add lottery result page.
