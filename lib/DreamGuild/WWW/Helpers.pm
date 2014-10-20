@@ -104,7 +104,7 @@ sub imgur {
   $size ||= "original";
   $subfix ||= "jpg";
 
-  my @imgur_parsed = $raw_imgur_url =~ /http.:\/\/(?:i\.imgur\.com\/(.*?)\.(?:jpg|png|gif)|imgur\.com\/(?:gallery\/)?(.*))$/;
+  my @imgur_parsed = $raw_imgur_url =~ /http[s]*:\/\/(?:i\.imgur\.com\/(.*?)\.(?:jpg|png|gif)|imgur\.com\/(?:gallery\/)?(.*))$/;
 
   my $imgur_id = (defined ($imgur_parsed[0]) ? $imgur_parsed[0] : $imgur_parsed[1]);
 
