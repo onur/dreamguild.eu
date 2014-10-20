@@ -24,7 +24,7 @@ sub get_option {
 sub save_option {
   my ($self, $option, $value) = @_;
 
-  return if !$option || !$value;
+  return if !defined ($option) || !defined ($value);
 
   my $option_row = DreamGuild::DB::Options->select ('where option = ?', $option);
   if (scalar (@{$option_row})) {
