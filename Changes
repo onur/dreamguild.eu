@@ -5,9 +5,9 @@
   - Add lottery result page.
   - Add imgur helper.
   - Add usage information to script/dreamguild.
-  - Add previous lottery pages and previous lottery list to lottery page.
+  - Add past lottery pages and past lottery list to current lottery page.
   - Admin buttons in lottery page are in the list-group now.
-  - Fix DB->save_option to check definition not value.
+  - Fix DB->save_option to check definition, not value.
   - Use Mojolicious::Plugin::Config for configuration parameters.
   - Get secrets from config file.
   - Remove well and add into table class in version table.
