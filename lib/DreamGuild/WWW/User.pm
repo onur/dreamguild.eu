@@ -20,9 +20,8 @@ sub register {
 
 
 sub sha1_passwd {
-  my $passwd = $_[0];
-  return sha1_hex ($passwd . 
-            '3c7a4779b7a08b9db4ac2980792569ddad27223703d092c9c1135449a792b637');
+  my ($self, $passwd) = @_;
+  return sha1_hex ($passwd . $self->config ('secrets')->[1]);
 }
 
 
@@ -66,7 +65,7 @@ sub register_post {
 
   my $user_row = DreamGuild::DB::User->new (
     email    => $email,
-    password => sha1_passwd ($password),
+    password => $self->sha1_passwd ($password),
     level    => (defined ($self->session ('main_id')) ? 5 : 0),
     main     => 0,
     appid    => $self->session ('app_id') || 0,
@@ -120,7 +119,7 @@ sub login_post {
   # FIXME: need to check case insensitive email
   my $row = DreamGuild::DB::User->select ('where email = ? and password = ?',
                                           $email,
-                                          sha1_passwd ($password));
+                                          $self->sha1_passwd ($password));
 
 
   unless (scalar (@{$row})) {
