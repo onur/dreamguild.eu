@@ -10,7 +10,8 @@
   - Fix DB->save_option to check definition not it's value.
   - Use Mojolicious::Plugin::Config for configuration parameters.
   - Get secrets from config file.
-  - Get password secret from config.
+  - Remove well and add into table class in version table.
+  - Remove wells in roster/list template and add into table classes.
 
 0.020  2014-08-28
   - Add admin menu to assign character templates.
