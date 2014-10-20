@@ -210,6 +210,12 @@ sub lottery_give {
 sub lottery_winner {
   my $self = shift;
 
+  if (!$self->param ('proof') || !$self->imgur ($self->param ('proof'))) {
+    $self->flash ('text' => 'Proof is required and it must be a imgur URL',
+                  type => 'danger');
+    return $self->redirect_to ('/lottery');
+  }
+
   my $participant = [];
   my $last_ticket = 0;
   my $winner_name = '';
