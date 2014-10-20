@@ -9,30 +9,25 @@
 
     <div class="col-xs-12 col-sm-8 col-md-8">
 
-      <div class="well">
-
-        % my $characters = stash ('characters');
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <td>Name</td>
-              <td>Spec</td>
-              <td>Ilvl</td>
-            </tr>
-          </thead>
-          <tbody>
-            % for my $character (@{$characters}) {
-            <tr>
-              <td><a href="#" class="color-c<%= $character->{class} %>"><%= $character->{name} %></a></td>
-              <td><%= class_name ($character->{class}, $character->{talents}) %></td>
-              <td><%= $character->{eilvl} %></td>
-            </tr>
-            % }
-          </tbody>
-        </table>
-
-
-      </div>
+      % my $characters = stash ('characters');
+      <table class="table table-striped well">
+        <thead>
+          <tr>
+            <td>Name</td>
+            <td>Spec</td>
+            <td>Ilvl</td>
+          </tr>
+        </thead>
+        <tbody>
+          % for my $character (@{$characters}) {
+          <tr>
+            <td><a href="#" class="color-c<%= $character->{class} %>"><%= $character->{name} %></a></td>
+            <td><%= class_name ($character->{class}, $character->{talents}) %></td>
+            <td><%= $character->{eilvl} %></td>
+          </tr>
+          % }
+        </tbody>
+      </table>
 
     </div>
 
@@ -62,56 +57,48 @@
 
       % my $counts = stash ('counts');
       % $class_color = 1;
-      <div class="well">
+      <table class="table table-striped well">
+        <thead>
+          <tr>
+            <td>Class</td>
+            <td>Main</td>
+            <td>90's</td>
+            <td>All</td>
+          </tr>
+        </thead>
+        <tbody>
+          % for (@classes) {
+          <tr>
+            <td class="color-c<%= $class_color %>"><%= $_ %></td>
+            <td><%= $counts->{classes_main}->[$class_color-1] %></td>
+            <td><%= $counts->{classes_max}->[$class_color-1] %></td>
+            <td><%= $counts->{classes}->[$class_color-1] %></td>
+          </tr>
+          % ++$class_color;
+          % }
+        </tbody>
+      </table>
 
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <td>Class</td>
-              <td>Main</td>
-              <td>90's</td>
-              <td>All</td>
-            </tr>
-          </thead>
-          <tbody>
-            % for (@classes) {
-            <tr>
-              <td class="color-c<%= $class_color %>"><%= $_ %></td>
-              <td><%= $counts->{classes_main}->[$class_color-1] %></td>
-              <td><%= $counts->{classes_max}->[$class_color-1] %></td>
-              <td><%= $counts->{classes}->[$class_color-1] %></td>
-            </tr>
-            % ++$class_color;
-            % }
-          </tbody>
-        </table>
-
-      </div>
-
-      <div class="well">
-
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <td>Average Ilvl</td>
-              <td>Main</td>
-              <td>90's</td>
-            </tr>
-          </thead>
-          <tbody>
-            % $class_color = 1;
-            % for (@classes) {
-            <tr>
-              <td class="color-c<%= $class_color %>"><%= $_ %></td>
-              <td><%= $counts->{ilvls_main}->[$class_color-1] %></td>
-              <td><%= $counts->{ilvls_max}->[$class_color-1] %></td>
-            </tr>
-            % ++$class_color;
-            % }
-          </tbody>
-        </table>
-
-      </div>
+      <table class="table table-striped well">
+        <thead>
+          <tr>
+            <td>Average Ilvl</td>
+            <td>Main</td>
+            <td>90's</td>
+          </tr>
+        </thead>
+        <tbody>
+          % $class_color = 1;
+          % for (@classes) {
+          <tr>
+            <td class="color-c<%= $class_color %>"><%= $_ %></td>
+            <td><%= $counts->{ilvls_main}->[$class_color-1] %></td>
+            <td><%= $counts->{ilvls_max}->[$class_color-1] %></td>
+          </tr>
+          % ++$class_color;
+          % }
+        </tbody>
+      </table>
 
     </div>
 
