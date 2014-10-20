@@ -132,4 +132,21 @@ sub lottery {
 
 
 
+sub lottery_result {
+  my $self = shift;
+
+  my $lottery = DreamGuild::DB::Lottery->select ('where id = ?', $self->param ('id'));
+
+  return $self->render (status => '404',
+                        template => 'error',
+                        error    => 'Lottery not found!')
+    unless (scalar (@{$lottery}));
+
+
+  $lottery->[0]->{tickets} = decode_json ($lottery->[0]->{tickets});
+
+  $self->render (lottery => $lottery->[0]);
+}
+
+
 1;
