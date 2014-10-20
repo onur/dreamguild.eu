@@ -1,5 +1,8 @@
 
-0.021  2014-08-29
+0.021  2014-10-20
+  - Add "End lottery" and make "Give ticket" modal dialog
+  - Move /lottery/give to /admin/lottery/give
+  - Add lottery result page
 
 0.020  2014-08-28
   - Add admin menu to assign character templates.
