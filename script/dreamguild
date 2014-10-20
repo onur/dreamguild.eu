@@ -4,9 +4,11 @@ use strict;
 use warnings;
 
 use FindBin;
-use Pod::Usage;
-
 BEGIN { unshift @INC, "$FindBin::Bin/../lib" }
+
+use Pod::Usage;
+use DreamGuild::WWW;
+
 
 chdir "$FindBin::Bin/..";
 
@@ -60,9 +62,9 @@ sub backup_database {
     $time[$_] = '0' . $time[$_] if $time[$_] < 10;
   }
 
-  my $filename = "$time[5]$time[4]$time[3]$time[2]$time[1]";
+  my $filename = "database-$DreamGuild::WWW::VERSION-$time[5]$time[4]$time[3]$time[2]$time[1]";
 
-  system ("gzip -c9 share/data/database.db | gpg -e -r onur\@onur.im --batch > share/data/backups/db-$filename.gz.enc");
+  system ("gzip -c9 share/data/database.db | gpg -e -r onur\@onur.im --batch > share/data/backups/$filename.gz.enc");
 }
 
 sub release {
