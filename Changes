@@ -4,7 +4,9 @@
   - Move /lottery/give to /admin/lottery/give.
   - Add lottery result page.
   - Add imgur helper.
-  - Add usage to script/dreamguild.
+  - Add usage information to script/dreamguild.
+  - Add previous lottery pages and previous lottery list to lottery page.
+  - Admin buttons in lottery page are in the list-group now.
 
 0.020  2014-08-28
   - Add admin menu to assign character templates.
