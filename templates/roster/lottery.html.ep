@@ -61,9 +61,20 @@
 
       </div>
 
+      % my $previous_lotteries = stash ('previous_lotteries');
+      <p class="lead">Lottery results</p>
+      <div class="list-group">
+      % for my $lottery (@{$previous_lotteries}) {
+        <a href="/lottery/<%= $lottery->{id} %>" class="list-group-item">#<%= $lottery->{id} %></a>
+      % }
+      </div>
+
       % if ($user && $user->{level} >= 30) {
-      <a href="#" data-toggle="modal" data-target="#give-ticket-modal" class="btn btn-default btn-block">Give ticket</a>
-      <a href="#" data-toggle="modal" data-target="#end-lottery-modal" class="btn btn-default btn-block">End lottery</a>
+      <p class="lead">Admin stuff</p>
+      <div class="list-group">
+        <a href="#" data-toggle="modal" data-target="#give-ticket-modal" class="list-group-item">Give ticket</a>
+        <a href="#" data-toggle="modal" data-target="#end-lottery-modal" class="list-group-item">End lottery</a>
+      </div>
 
       <!-- Modal for give ticket -->
       <div class="modal fade" id="give-ticket-modal" tabindex="-1" role="dialog" aria-labelledby="give-ticket-modal" aria-hidden="true">
