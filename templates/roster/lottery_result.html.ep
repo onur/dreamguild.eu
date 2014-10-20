@@ -1,0 +1,45 @@
+
+
+% my $lottery = stash ('lottery');
+
+<div class="container">
+  <div class="well">
+    <p class="text-center lead">Lottery: #<%= $lottery->{id} %></p>
+
+    <div class="row">
+      <div class="col-xs-4 col-sm-4 col-md-4">
+        <p class="">Winner number: <%= $lottery->{winner_ticket} %></p>
+      </div>
+      <div class="col-xs-4 col-sm-4 col-md-4">
+        <p class="text-center"><%= relative_date ($lottery->{time}, time) %></p>
+      </div>
+      <div class="col-xs-4 col-sm-4 col-md-4">
+        <p class="text-right">Jackpot: <%= $lottery->{jackpot} %></p>
+      </div>
+    </div>
+
+    <p>Participants:</p>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Ticket</th>
+        </tr>
+      </thead>
+      <tbody>
+        % for my $ticket (@{$lottery->{tickets}}) {
+        <tr<%== $ticket->[3] == $lottery->{winner_ticket} ? ' class="info"' : '' %>>
+          <td class="color-c<%= $ticket->[2] %>"><%= $ticket->[1] %></td>
+          <td><%= $ticket->[3] %></td>
+        </tr>
+        % }
+      </tbody>
+    </table>
+
+    
+    % if ($lottery->{proof}) {
+    <p class="lead">Proof</p>
+    <p><a href="<%== $lottery->{proof} %>" target="_blank"><img src="<%== imgur ($lottery->{proof}, 'l'); %>"></a></p>
+    % }
+  </div>
+</div>
