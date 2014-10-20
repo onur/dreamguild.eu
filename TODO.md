@@ -1,6 +1,5 @@
 
 # New Features
---------------
 
 * Add who is online in mumble.
 * Add player of the week (based on XP contribution to guild for the week).
@@ -11,14 +10,12 @@
 
 
 # New Features for Admins
--------------------------
 
 * Add rank number to text editor.
 * Add option to update roster.
 
 
 # Under the hood
-----------------
 
 * After an application accepted, nothing is happening. Something must happen.
   Possible route:
