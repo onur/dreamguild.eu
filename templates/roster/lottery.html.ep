@@ -4,6 +4,7 @@
 %# FIXME: I can use better variable name for this
 %#        Users are actually ticket buyers
 % my $users = stash ('users');
+% my @sorted_users = sort { $a->{name} cmp $b->{name} } @{$users};
 % my $count = stash ('count');
 
 <div class="container">
@@ -88,7 +89,6 @@
               <div class="modal-body">
                 <p>Next ticket number: <%= stash ('next_ticket_number') %></p>
                 <select name="cid" class="form-control">
-                % my @sorted_users = sort { $a->{name} cmp $b->{name} } @{$users};
                 % for (@sorted_users) {
                 % next if $_->{ticket};
                 <option value="<%= $_->{id} %>"><%= $_->{name} %></option>
@@ -123,7 +123,6 @@
               <div class="modal-body">
                 <label for="winner-winner">Select winner:</label>
                 <select id="winner-winner" name="winner" class="form-control">
-                % @sorted_users = sort { $a->{name} cmp $b->{name} } @{$users};
                 % for (@sorted_users) {
                 % next unless $_->{ticket};
                 <option value="<%= $_->{id} %>"><%= $_->{name} %></option>
