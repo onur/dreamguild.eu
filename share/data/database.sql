@@ -161,6 +161,18 @@ CREATE TABLE options (
 );
 
 
+CREATE TABLE lottery (
+  id         INTEGER PRIMARY KEY AUTOINCREMENT,
+  jackpot    INTEGER DEFAULT 0,
+  time       INTEGER DEFAULT 0,
+  winner     TEXT,
+  winner_id  INTEGER DEFAULT 0,
+  winner_ticket INTEGER DEFAULT 0,
+  proof      TEXT,
+  tickets    TEXT
+);
+
+
 INSERT INTO options VALUES (
   'questions',
   '[
