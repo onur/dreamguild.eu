@@ -99,7 +99,6 @@ sub startup {
 
   $r->get ('/roster')->to('Roster#list');
   $r->get ('/lottery')->to('Roster#lottery');
-  $r->post ('/lottery/give')->to('Roster#lottery_give');
 
   $r->get ('/register')->to ('user#register');
   $r->post ('/register')->to ('user#register_post');
@@ -124,7 +123,6 @@ sub startup {
   $r->get ('/applications/:id/remove')->to ('Application#application_remove');
 
   $r->get ('/changes')->to (cb => \&about);
-
 
 
   # Admin bridge
@@ -153,6 +151,10 @@ sub startup {
 
   $admin_bridge->get ('/options/:option')->to ('Admin#edit_option');
   $admin_bridge->post ('/options/:option')->to ('Admin#edit_option_post');
+
+  # End lottery
+  $admin_bridge->post ('/lottery/give')->to('Admin#lottery_give');
+  $admin_bridge->post ('/lottery/end')->to ('Admin#lottery_winner');
 
   # Pages
   $r->get ('/:slug')->to ('Pages#page');
