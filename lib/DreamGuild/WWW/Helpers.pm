@@ -108,6 +108,8 @@ sub imgur {
 
   my $imgur_id = (defined ($imgur_parsed[0]) ? $imgur_parsed[0] : $imgur_parsed[1]);
 
+  return undef unless $imgur_id;
+
   my $imgur_url = "https://i.imgur.com/$imgur_id";
 
   # Get more types in: https://api.imgur.com/models/image
