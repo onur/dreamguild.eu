@@ -82,12 +82,7 @@ sub startup {
   $self->hook(before_dispatch => \&before_filter);
 
   $self->plugin('DreamGuild::WWW::Helpers');
-
-  $self->config(hypnotoad => {
-    listen => ['http://127.0.0.1:8080'],
-    workers => 2
-  });
-
+  $self->plugin('Config' => { file => 'dreamguild.config' });
 
   # Router
   my $r = $self->routes;
