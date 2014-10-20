@@ -14,6 +14,7 @@
   - Remove wells add them into table classes in roster/list template.
   - Remove duplication of sort in templates/roster/lottery template.
   - Check if character already have a ticket before giving next ticket.
+  - Use version in backup database file name.
 
 0.020  2014-08-28
   - Add admin menu to assign character templates.
