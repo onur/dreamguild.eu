@@ -3,43 +3,80 @@
 % my $lottery = stash ('lottery');
 
 <div class="container">
-  <div class="well">
-    <p class="text-center lead">Lottery: #<%= $lottery->{id} %></p>
+  <div class="row">
 
-    <div class="row">
-      <div class="col-xs-4 col-sm-4 col-md-4">
-        <p class="">Winner number: <%= $lottery->{winner_ticket} %></p>
+    <div class="col-xs-12 col-sm-8 col-md-9">
+
+      <div class="well">
+        <p class="text-center lead">Lottery: #<%= $lottery->{id} %></p>
+
+        <div class="row">
+          <div class="col-xs-4 col-sm-4 col-md-4">
+            <p class="">Winner number: <%= $lottery->{winner_ticket} %></p>
+          </div>
+          <div class="col-xs-4 col-sm-4 col-md-4">
+            <p class="text-center"><%= relative_date ($lottery->{time}, time) %></p>
+          </div>
+          <div class="col-xs-4 col-sm-4 col-md-4">
+            <p class="text-right">Jackpot: <%= $lottery->{jackpot} %></p>
+          </div>
+        </div>
+
+        <p>Participants:</p>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Ticket</th>
+            </tr>
+          </thead>
+          <tbody>
+            % for my $ticket (@{$lottery->{tickets}}) {
+            <tr<%== $ticket->[3] == $lottery->{winner_ticket} ? ' class="info"' : '' %>>
+              <td class="color-c<%= $ticket->[2] %>"><%= $ticket->[1] %></td>
+              <td><%= $ticket->[3] %></td>
+            </tr>
+            % }
+          </tbody>
+        </table>
+
+        
+        % if ($lottery->{proof}) {
+        <p class="lead">Proof</p>
+        <p><a href="<%== $lottery->{proof} %>" target="_blank"><img src="<%== imgur ($lottery->{proof}, 'l'); %>"></a></p>
+        % }
       </div>
-      <div class="col-xs-4 col-sm-4 col-md-4">
-        <p class="text-center"><%= relative_date ($lottery->{time}, time) %></p>
-      </div>
-      <div class="col-xs-4 col-sm-4 col-md-4">
-        <p class="text-right">Jackpot: <%= $lottery->{jackpot} %></p>
-      </div>
+
     </div>
 
-    <p>Participants:</p>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Ticket</th>
-        </tr>
-      </thead>
-      <tbody>
-        % for my $ticket (@{$lottery->{tickets}}) {
-        <tr<%== $ticket->[3] == $lottery->{winner_ticket} ? ' class="info"' : '' %>>
-          <td class="color-c<%= $ticket->[2] %>"><%= $ticket->[1] %></td>
-          <td><%= $ticket->[3] %></td>
-        </tr>
-        % }
-      </tbody>
-    </table>
+    <div class="col-xs-12 col-sm-4 col-md-3">
 
-    
-    % if ($lottery->{proof}) {
-    <p class="lead">Proof</p>
-    <p><a href="<%== $lottery->{proof} %>" target="_blank"><img src="<%== imgur ($lottery->{proof}, 'l'); %>"></a></p>
-    % }
+      <div class="well text-center">
+
+        <p>Active Lottery Jackpot</p>
+        <p class="lead"><%= (stash ('next_ticket_number') - 1) * 250 %>g</p>
+        % my $tickets = stash ('tickets');
+        % if (scalar (@{$tickets})) {
+        <p>Your tickets:</p>
+        <p class="lead text-success"><%= join ', ', @{$tickets}  %></p>
+        <p>Chance to win: <%= int (100 * scalar (@{$tickets}) / (stash ('next_ticket_number') - 1)) %>%
+        % } else {
+        <p>You don't have any ticket</p>
+        % }
+
+      </div>
+
+
+      % my $previous_lotteries = stash ('previous_lotteries');
+      <p class="lead">Lottery results</p>
+      <div class="list-group">
+        <a href="/lottery" class="list-group-item">Current</a>
+      % for my $lottery (@{$previous_lotteries}) {
+        <a href="/lottery/<%= $lottery->{id} %>" class="list-group-item">#<%= $lottery->{id} %></a>
+      % }
+      </div>
+
+    </div>
+
   </div>
 </div>
