@@ -74,15 +74,14 @@ sub about {
 sub startup {
   my $self = shift;
 
-  $self->secrets (['3c7a4779b7a08b9db4ac2980792569dd' . 
-                   'ad27223703d092c9c1135449a792b637']);
-
   $self->defaults (layout => 'default');
 
   $self->hook(before_dispatch => \&before_filter);
 
   $self->plugin('DreamGuild::WWW::Helpers');
   $self->plugin('Config' => { file => 'dreamguild.config' });
+
+  $self->secrets ($self->config ('secrets'));
 
   # Router
   my $r = $self->routes;
