@@ -242,6 +242,10 @@ sub lottery_winner {
     tickets => encode_json ($participant)
   )->insert;
 
+  # Set everyones lottery ticket and next_ticket_number to 0
+  DreamGuild::DB->do ('UPDATE roster SET lottery_ticket = 0 WHERE lottery_ticket != 0');
+  DreamGuild::DB->save_option ('next_ticket_number', 1);
+
   $self->flash (text => 'Lottery is successfully ended');
   $self->redirect_to ('/lottery/' . $row->{id});
 }
