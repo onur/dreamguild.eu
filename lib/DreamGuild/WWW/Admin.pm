@@ -183,4 +183,68 @@ sub edit_option_post {
 }
 
 
+
+sub lottery_give {
+  my $self = shift;
+  my $cid  = $self->param ('cid');
+
+  my $char = DreamGuild::DB::Roster->load ($cid);
+
+  return $self->render (template => 'error',
+                        error    => 'Invalid character')
+    unless ($char);
+
+  my $next_ticket_number = DreamGuild::DB->get_option ('next_ticket_number') || 1;
+  $char->update (
+    lottery_ticket => $next_ticket_number
+  );
+
+  DreamGuild::DB->save_option ('next_ticket_number', $next_ticket_number + 1);
+
+  $self->flash (text => 'You successfully gave a ticket to <strong>' . $char->name . '</strong>.<br>His ticket number is: ' . $next_ticket_number);
+  $self->redirect_to ('/lottery');
+}
+
+
+
+sub lottery_winner {
+  my $self = shift;
+
+  my $participant = [];
+  my $last_ticket = 0;
+  my $winner_name = '';
+  my $winner_ticket = 0;
+  DreamGuild::DB->iterate (
+    'SELECT id, name, class, lottery_ticket FROM roster WHERE lottery_ticket != 0 ORDER BY name ASC',
+    sub {
+      push @{$participant}, [ $_->[0], $_->[1], $_->[2], $_->[3] ];
+      # Ok if guy with a last ticket leaves guild
+      # we screwed. This is a design error in lottery system.
+      # FIXME: Maybe I must stop removing characters from database
+      $last_ticket = $_->[3] if ($_->[3] > $last_ticket);
+
+      if ($self->param ('winner') == $_->[0]) {
+        $winner_name = $_->[1];
+        $winner_ticket = $_->[3];
+      }
+
+      return 1;
+    }
+  );
+
+  my $row = DreamGuild::DB::Lottery->new (
+    jackpot => $last_ticket * 250,
+    time    => time (),
+    winner  => $winner_name,
+    winner_id => $self->param ('winner'),
+    winner_ticket => $winner_ticket,
+    proof   => $self->param ('proof'),
+    tickets => encode_json ($participant)
+  )->insert;
+
+  $self->flash (text => 'Lottery is successfully ended');
+  $self->redirect_to ('/lottery/' . $row->{id});
+}
+
+
 1;
