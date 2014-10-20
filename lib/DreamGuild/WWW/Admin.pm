@@ -195,6 +195,13 @@ sub lottery_give {
     unless ($char);
 
   my $next_ticket_number = DreamGuild::DB->get_option ('next_ticket_number') || 1;
+
+  if ($char->{lottery_ticket} != 0) {
+    $self->flash (text => "$char->{name} already have a ticket",
+                  type => 'danger');
+    return $self->redirect_to ('/lottery');
+  }
+
   $char->update (
     lottery_ticket => $next_ticket_number
   );
