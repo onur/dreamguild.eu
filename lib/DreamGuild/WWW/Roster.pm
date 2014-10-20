@@ -124,16 +124,21 @@ sub lottery {
   my $users_with_ticket = 0;
   $_->{ticket} and ++$users_with_ticket for (@{$users});
 
+  # Select previous lotteries
+  my $previous_lotteries = DreamGuild::DB::Lottery->select ('order by id asc');
+
   $self->render (count => $users_with_ticket,
                  users => $users,
                  tickets => $tickets,
-                 next_ticket_number => DreamGuild::DB->get_option ('next_ticket_number') || 1);
+                 next_ticket_number => DreamGuild::DB->get_option ('next_ticket_number') || 1,
+                 previous_lotteries => $previous_lotteries);
 }
 
 
 
 sub lottery_result {
   my $self = shift;
+  my $user = $self->stash ('user');
 
   my $lottery = DreamGuild::DB::Lottery->select ('where id = ?', $self->param ('id'));
 
@@ -145,7 +150,22 @@ sub lottery_result {
 
   $lottery->[0]->{tickets} = decode_json ($lottery->[0]->{tickets});
 
-  $self->render (lottery => $lottery->[0]);
+  # Select previous lotteries
+  my $previous_lotteries = DreamGuild::DB::Lottery->select ('order by id asc');
+
+  # Get ticket numbers of user
+  my $tickets = [];
+  DreamGuild::DB->iterate (
+    'SELECT lottery_ticket FROM roster WHERE lottery_ticket > 0 AND uid = ? ORDER BY lottery_ticket ASC', $user->{id},
+    sub {
+      push @{$tickets}, $_->[0];
+    }
+  ) if ($user);
+
+  $self->render (lottery => $lottery->[0],
+                 previous_lotteries => $previous_lotteries,
+                 next_ticket_number => DreamGuild::DB->get_option ('next_ticket_number'),
+                 tickets => $tickets);
 }
 
 
