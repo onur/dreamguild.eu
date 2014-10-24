@@ -119,6 +119,9 @@ sub startup {
 
   $r->get ('/changes')->to (cb => \&about);
 
+  $r->get ('/user/theme')->to ('User#theme');
+  $r->post ('/user/theme')->to ('User#theme_save');
+
 
   # Admin bridge
   my $admin_bridge = $r->bridge ('/admin')->to (cb => \&admin_bridge_callback);
