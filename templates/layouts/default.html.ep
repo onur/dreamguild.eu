@@ -8,7 +8,7 @@
     <meta name="keywords" content="wow, world of warcraft, guild, grim batol">
     <meta name="author" content="Onur Aslan">
     <title><% if (title) { %><%= title . ' - ' %><% } %>Dream</title>
-    <link href="//cdnjs.cloudflare.com/ajax/libs/bootswatch/3.2.0+1/cyborg/bootstrap.min.css" rel="stylesheet">
+    <link href="<%== user_theme %>" rel="stylesheet">
     <link href="/css/dreamguild.css" rel="stylesheet">
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/js/bootstrap.min.js"></script>
@@ -22,7 +22,7 @@
     <![endif]-->
   </head>
 
-  <body>
+  <body class="theme-<%== user_theme_slug %>">
 
     % my $user = stash ('user');
 
