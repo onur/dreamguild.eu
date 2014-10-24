@@ -83,6 +83,8 @@
                 <li><a href="/admin">Admin</a></li>
                 <li class="divider"></li>
                 % }
+                <li><a href="/user/theme">Theme</a></li>
+                <li class="divider"></li>
                 <li><a href="/logout">Logout</a></li>
               </ul>
             </li>
