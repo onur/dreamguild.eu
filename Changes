@@ -1,4 +1,7 @@
 
+0.023  2014-10-24
+  - Add css based theme support.
+
 0.022  2014-10-21
   - Hotfix release.
   - Fix parsing HTTP links in imgur helper.
