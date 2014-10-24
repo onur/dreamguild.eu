@@ -20,7 +20,8 @@ CREATE TABLE user (
   appid      INTEGER DEFAULT 0,     -- aplication id
   dkp        INTEGER DEFAULT 0,
   join_time  INTEGER DEFAULT 0,     -- joined date
-  last_active INTEGER DEFAULT 0
+  last_active INTEGER DEFAULT 0,
+  theme      INTEGER DEFAULT 0
 );
 
 
