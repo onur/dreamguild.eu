@@ -10,11 +10,6 @@ body {
 }
 */
 
-body {
-  background-image: url('/img/pw_maze_black.png');
-  color: #ccc;
-}
-
 div.main-container {
 }
 
@@ -194,9 +189,6 @@ div.vote-alert {
   display: none;
 }
 
-select.my-select {
-  background-color: #282828;
-}
 
 pre.changelog {
   max-height: 500px;
@@ -205,3 +197,19 @@ pre.changelog {
 img.lottery-proof {
   max-width: 100%;
 }
+
+
+
+/* THEMES */
+body.theme-cyborg, body.theme-slate {
+  background-image: url('/img/pw_maze_black.png');
+  color: #ccc;
+}
+
+body.theme-cyborg select.my-select,
+body.theme-slate select.my-select {
+  background-color: #282828;
+}
+
+body.theme-bootstrap .color-c5,  body.theme-bootstrap  .color-c5 a { color: #333 !important; } /* priest */
+body.theme-bootstrap .color-c4,  body.theme-bootstrap  .color-c4 a { color: #8a6d3b !important; } /* rogue */
