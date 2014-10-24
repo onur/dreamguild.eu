@@ -1,0 +1,25 @@
+
+
+% my $user = stash ('user');
+
+<div class="container">
+  <div class="well">
+
+    <form role="form" action="<%== url_for %>" method="post">
+      <label for="theme-select">Theme:</label>
+
+      % my @themes = ('Default', 'Slate', 'Bootstrap', 'Cerulean');
+      % my $c = 0;
+
+      <select name="theme" id="theme-select" class="form-control">
+        % for (@themes) {
+        <option value="<%= $c %>"<%= $user->{theme} == $c++ ? ' selected' : '' %>><%= $_ %></option>
+        % }
+      </select>
+
+      <br>
+      <button type="submit" class="btn btn-default">Save</button>
+    </form>
+
+  </div>
+</div>
