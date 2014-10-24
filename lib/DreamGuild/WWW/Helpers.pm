@@ -14,6 +14,8 @@ sub register {
   $app->helper (relative_date => \&relative_date);
   $app->helper (class_name => \&class_name);
   $app->helper (imgur => \&imgur);
+  $app->helper (user_theme => \&user_theme);
+  $app->helper (user_theme_slug => \&user_theme_slug);
 
 }
 
@@ -133,6 +135,57 @@ sub imgur {
   }
 
   return $imgur_url;
+}
+
+
+sub user_theme {
+  my $self = shift;
+  my $user = $self->stash ('user');
+
+  # Default theme: cyborg
+  if (!defined ($user->{theme}) || $user->{theme} == 0) {
+    return '//cdnjs.cloudflare.com/ajax/libs/bootswatch/3.2.0+1/cyborg/bootstrap.min.css';
+  }
+
+  # Slate
+  elsif ($user->{theme} == 1) {
+    return '//cdnjs.cloudflare.com/ajax/libs/bootswatch/3.2.0+1/slate/bootstrap.min.css';
+  }
+
+  # Bootstrap default
+  elsif ($user->{theme} == 2) {
+    return '//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap.min.css';
+  }
+
+  # Cerulean
+  elsif ($user->{theme} == 3) {
+    return '//cdnjs.cloudflare.com/ajax/libs/bootswatch/3.2.0+1/cerulean/bootstrap.min.css';
+  }
+
+  return '//cdnjs.cloudflare.com/ajax/libs/bootswatch/3.2.0+1/cyborg/bootstrap.min.css';
+}
+
+
+sub user_theme_slug {
+  my $self = shift;
+  my $user = $self->stash ('user');
+
+  # Default theme: cyborg
+  if (!defined ($user->{theme}) || $user->{theme} == 0) {
+    return 'cyborg'
+  }
+
+  # Slate
+  elsif ($user->{theme} == 1) {
+    return 'slate';
+  }
+
+  # Bootstrap default and cerulean
+  elsif ($user->{theme} == 2 || $user->{theme} == 3) {
+    return 'bootstrap'
+  }
+
+  return 'cyborg';
 }
 
 
