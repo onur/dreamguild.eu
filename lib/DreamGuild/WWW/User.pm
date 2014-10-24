@@ -155,4 +155,40 @@ sub logout {
 }
 
 
+sub theme {
+  my $self = shift;
+  my $user = $self->stash ('user');
+
+  return $self->render (template => 'error',
+                        error    => 'You don\'t have permission to see this page')
+    if (!defined ($user));
+
+  $self->render;
+}
+
+
+sub theme_save {
+  my $self = shift;
+  my $user = $self->stash ('user');
+
+  return $self->render (template => 'error',
+                        error    => 'You don\'t have permission to see this page')
+    if (!defined ($user));
+
+  return $self->render (template => 'error',
+                        error    => 'Invalid theme')
+    if ($self->param ('theme') !~ /^\d+$/);
+
+
+  DreamGuild::DB->do (
+    'UPDATE user SET theme = ? WHERE id = ?',
+    {},
+    $self->param ('theme'),
+    $user->{id}
+  );
+
+  $self->redirect_to ('/');
+}
+
+
 1;
