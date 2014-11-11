@@ -39,7 +39,7 @@
           % for (@{$characters}) {
 
           <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2">
-            <p class="color-c<%= $_->[2] %>"><%= $_->[0] %></p>
+            <p class="color-c<%= $_->[2] %>"><a href="/admin/assign/<%= $_->[0] %>"><%= $_->[0] %></a></p>
           </div>
           % }
 
