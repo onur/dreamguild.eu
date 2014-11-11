@@ -33,6 +33,7 @@ sub assign_account {
 
   my $characters = [];
   my $uid = 0;
+  my $main_id = 0;
 
   DreamGuild::DB->iterate (
     'SELECT id, uid, name FROM roster ORDER BY name ASC',
@@ -43,6 +44,7 @@ sub assign_account {
         name   => $_->[2],
         owner  => 0
       };
+      $main_id = $_->[0] if ($_->[2] eq $account);
       $uid = $_->[1] if ($_->[2] eq $account);
       push @{$characters}, $character;
     }
@@ -50,7 +52,28 @@ sub assign_account {
 
   return $self->render (template => 'error',
                         error    => 'Unable to find user')
-      if (!$uid);
+      if (!$uid && !$main_id);
+
+  # If there is no UID
+  # Create a blank account
+  if (!$uid) {
+    my $user_row = DreamGuild::DB::User->new (
+      email    => $account . '@dreamguild.eu',
+      password => '',
+      # level 1 is blank account
+      level    => 1,
+      dkp      => 0,
+      main     => $main_id,
+      join_time => time (),
+      last_active => time ()
+    )->insert;
+    $uid = $user_row->id;
+    DreamGuild::DB->do ('UPDATE roster SET uid = ? WHERE name = ?',
+      {}, $uid, $account);
+    for (@{$characters}) {
+      $_->{uid} = $uid if ($_->{name} eq $account);
+    }
+  }
 
   for (@{$characters}) {
     $_->{owner} = 1 if ($uid == $_->{uid});
