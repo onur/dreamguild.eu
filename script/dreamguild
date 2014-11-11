@@ -4,13 +4,13 @@ use strict;
 use warnings;
 
 use FindBin;
-BEGIN { unshift @INC, "$FindBin::Bin/../lib" }
+BEGIN { unshift @INC, "$FindBin::Bin/../lib"; chdir "$FindBin::Bin/.."; }
+
 
 use Pod::Usage;
 use DreamGuild::WWW;
 
 
-chdir "$FindBin::Bin/..";
 
 sub create_db {
   system ('rm -rf share/data/database.db');
