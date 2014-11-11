@@ -51,18 +51,18 @@ CREATE TABLE roster (
 
 
 CREATE TABLE ilvl_history (
-  uid        INTEGER DEFAULT 0,
+  cid        INTEGER DEFAULT 0,
   ilvl       INTEGER DEFAULT 0,
   time       INTEGER DEFAULT 0,
-  UNIQUE     (uid, ilvl)
+  UNIQUE     (cid, ilvl)
 );
 
 
 CREATE TABLE progress_history (
-  uid        INTEGER DEFAULT 0,
+  cid        INTEGER DEFAULT 0,
   points     INTEGER DEFAULT 0,
   time       INTEGER DEFAULT 0,
-  UNIQUE     (uid, points)
+  UNIQUE     (cid, points)
 );
 
 
