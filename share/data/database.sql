@@ -12,6 +12,7 @@ CREATE TABLE user (
 
   -- user level
   -- 0: just registered didn't send any app
+  -- 1: blank account
   -- 5: guild member
   -- 20: gm
   -- 30: admin
