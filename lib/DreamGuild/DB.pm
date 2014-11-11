@@ -41,4 +41,26 @@ sub save_option {
 }
 
 
+# This function will clear users who has registered but
+# not submitted any application or declined
+sub clear_accounts {
+
+  DreamGuild::DB->begin;
+
+  DreamGuild::DB->iterate (
+    'SELECT user.id FROM application, user ' .
+    'WHERE application.uid = user.id AND application.status != 2 ' .
+        'AND user.last_active < ? AND application.update_time < ?',
+    time () - 604800,
+    time () - 604800,
+    sub {
+      DreamGuild::DB::User->delete_where ('id = ?', $_->[0]);
+      return 1;
+    }
+  );
+
+  DreamGuild::DB->commit;
+
+}
+
 1;
