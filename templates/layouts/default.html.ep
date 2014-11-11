@@ -47,8 +47,8 @@
           <ul class="nav navbar-nav">
             <% if ($user && $user->{level} >= 5) { %><li><a href="https://www.facebook.com/groups/dreamguild.eu" target="_blank">Discussion</a></li><% } %>
             <li><a href="/guild-rules">Rules</a></li>
-            <% if ($user && $user->{level} >= 5) { %>
             <li><a href="/roster">Roster</a></li>
+            <% if ($user && $user->{level} >= 5) { %>
             <li><a href="/lottery">Lottery</a></li>
             <% } %>
           </ul>

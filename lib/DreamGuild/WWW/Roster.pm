@@ -16,11 +16,6 @@ sub list {
     if (defined ($self->param ('class')) && $self->param ('class') =~ /^\d+$/);
   my $main = $self->param ('main') || 0;
 
-  return $self->render (template => 'error',
-                        error    => 'You don\'t have permission to see this page. Try to log in.')
-    if (!defined ($user) ||
-        $user->level < 5);
-
   my $characters = ();
   my $counts = {
     classes      => [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
