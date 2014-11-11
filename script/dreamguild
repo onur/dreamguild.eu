@@ -27,6 +27,11 @@ sub update_realm_list {
   DreamGuild::Utils::Realms->update_realm_list;
 }
 
+sub maintenance {
+  require DreamGuild::Utils::Maintenance;
+  DreamGuild::Utils::Maintenance->new->weekly;
+}
+
 sub start_server {
   system ('hypnotoad script/dreamguild-www');
 }
@@ -87,6 +92,7 @@ sub main {
   return usage () if not defined $ARGV[0];
   return create_db ()       if $ARGV[0] eq '--create-db';
   return update_roster ()   if $ARGV[0] eq '--update-roster';
+  return maintenance ()     if $ARGV[0] eq '--maintenance';
   return update_realm_list () if $ARGV[0] eq '--update-realm-list';
   return start_server ()    if $ARGV[0] eq '--start';
   return stop_server ()     if $ARGV[0] eq '--stop';
@@ -121,6 +127,10 @@ and a new database will be created.
 =item B<--update-roster>
 
 Update roster.
+
+=item B<--maintenance>
+
+Runs maintenance.
 
 =item B<--update-realm-list>
 
