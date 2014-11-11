@@ -58,7 +58,7 @@ sub assign_account {
   # Create a blank account
   if (!$uid) {
     my $user_row = DreamGuild::DB::User->new (
-      email    => $account . '@dreamguild.eu',
+      email    => $account . '-' . int (rand (1000000)) . '@dreamguild.eu',
       password => '',
       # level 1 is blank account
       level    => 1,
