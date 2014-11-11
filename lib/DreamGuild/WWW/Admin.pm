@@ -65,7 +65,7 @@ sub assign_account {
       dkp      => 0,
       main     => $main_id,
       join_time => time (),
-      last_active => time ()
+      last_active => 0
     )->insert;
     $uid = $user_row->id;
     DreamGuild::DB->do ('UPDATE roster SET uid = ? WHERE name = ?',
