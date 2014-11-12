@@ -63,22 +63,6 @@ sub get_user_ids {
 
 
 
-sub update_ilvl {
-  my ($self, $uid, $ilvl) = @_;
-
-  unless (DreamGuild::DB::IlvlHistory->count ('WHERE uid = ? AND ilvl = ?',
-                                              $uid,
-                                              $ilvl)) {
-    DreamGuild::DB::IlvlHistory->new (
-      uid => $uid,
-      ilvl => $ilvl,
-      time => $self->{last_update}
-    )->insert;
-    
-  };
-}
-
-
 sub download_avatar {
 
   my ($self, $avatar) = @_;
@@ -159,7 +143,9 @@ sub update_roster {
 
     $self->download_avatar ($_->{character}->{thumbnail});
 
-    $self->update_ilvl ($uid, $_->{character}->{details}->{items}->{averageItemLevel} || 0);
+    # Add history
+    DreamGuild::DB->do ('INSERT OR IGNORE INTO ilvl_history VALUES (?, ?, ?)', {}, $uid, $_->{character}->{details}->{items}->{averageItemLevel}, time ());
+    DreamGuild::DB->do ('INSERT OR IGNORE INTO achievements_point_history VALUES (?, ?, ?)', {}, $uid, $_->{character}->{details}->{achievementPoints}, time ());
 
   }
 
