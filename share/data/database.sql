@@ -50,6 +50,14 @@ CREATE TABLE roster (
 );
 
 
+CREATE TABLE lvl_history (
+  cid        INTEGER DEFAULT 0,
+  ilvl       INTEGER DEFAULT 0,
+  time       INTEGER DEFAULT 0,
+  UNIQUE     (cid, ilvl)
+);
+
+
 CREATE TABLE ilvl_history (
   cid        INTEGER DEFAULT 0,
   ilvl       INTEGER DEFAULT 0,
