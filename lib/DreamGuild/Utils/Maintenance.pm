@@ -1,6 +1,8 @@
 
 package DreamGuild::Utils::Maintenance;
 
+use strict;
+use warnings;
 use DreamGuild::DB;
 
 
