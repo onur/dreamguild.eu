@@ -164,7 +164,8 @@ sub update_roster {
   }
 
   # remove removed heroes !?
-  DreamGuild::DB::Roster->delete_where ('last_update < ?', $self->{last_update});
+  # FIXME: need to find a better solution
+  #DreamGuild::DB::Roster->delete_where ('last_update < ?', $self->{last_update});
 
   DreamGuild::DB->commit;
 }
