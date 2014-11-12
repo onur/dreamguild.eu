@@ -42,6 +42,8 @@
 * Use over[1] to check authentication and refactor code repeats
   in Application.pm
 * Post new applications to facebook.
+* Add facebook fields to configuration example.
+* Add documentation to configuration example.
 
 
 
