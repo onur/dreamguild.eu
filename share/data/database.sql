@@ -74,6 +74,35 @@ CREATE TABLE achievements_point_history (
 );
 
 
+CREATE TABLE log (
+  id         INTEGER PRIMARY KEY AUTOINCREMENT,
+
+  -- LOG TYPES: log.type
+  --
+  -- USER:
+  --   10: posted a comment to an application
+  --
+  -- APPLICATION:
+  --   50: application created, message => cname
+  --   55: user registered, message => uid,email 
+  --
+  -- MAINTENANCE:
+  --   1000: Roster updated
+  --
+  -- ADMIN:
+  --   10000: Assigned characters, message => main,characters
+  --   10010: Created blank account, messsage => main
+  --   10100: Change option from options interface, message => option
+  --   10200: Lottery ticket given, message => name,ticket
+  --   10201: Lottery ended, message => winner number,jackpot,winner name
+
+  type       INTEGER DEFAULT 0,
+  uid        INTEGER DEFAULT 0,
+  time       INTEGER DEFAULT 0,
+  message    TEXT
+);
+
+
 CREATE TABLE application (
   id         INTEGER PRIMARY KEY AUTOINCREMENT,
   uid        INTEGER DEFAULT 0,
