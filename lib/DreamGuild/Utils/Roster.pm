@@ -23,6 +23,8 @@ sub get {
   my $ua = LWP::UserAgent->new;
   my $response = $ua->get ($url);
 
+  sleep 1;
+
   if ($response->is_success) {
     return $response->decoded_content;
   } else {
