@@ -1,4 +1,13 @@
 
+0.025  2014-11-12
+  - Add blank account creation.
+  - Add maintenance argument to dreamguild script with a method to remove
+    unused accounts.
+  - Make roster page available to everyone.
+  - chdir in BEGIN in dreamguild script.
+  - Add Facebook utility.
+  - Add logging facility and log some basic operations.
+
 0.024  2014-10-26
   - Add placeholder to news/list.
 
