@@ -63,4 +63,15 @@ sub clear_accounts {
 
 }
 
+
+sub log {
+  my ($self, $type, $uid, $message) = @_;
+  DreamGuild::DB::Log->new (
+    type    => $type,
+    uid     => $uid || 0,
+    message => $message || '',
+    time    => time ()
+  )->insert;
+}
+
 1;
