@@ -5,6 +5,11 @@
     workers => 2
   },
 
-  secrets => [ 'SECRET_1', 'SECRET_2' ]
+  secrets => [ 'SECRET_1', 'SECRET_2' ],
+
+  facebook_app_id       => '',
+  facebook_app_secret   => '',
+  facebook_group_id     => '',
+  facebook_access_token => ''
 
 };
