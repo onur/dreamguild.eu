@@ -167,6 +167,8 @@ sub update_roster {
   # FIXME: need to find a better solution
   #DreamGuild::DB::Roster->delete_where ('last_update < ?', $self->{last_update});
 
+  DreamGuild::DB->log (1000);
+
   DreamGuild::DB->commit;
 }
 
