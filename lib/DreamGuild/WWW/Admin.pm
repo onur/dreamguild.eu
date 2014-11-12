@@ -73,6 +73,7 @@ sub assign_account {
     for (@{$characters}) {
       $_->{uid} = $uid if ($_->{name} eq $account);
     }
+    DreamGuild::DB->log (10010, $self->session ('uid'), $account);
   }
 
   for (@{$characters}) {
@@ -136,6 +137,7 @@ sub assign_account_post {
 
   
   $success_message = "Successfully assigned: <br> $account =&gt; " . join (', ', @alt_names);
+  DreamGuild::DB->log (10000, $self->session ('uid'), $account . ',' . join (', ', @alt_names));
 
   # If user chaged his main
   if ($current_main != $new_main) {
@@ -201,6 +203,8 @@ sub edit_option_post {
     value => $value
   );
 
+  DreamGuild::DB->log (10100, $self->session ('uid'), $self->param ('option'));
+
   $self->flash (text => 'Option: ' . $option->[0]->{option} . ' successfully edited.');
   $self->redirect_to ('/admin');
 }
@@ -230,6 +234,8 @@ sub lottery_give {
   );
 
   DreamGuild::DB->save_option ('next_ticket_number', $next_ticket_number + 1);
+
+  DreamGuild::DB->log (10200, $self->session ('uid'), $char->name . ',' . $next_ticket_number);
 
   $self->flash (text => 'You successfully gave a ticket to <strong>' . $char->name . '</strong>.<br>His ticket number is: ' . $next_ticket_number);
   $self->redirect_to ('/lottery');
@@ -287,6 +293,9 @@ sub lottery_winner {
   # Set everyones lottery ticket and next_ticket_number to 0
   DreamGuild::DB->do ('UPDATE roster SET lottery_ticket = 0 WHERE lottery_ticket != 0');
   DreamGuild::DB->save_option ('next_ticket_number', 1);
+
+  DreamGuild::DB->log (10201, $self->session ('uid'),
+                       join (',', $row->{winner_ticket}, $row->{jackpot}, $row->{winner}));
 
   $self->flash (text => 'Lottery is successfully ended');
   $self->redirect_to ('/lottery/' . $row->{id});
