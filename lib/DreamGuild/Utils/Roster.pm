@@ -144,6 +144,7 @@ sub update_roster {
     $self->download_avatar ($_->{character}->{thumbnail});
 
     # Add history
+    DreamGuild::DB->do ('INSERT OR IGNORE INTO lvl_history VALUES (?, ?, ?)', {}, $uid, $_->{character}->{level}, time ());
     DreamGuild::DB->do ('INSERT OR IGNORE INTO ilvl_history VALUES (?, ?, ?)', {}, $uid, $_->{character}->{details}->{items}->{averageItemLevel}, time ());
     DreamGuild::DB->do ('INSERT OR IGNORE INTO achievements_point_history VALUES (?, ?, ?)', {}, $uid, $_->{character}->{details}->{achievementPoints}, time ());
 
