@@ -86,7 +86,7 @@ sub apply_post {
   }
 
   elsif ($app_status == 3) {
-    DreamGuild::DB->log (0, 50, $character);
+    DreamGuild::DB->log (50, 0, $character);
     $self->session ('app_id' => $app->{app_id});
     return $self->redirect_to ('register');
   }

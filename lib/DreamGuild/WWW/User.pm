@@ -94,7 +94,7 @@ sub register_post {
   delete $self->session->{app_id} if defined ($self->session ('app_id'));
   delete $self->session->{main_id} if defined ($self->session ('main_id'));
 
-  DreamGuild::DB->log ($user_row->id, 55, "$user_row->id,$email");
+  DreamGuild::DB->log (55, $user_row->id, "$user_row->id,$email");
 
   $self->redirect_to ('/');
 }
