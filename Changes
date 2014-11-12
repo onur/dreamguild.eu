@@ -7,6 +7,7 @@
   - chdir in BEGIN in dreamguild script.
   - Add Facebook utility.
   - Add logging facility and log some basic operations.
+  - Add tracking of achievement points and level with a new method.
 
 0.024  2014-10-26
   - Add placeholder to news/list.
