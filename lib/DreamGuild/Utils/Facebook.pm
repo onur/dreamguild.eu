@@ -39,11 +39,11 @@ sub new {
 sub post {
   my $self = shift;
 
-  $self->update_access_token;
-  print "Using access token: $self->{access_token}\n";
-
   return undef if (!$self->{access_token} || !$self->{group_id} ||
-                   !$self->{message});
+                   !$self->{message} || !$self->{app_id} ||
+                   !$self->{access_token});
+
+  $self->update_access_token;
 
   my $ua = LWP::UserAgent->new;
   my $url = 'https://graph.facebook.com/v2.2/' . $self->{group_id} . '/feed';
