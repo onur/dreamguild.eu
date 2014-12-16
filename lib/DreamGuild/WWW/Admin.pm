@@ -302,4 +302,23 @@ sub lottery_winner {
 }
 
 
+sub recruitment {
+  my $self = shift;
+  my $classes = [
+    [ 'Warrior', 'Arms', 'Fury', 'Protection' ],
+    [ 'Paladin', 'Holy', 'Protection', 'Retribution' ],
+    [ 'Hunter', 'Beast Mastery', 'Marksmanship', 'Survival' ],
+    [ 'Rogue', 'Assasination', 'Combat', 'Subtlety' ],
+    [ 'Priest', 'Discipline', 'Holy', 'Shadow' ],
+    [ 'Death Knight', 'Blood', 'Frost', 'Unholy' ],
+    [ 'Shaman', 'Elemental', 'Enhancement', 'Restoration' ],
+    [ 'Mage', 'Arcane', 'Fire', 'Frost' ],
+    [ 'Warlock', 'Affliction', 'Demonology', 'Destruction' ],
+    [ 'Monk', 'Brewmaster', 'Mistweaver', 'Windwalker' ],
+    [ 'Druid', 'Balance', 'Feral', 'Guardian', 'Restoration' ]
+  ];
+  $self->render (classes => $classes);
+}
+
+
 1;

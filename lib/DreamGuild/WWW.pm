@@ -154,6 +154,8 @@ sub startup {
   $admin_bridge->post ('/lottery/give')->to('Admin#lottery_give');
   $admin_bridge->post ('/lottery/end')->to ('Admin#lottery_winner');
 
+  $admin_bridge->get ('/recruitment')->to ('Admin#recruitment');
+
   # Pages
   $r->get ('/:slug')->to ('Pages#page');
 }

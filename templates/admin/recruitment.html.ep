@@ -1,0 +1,63 @@
+
+
+% title 'Recruitment';
+
+<div class="container">
+
+  <div class="row">
+
+    <div class="col-xs-12 col-sm-4 col-md-3">
+
+      %= include 'admin/left_menu';
+
+    </div>
+
+    <div class="col-xs-12 col-sm-8 col-md-9">
+
+      <div class="well">
+
+        <form role="form" method="post" action="<%= url_for %>">
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Class</th>
+                <th colspan="4">Specs</th>
+              </tr>
+            </thead>
+            <tbody>
+
+              % my $class_counter = 1;
+
+              % my $classes = stash ('classes');
+              % for my $class (@{$classes}) {
+              <tr>
+                <td class="color-c<%= $class_counter++ %>"><%= shift (@{$class}) %></td>
+                % for my $spec (@{$class}) {
+                <td>
+                  <label class="checkbox-inline">
+                    <input type="checkbox" value="option1"> <%= $spec %>
+                  </label>
+                </td>
+                % }
+                % if (scalar (@{$class}) < 4) {
+                <td></td>
+                % }
+              </tr>
+
+              % }
+
+            </tbody>
+
+          </table>
+
+          <button type="submit" class="btn btn-default">Save</button>
+
+        </form>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>
