@@ -44,8 +44,6 @@ sub get {
 
 sub get_player_list {
   my $self = shift;
-  print 'https://eu.api.battle.net/wow/guild/grim-batol/Dream?fields=members' . 
-                         '&apikey=' . $self->{apikey} . "\n";
   my $raw_content = get ('https://eu.api.battle.net/wow/guild/grim-batol/Dream?fields=members' . 
                          '&apikey=' . $self->{apikey})
                         or die ('Unable to get member list');
