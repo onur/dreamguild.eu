@@ -1,14 +1,6 @@
 # DreamGuild.eu TODO
 
 
-### New Core Features
-
-* Blizzard's old web API is deprecated and it's moved to https://dev.battle.net
-  Make dreamguild.eu to compatible with new battle.net API.
-* Find a way to secure unregistered characters. A blank account may fix this.
-  Blank account can also be used for character assignment.
-
-
 ### New Features
 
 * Add who is online in mumble.
