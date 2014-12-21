@@ -9,6 +9,18 @@
 
     <div class="col-xs-12 col-sm-8 col-md-9">
 
+
+      % if (!$user) {
+      <div class="jumbotron">
+        <h1>Dream</h1>
+        <p>Dream is a guild consisting of good people who have been playing together since 2011. </p>
+        <p>With our new arrival into the Official World of Warcraft realms, we are optimistic that we can build our own community instead of involving ourselves in the currently existing prominent communities.</p>
+        <p><a class="btn btn-primary btn-lg" href="/apply">Apply now</a></p>
+      </div>
+      % }
+
+
+
     % for my $new (@{$news}) {
 
       <div class="panel panel-default">
@@ -53,7 +65,7 @@
 
     <div class="col-xs-12 col-sm-4 col-md-3">
 
-      % if ($user->{level} >= 30 && stash ('unassigned_character_count') > 0) {
+      % if (defined ($user) && $user->{level} >= 30 && stash ('unassigned_character_count') > 0) {
       <div class="panel panel-danger">
         <div class="panel-heading">
           <h3 class="panel-title">Unassigned characters</h3>
@@ -64,6 +76,8 @@
         </div>
       </div>
       % }
+
+      % if (defined ($user)) {
 
       <div class="well text-center">
 
@@ -80,6 +94,8 @@
         <p><a class="btn btn-default btn-block" href="lottery">See all tickets</a></p>
 
       </div>
+
+      % }
 
 
       <%== stash ('recruitment') %>
