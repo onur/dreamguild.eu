@@ -8,12 +8,22 @@ use Data::Dumper;
 use DreamGuild::DB;
 use File::Path qw/make_path/;
 use LWP::UserAgent;
+use DreamGuild::WWW;
 
 
 
 sub new {
-  my $class = shift;
-  bless {}, $class;
+  my ($class, $apikey) = @_;
+  my $self = {};
+
+  unless (defined ($apikey)) {
+    my $dream = DreamGuild::WWW->new;
+    $apikey = $dream->config ('blizzard_api_key');
+  }
+
+  $self->{apikey} = $apikey;
+
+  bless $self, $class;
 }
 
 
@@ -36,7 +46,10 @@ sub get {
 
 sub get_player_list {
   my $self = shift;
-  my $raw_content = get ('http://eu.battle.net/api/wow/guild/grim-batol/Dream?fields=members')
+  print 'https://eu.api.battle.net/wow/guild/grim-batol/Dream?fields=members' . 
+                         '&apikey=' . $self->{apikey} . "\n";
+  my $raw_content = get ('https://eu.api.battle.net/wow/guild/grim-batol/Dream?fields=members' . 
+                         '&apikey=' . $self->{apikey})
                         or die ('Unable to get member list');
   my $guild = decode_json ($raw_content);
   $self->{members} = $guild->{members};
@@ -48,7 +61,8 @@ sub get_player_details {
   my $self = shift;
   for (@{$self->{members}}) {
     next if $_->{character}->{level} < 10;
-    my $raw_content = get ('http://eu.battle.net/api/wow/character/Grim-Batol/' . $_->{character}->{name} . '?fields=items,progression,talents') or next;
+    my $raw_content = get ('https://eu.api.battle.net/wow/character/Grim-Batol/' . $_->{character}->{name} . '?fields=items,progression,talents' .
+                           '&locale=en_GB&apikey=' . $self->{apikey}) or next;
     $_->{character}->{details} = decode_json ($raw_content);
   }
 }
