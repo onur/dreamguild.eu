@@ -38,7 +38,7 @@
         <form role="form" action="<%== url_for %>" method="get">
           <div class="checkbox">
             <label>
-              <input type="checkbox" value="1" name="main"<%= param ('main') ? ' checked' : '' %>> Only mains
+              <input type="checkbox" value="1" name="all"<%= param ('all') ? ' checked' : '' %>> Include alts
             </label>
           </div>
           <select class="form-control my-select" name="class">

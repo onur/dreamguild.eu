@@ -14,7 +14,9 @@ sub list {
   my $class = 0;
   $class = $self->param ('class')
     if (defined ($self->param ('class')) && $self->param ('class') =~ /^\d+$/);
-  my $main = $self->param ('main') || 0;
+  my $main = 1;
+
+  $main = 0 if defined ($self->param ('all'));
 
   my $characters = ();
   my $counts = {
