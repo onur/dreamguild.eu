@@ -142,9 +142,9 @@ sub user_theme {
   my $self = shift;
   my $user = $self->stash ('user');
 
-  # Default theme: cyborg
+  # Default theme: bootstrap
   if (!defined ($user->{theme}) || $user->{theme} == 0) {
-    return '//cdnjs.cloudflare.com/ajax/libs/bootswatch/3.2.0+1/cyborg/bootstrap.min.css';
+    return '//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap.min.css';
   }
 
   # Slate
@@ -170,9 +170,9 @@ sub user_theme_slug {
   my $self = shift;
   my $user = $self->stash ('user');
 
-  # Default theme: cyborg
+  # Default theme: bootstrap
   if (!defined ($user->{theme}) || $user->{theme} == 0) {
-    return 'cyborg'
+    return 'bootstrap'
   }
 
   # Slate
