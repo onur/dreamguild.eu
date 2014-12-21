@@ -9,6 +9,7 @@ use LWP::UserAgent;
 use Digest::SHA qw/sha1_hex/;
 use JSON::XS;
 use DreamGuild::Utils::Roster;
+use DreamGuild::WWW;
 
 
 sub new {
@@ -48,9 +49,12 @@ sub check_roster {
 sub check_battlenet {
   my $self = shift;
   my $ua = LWP::UserAgent->new;
-  my $response = $ua->get ('http://eu.battle.net/api/wow/character/'
+  my $dream = DreamGuild::WWW->new;
+  my $response = $ua->get ('https://eu.api.battle.net/wow/character/'
                            . $self->{realm} . '/'
-                           . $self->{name} . '?fields=items,progression,talents');
+                           . $self->{name} . '?fields=items,progression,talents'
+                           . '&locale=en_GB&apikey='
+                           . $dream->config ('blizzard_api_key'));
                        
   return 0 unless $response->is_success;
 
