@@ -11,6 +11,8 @@ our $VERSION = '0.027';
 sub before_filter {
   my $self = shift;
 
+  $self->stash ('version', $VERSION);
+
   my $uid = $self->session ('uid');
   return unless $uid;
 
