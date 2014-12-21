@@ -71,10 +71,10 @@ sub list {
 
       # increase class count
       ++$counts->{classes}->[$_->[1]- 1];
-      ++$counts->{classes_max}->[$_->[1]- 1] if ($_->[8] >= 90);
-      ++$counts->{classes_main}->[$_->[1]- 1] if ($_->[9] && $_->[8] >= 90);
-      $counts->{ilvls_max}->[$_->[1]- 1] += $_->[7] if ($_->[8] >= 90);
-      $counts->{ilvls_main}->[$_->[1]- 1] += $_->[7] if ($_->[8] >= 90 && $_->[9]);
+      ++$counts->{classes_max}->[$_->[1]- 1] if ($_->[8] >= 100);
+      ++$counts->{classes_main}->[$_->[1]- 1] if ($_->[9] && $_->[8] >= 100);
+      $counts->{ilvls_max}->[$_->[1]- 1] += $_->[7] if ($_->[8] >= 100);
+      $counts->{ilvls_main}->[$_->[1]- 1] += $_->[7] if ($_->[8] >= 100 && $_->[9]);
 
       return 1;
     }
