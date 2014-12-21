@@ -1,4 +1,18 @@
 
+0.027  2014-12-21  UNRELEASED
+  - Use new battle.net API.
+  - Remove sleep after each request in roster utility.
+  - New recruitment admin options. Not active yet.
+  - Show only mains by default in roster page.
+  - Add sorting roster page with order and name.
+  - Set max level to 100 in roster page.
+  - Add mythic support to progress utility.
+  - Add facebook method to dreamguild script.
+  - New layout, header removed.
+  - Default theme changed to bootstrap.
+  - Use versions to reload css.
+  - New wallpaper and backgrounds.
+
 0.026  2014-11-12
   - Hotfix release.
   - Sleep after every request in roster utility.
