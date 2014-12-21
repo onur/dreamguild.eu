@@ -10,6 +10,8 @@
   facebook_app_id       => '',
   facebook_app_secret   => '',
   facebook_group_id     => '',
-  facebook_access_token => ''
+  facebook_access_token => '',
+
+  blizzard_api_key => ''
 
 };
