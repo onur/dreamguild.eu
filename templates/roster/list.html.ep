@@ -13,9 +13,9 @@
       <table class="table table-striped well">
         <thead>
           <tr>
-            <td>Name</td>
+            <td><a href="<%= url_for %>?order=name">Name</a></td>
             <td>Spec</td>
-            <td>Ilvl</td>
+            <td><a href="<%= url_for %>?order=ilvl">Ilvl</a></td>
           </tr>
         </thead>
         <tbody>

@@ -28,8 +28,18 @@ sub list {
     roles        => [0, 0, 0]
   };
 
+  my $order = 'rank ASC';
+  my $request_order = $self->param ('order') || '';
+
+  if ($request_order eq 'ilvl') {
+    $order = 'ailvl DESC';
+  } elsif ($request_order eq 'name') {
+    $order = 'name ASC';
+  }
+
+
   DreamGuild::DB->iterate (
-    'SELECT name, class, rank, thumbnail, spec, talents, ailvl, eilvl, level, is_main FROM roster ORDER BY rank ASC',
+    'SELECT name, class, rank, thumbnail, spec, talents, ailvl, eilvl, level, is_main FROM roster ORDER BY ' . $order,
     sub {
       my $character = {
         name      => $_->[0],
