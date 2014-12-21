@@ -54,7 +54,7 @@ sub list {
   my $unassigned_character_count = 0;
   # If user is admin get unassigned_character_count
   $unassigned_character_count = DreamGuild::DB::Roster->count ('where uid = 0')
-    if ($user->{level} >= 30);
+    if (defined ($user) && $user->{level} >= 30);
 
 
   # Get who is online
