@@ -85,9 +85,9 @@ sub release {
 
 sub facebook {
   require DreamGuild::Utils::Facebook;
-  my $post = DreamGuild::Utils::Facebook->new (message => $message);
   my $message = '';
   $message .= $_ while (<STDIN>);
+  my $post = DreamGuild::Utils::Facebook->new (message => $message);
   $post->post;
 }
 
