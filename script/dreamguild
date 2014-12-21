@@ -83,6 +83,15 @@ sub release {
 }
 
 
+sub facebook {
+  require DreamGuild::Utils::Facebook;
+  my $post = DreamGuild::Utils::Facebook->new (message => $message);
+  my $message = '';
+  $message .= $_ while (<STDIN>);
+  $post->post;
+}
+
+
 sub usage {
   pod2usage (0);
 }
@@ -101,6 +110,7 @@ sub main {
   return update ()          if $ARGV[0] eq '--update';
   return backup_database () if $ARGV[0] eq '--backup-database';
   return release ()         if $ARGV[0] eq '--release';
+  return facebook ()        if $ARGV[0] eq '--facebook';
 }
 
 
@@ -165,5 +175,9 @@ Backup database under to share/data/backups/ and encode it with gpg.
 
 Release dreamguild I<VERSION>. This will: git tag I<VERSION>, git push github
 git push github --tags, ssh dream@dreamguild.eu --update I<VERSION>
+
+=item B<--facebook>
+
+Post message to Dream Facebook group. Reads message from stdin.
 
 =back
