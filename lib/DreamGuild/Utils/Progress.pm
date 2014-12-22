@@ -34,6 +34,7 @@ sub get_progress {
       my $normal_count = 0;
       my $heroic_count = 0;
       my $mythic_count = 0;
+      my $bosses = {};
 
       for my $boss (@{$raid->{bosses}}) {
         ++$lfr_count if ($boss->{lfrKills});
@@ -41,6 +42,19 @@ sub get_progress {
         ++$normal_count if ($boss->{normalKills});
         ++$heroic_count if ($boss->{heroicKills});
         ++$mythic_count if ($boss->{mythicKills});
+
+        my $name = $boss->{name};
+
+        unless (defined ($bosses->{$name})) {
+          # boss head counts: lfr, normal, heroic, mythic
+          $bosses->{$name} = [ 0, 0, 0, 0 ];
+        }
+
+        $bosses->{$name}->[0] += $boss->{lfrKills};
+        $bosses->{$name}->[1] += $boss->{normalKills};
+        $bosses->{$name}->[2] += $boss->{heroicKills};
+        $bosses->{$name}->[3] += $boss->{mythicKills};
+
       }
 
       push @{$progress}, { name       => $raid->{name},
@@ -49,7 +63,8 @@ sub get_progress {
                            flex_count => $flex_count,
                            normal_count => $normal_count,
                            heroic_count => $heroic_count,
-                           mythic_count => $mythic_count };
+                           mythic_count => $mythic_count,
+                           bosses     => $bosses };
 
     }
   }
