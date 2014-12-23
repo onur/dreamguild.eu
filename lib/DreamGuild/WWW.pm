@@ -94,6 +94,7 @@ sub startup {
   $r->get ('/news')->to ('News#list');
 
   $r->get ('/roster')->to('Roster#list');
+  $r->get ('/experience')->to('Roster#experience');
   $r->get ('/lottery')->to('Roster#lottery');
   $r->get ('/lottery/:id')->to('Roster#lottery_result');
 
