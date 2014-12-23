@@ -12,6 +12,10 @@
   - Default theme changed to bootstrap.
   - Use versions to reload css.
   - New wallpaper and backgrounds.
+  - Add boss head count to progress utility.
+  - Add progress table and get_total_progress and save_total_progress methods
+    to Progress utility.
+  - Add experience table.
 
 0.026  2014-11-12
   - Hotfix release.
