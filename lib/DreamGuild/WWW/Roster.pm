@@ -3,6 +3,7 @@ package DreamGuild::WWW::Roster;
 use Mojo::Base 'Mojolicious::Controller';
 
 use DreamGuild::DB;
+use DreamGuild::Utils::Progress;
 use JSON::XS;
 
 
@@ -173,6 +174,12 @@ sub lottery_result {
                  previous_lotteries => $previous_lotteries,
                  next_ticket_number => DreamGuild::DB->get_option ('next_ticket_number'),
                  tickets => $tickets);
+}
+
+
+sub experience {
+  my $self = shift;
+  $self->render (progress => DreamGuild::Utils::Progress->new->get_total_progress);
 }
 
 

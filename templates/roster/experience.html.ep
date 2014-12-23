@@ -1,0 +1,43 @@
+% title 'Experience';
+% my $progress = stash ('progress');
+% my @sorted_by_rank = sort { $progress->{$a}->{rank} <=> $progress->{$b}->{rank} } keys (%{$progress});
+
+<div class="container">
+
+  <div class="row">
+
+    <div class="col-xs-12 col-sm-6 col-md-6">
+
+      <table class="table table-striped">
+
+        <thead>
+          <tr>
+            <th class="text-right">Rank</th>
+            <th>Player</th>
+            <th class="text-center">Experience</th>
+            <th class="text-center">Imp N</th>
+            <th class="text-center">Ko'r H</th>
+            <th class="text-center">Imp H</th>
+          </tr>
+        </thead>
+        <tbody>
+          % for my $uid (@sorted_by_rank) {
+          %   next unless $progress->{$uid}->{points};
+          <tr>
+            <td class="text-right"><%= $progress->{$uid}->{rank} %></td>
+            <td class="color-c<%= $progress->{$uid}->{main_class} %>"><%= $progress->{$uid}->{main} %></td>
+            <td class="text-center"><%= $progress->{$uid}->{points} %></td>
+            <td class="text-center"><%= $progress->{$uid}->{total}->{'Imperator Mar\'gok'}->[1] %></td>
+            <td class="text-center"><%= $progress->{$uid}->{total}->{'Ko\'ragh'}->[2] %></td>
+            <td class="text-center"><%= $progress->{$uid}->{total}->{'Imperator Mar\'gok'}->[2] %></td>
+          </tr>
+          % }
+        </tbody>
+      </table>
+
+    </div>
+
+  </div>
+
+
+</div>
