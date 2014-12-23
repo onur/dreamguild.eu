@@ -175,6 +175,13 @@ CREATE TABLE news (
 );
 
 
+CREATE TABLE progress (
+  uid        INTEGER PRIMARY KEY,
+  points     INTEGER DEFAULT 0,
+  progress   TEXT,
+  rank       INTEGER
+);
+
 
 -- FACEBOOK FEEDS
 
