@@ -4,7 +4,6 @@ package DreamGuild::Utils::Progress;
 use strict;
 use warnings;
 use DreamGuild::DB;
-use Data::Dumper;
 use JSON::XS;
 
 
