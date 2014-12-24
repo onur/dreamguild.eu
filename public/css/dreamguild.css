@@ -72,6 +72,7 @@ div.panel,
 div.well,
 table.table,
 table.table>tbody>tr>td,
+div.popover, 
 div.list-group a {
   background: rgba(0,0,0,0.5);
   border-color: rgba(0,0,0,0.5);
@@ -85,8 +86,10 @@ div.list-group a:hover {
   background: rgba(0,0,0,0.6);
 }
 
-table.table-striped>tbody>tr:nth-child(odd)>td {
+div.popover .popover-title,
+table.table-striped>tbody>tr:nth-child(odd) {
   background: rgba(0,0,0,0.6);
+  border-color: rgba(0,0,0,0.5);
 }
 
 div.panel {
@@ -291,3 +294,13 @@ body.theme-slate select.my-select {
   background-color: #282828;
 }
 
+
+div.experience-popover {
+  min-width: 350px;
+  width: 350px;
+}
+
+div.experience-popover .popover-title {
+  font-weight: bold;
+  font-size: 16px;
+}
