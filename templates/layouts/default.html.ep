@@ -16,6 +16,9 @@
 % if (stash ('js_ckeditor')) {
     <script src="//cdnjs.cloudflare.com/ajax/libs/ckeditor/4.4.1/ckeditor.js"></script>
 % }
+% if (stash ('js_chartjs')) {
+    <script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.1-beta.2/Chart.min.js"></script>
+% }
     <!--[if lt IE 9]>
       <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js"></script>
@@ -42,10 +45,16 @@
           <ul class="nav navbar-nav">
             <% if ($user && $user->{level} >= 5) { %><li><a href="https://www.facebook.com/groups/dreamguild.eu" target="_blank">Discussion</a></li><% } %>
             <li><a href="/guild-rules">Rules</a></li>
-            <li><a href="/roster">Roster</a></li>
-            <% if ($user && $user->{level} >= 5) { %>
-            <li><a href="/lottery">Lottery</a></li>
-            <% } %>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Roster <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="/roster">Roster</a></li>
+                <li><a href="/experience">Experience</a></li>
+                <% if ($user && $user->{level} >= 5) { %>
+                <li><a href="/lottery">Lottery</a></li>
+                <% } %>
+              </ul>
+            </li>
           </ul>
 
           <ul class="nav navbar-nav navbar-right">
