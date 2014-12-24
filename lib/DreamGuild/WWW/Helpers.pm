@@ -144,7 +144,7 @@ sub user_theme {
 
   # Default theme: bootstrap
   if (!defined ($user->{theme}) || $user->{theme} == 0) {
-    return '//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap.min.css';
+    return '//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/css/bootstrap.min.css';
   }
 
   # Slate
@@ -154,7 +154,7 @@ sub user_theme {
 
   # Bootstrap default
   elsif ($user->{theme} == 2) {
-    return '//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap.min.css';
+    return '//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/css/bootstrap.min.css';
   }
 
   # Cerulean
