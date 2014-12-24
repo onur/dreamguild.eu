@@ -16,6 +16,8 @@
   - Add progress table and get_total_progress and save_total_progress methods
     to Progress utility.
   - Add experience table.
+  - Use latest version of bootstrap: 3.3.1
+  - Make roster dropdown in navbar and move lottery to this dropdown.
 
 0.026  2014-11-12
   - Hotfix release.
