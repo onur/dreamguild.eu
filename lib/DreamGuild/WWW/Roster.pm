@@ -179,7 +179,62 @@ sub lottery_result {
 
 sub experience {
   my $self = shift;
-  $self->render (progress => DreamGuild::Utils::Progress->new->get_total_progress);
+  my $progress = DreamGuild::Utils::Progress->new->get_total_progress;
+
+  # FIXME: this is used in so many places and cause so many code repeats
+  my @boss_order = (
+   'Kargath Bladefist',
+   'The Butcher',
+   'Brackenspore',
+   'Tectus',
+   'Twin Ogron',
+   'Ko\'ragh',
+   'Imperator Mar\'gok'
+  );
+
+  # count of people with 6/7HC
+  my $people_with_6_7_H = 0;
+  my $people_with_7_7_H = 0;
+  my $people_with_7_7_N = 0;
+  my $total_xp = 0;
+  my $exit = 0;
+  for my $uid (keys %{$progress}) {
+    # probably a for would be better
+    # but I think this is much more readable and reliable
+    if ($progress->{$uid}->{total}->{$boss_order[0]}->[2] &&
+        $progress->{$uid}->{total}->{$boss_order[1]}->[2] &&
+        $progress->{$uid}->{total}->{$boss_order[2]}->[2] &&
+        $progress->{$uid}->{total}->{$boss_order[3]}->[2] &&
+        $progress->{$uid}->{total}->{$boss_order[4]}->[2] &&
+        $progress->{$uid}->{total}->{$boss_order[5]}->[2] &&
+        $progress->{$uid}->{total}->{$boss_order[6]}->[2]) {
+      $people_with_7_7_H++
+    } elsif ($progress->{$uid}->{total}->{$boss_order[0]}->[2] &&
+             $progress->{$uid}->{total}->{$boss_order[1]}->[2] &&
+             $progress->{$uid}->{total}->{$boss_order[2]}->[2] &&
+             $progress->{$uid}->{total}->{$boss_order[3]}->[2] &&
+             $progress->{$uid}->{total}->{$boss_order[4]}->[2] &&
+             $progress->{$uid}->{total}->{$boss_order[5]}->[2]) {
+      $people_with_6_7_H++
+    } elsif ($progress->{$uid}->{total}->{$boss_order[0]}->[1] &&
+             $progress->{$uid}->{total}->{$boss_order[1]}->[1] &&
+             $progress->{$uid}->{total}->{$boss_order[2]}->[1] &&
+             $progress->{$uid}->{total}->{$boss_order[3]}->[1] &&
+             $progress->{$uid}->{total}->{$boss_order[4]}->[1] &&
+             $progress->{$uid}->{total}->{$boss_order[5]}->[1] &&
+             $progress->{$uid}->{total}->{$boss_order[6]}->[1]) {
+      $people_with_7_7_N++
+    }
+
+    $total_xp += $progress->{$uid}->{points};
+  }
+
+  $self->render (js_chartjs => 1,
+                 total_xp  => $total_xp,
+                 people_with_6_7_H => $people_with_6_7_H,
+                 people_with_7_7_H => $people_with_7_7_H,
+                 people_with_7_7_N => $people_with_7_7_N,
+                 progress => $progress);
 }
 
 
