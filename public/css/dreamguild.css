@@ -304,3 +304,9 @@ div.experience-popover .popover-title {
   font-weight: bold;
   font-size: 16px;
 }
+
+canvas {
+  width: 100% !important;
+  max-width: 800px;
+  height: auto !important;
+}
