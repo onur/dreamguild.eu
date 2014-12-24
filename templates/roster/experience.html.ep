@@ -1,12 +1,24 @@
 % title 'Experience';
 % my $progress = stash ('progress');
 % my @sorted_by_rank = sort { $progress->{$a}->{rank} <=> $progress->{$b}->{rank} } keys (%{$progress});
+% my @boss_order = (
+%  'Kargath Bladefist',
+%  'The Butcher',
+%  'Brackenspore',
+%  'Tectus',
+%  'Twin Ogron',
+%  'Ko\'ragh',
+%  'Imperator Mar\'gok'
+% );
+%
+% my $total_people = scalar (keys (%{$progress}));
 
-<div class="container">
+
+<div class="container experience-page">
 
   <div class="row">
 
-    <div class="col-xs-12 col-sm-6 col-md-6">
+    <div class="col-xs-12 col-sm-7 col-md-7">
 
       <table class="table table-striped">
 
@@ -25,7 +37,38 @@
           %   next unless $progress->{$uid}->{points};
           <tr>
             <td class="text-right"><%= $progress->{$uid}->{rank} %></td>
-            <td class="color-c<%= $progress->{$uid}->{main_class} %>"><%= $progress->{$uid}->{main} %></td>
+            <td>
+              <a href="#" data-toggle="popover" title="<span class='color-c<%= $progress->{$uid}->{main_class} %>'><%= $progress->{$uid}->{main} %></span>" class="color-c<%= $progress->{$uid}->{main_class} %>"
+                 data-content="
+                   % $progress->{$uid}->{main_thumbnail} =~ s/avatar/profilemain/;
+                   <div style='background-size: cover; background-image:url(/img/avatars/<%= $progress->{$uid}->{main_thumbnail} %>); background-position: 50%;'>
+  
+                     <table class='table'>
+                       <thead>
+                         <tr>
+                           <th>Boss</th>
+                           <th class='text-center'>N</th>
+                           <th class='text-center'>H</th>
+                           <th class='text-center'>M</th>
+                         </tr>
+                       </thead>
+                       <tbody>
+                         % for my $boss (@boss_order) {
+                         <tr>
+                           <td><%= $boss %></td>
+                           <td class='text-center'><%= $progress->{$uid}->{total}->{$boss}->[1] %></td>
+                           <td class='text-center'><%= $progress->{$uid}->{total}->{$boss}->[2] %></td>
+                           <td class='text-center'><%= $progress->{$uid}->{total}->{$boss}->[3] %></td>
+                         </tr>
+                         % }
+                       </tbody>
+                     </table>
+
+                   </div>
+                   ">
+              <%= $progress->{$uid}->{main} %>
+              </a>
+            </td>
             <td class="text-center"><%= $progress->{$uid}->{points} %></td>
             <td class="text-center"><%= $progress->{$uid}->{total}->{'Imperator Mar\'gok'}->[1] %></td>
             <td class="text-center"><%= $progress->{$uid}->{total}->{'Ko\'ragh'}->[2] %></td>
@@ -37,7 +80,78 @@
 
     </div>
 
+    <div class="col-xs-12 col-sm-5 col-md-5">
+
+      <div class="row">
+
+        <div class="col-xs-12 col-sm-12 col-md-12">
+
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Highmaul</h3>
+            </div>
+            <div class="panel-body">
+              <canvas id="imp_chart"></canvas>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
   </div>
 
 
 </div>
+
+
+<script>
+$(function () {
+  $('[data-toggle="popover"]').popover({
+    template: '<div class="popover experience-popover" role="tooltip"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>',
+    placement: 'auto right',
+    trigger: 'hover',
+    container: 'body',
+    html: true
+  });
+})
+
+
+/* charts */
+Chart.defaults.global.responsive = true;
+
+% my $people_with_6_7_H = stash ('people_with_6_7_H');
+% my $people_with_7_7_H = stash ('people_with_7_7_H');
+% my $people_with_7_7_N = stash ('people_with_7_7_N');
+
+var ctx = $("#imp_chart").get(0).getContext("2d");
+var data = [
+  {
+    value: <%= $people_with_7_7_H %>,
+    color:"#F7464A",
+    highlight: "#FF5A5E",
+    label: "7/7 HC"
+  },
+  {
+    value: <%= $people_with_6_7_H %>,
+    color:"#5FFF57",
+    highlight: "#91FF8F",
+    label: "6/7 HC"
+  },
+  {
+    value: <%= $people_with_7_7_N %>,
+    color: "#FDB45C",
+    highlight: "#FFC870",
+    label: "7/7 N"
+  },
+  {
+    value: <%= $total_people - $people_with_7_7_N - $people_with_6_7_H - $people_with_7_7_H %>,
+    color: "#ccc",
+    highlight: "#aaa",
+    label: "Other"
+  }
+];
+var myDoughnutChart = new Chart(ctx).Pie(data, {});
+</script>
