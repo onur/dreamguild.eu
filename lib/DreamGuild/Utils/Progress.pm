@@ -94,12 +94,14 @@ sub get_total_progress {
         name => $_->{name},
         is_main => $_->{is_main},
         class => $_->{class},
+        thumbnail => $_->{thumbnail},
         progress => $self->get_progress (decode_json ($_->{progress}), 'Highmaul')
       };
 
       if ($_->{is_main}) {
         $users->{$_->{uid}}->{main} = $_->{name};
         $users->{$_->{uid}}->{main_class} = $_->{class};
+        $users->{$_->{uid}}->{main_thumbnail} = $_->{thumbnail};
       }
 
       return 1;
