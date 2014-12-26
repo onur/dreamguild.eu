@@ -56,9 +56,9 @@
                          % for my $boss (@boss_order) {
                          <tr>
                            <td><%= $boss %></td>
-                           <td class='text-center'><%= $progress->{$uid}->{total}->{$boss}->[1] %></td>
-                           <td class='text-center'><%= $progress->{$uid}->{total}->{$boss}->[2] %></td>
-                           <td class='text-center'><%= $progress->{$uid}->{total}->{$boss}->[3] %></td>
+                           <td class='text-center <% if ($progress->{$uid}->{delta}->{$boss}->[1]) { %>text-success<% } %>'><%= $progress->{$uid}->{total}->{$boss}->[1] %></td>
+                           <td class='text-center <% if ($progress->{$uid}->{delta}->{$boss}->[2]) { %>text-success<% } %>'><%= $progress->{$uid}->{total}->{$boss}->[2] %></td>
+                           <td class='text-center <% if ($progress->{$uid}->{delta}->{$boss}->[3]) { %>text-success<% } %>'><%= $progress->{$uid}->{total}->{$boss}->[3] %></td>
                          </tr>
                          % }
                        </tbody>
@@ -70,9 +70,9 @@
               </a>
             </td>
             <td class="text-center"><%= $progress->{$uid}->{points} %></td>
-            <td class="text-center"><%= $progress->{$uid}->{total}->{'Imperator Mar\'gok'}->[1] %></td>
-            <td class="text-center"><%= $progress->{$uid}->{total}->{'Ko\'ragh'}->[2] %></td>
-            <td class="text-center"><%= $progress->{$uid}->{total}->{'Imperator Mar\'gok'}->[2] %></td>
+            <td class="text-center <% if ($progress->{$uid}->{delta}->{'Imperator Mar\'gok'}->[1]) { %>text-success<% } %>"><%= $progress->{$uid}->{total}->{'Imperator Mar\'gok'}->[1] %></td>
+            <td class="text-center <% if ($progress->{$uid}->{delta}->{'Ko\'ragh'}->[2]) { %>text-success<% } %>"><%= $progress->{$uid}->{total}->{'Ko\'ragh'}->[2] %></td>
+            <td class="text-center <% if ($progress->{$uid}->{delta}->{'Imperator Mar\'gok'}->[2]) { %>text-success<% } %>"><%= $progress->{$uid}->{total}->{'Imperator Mar\'gok'}->[2] %></td>
           </tr>
           % }
         </tbody>
@@ -85,6 +85,12 @@
       <div class="row">
 
         <div class="col-xs-12 col-sm-12 col-md-12">
+
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <em>Hover a character to see detailed kill information. <span class="text-success">Green</span> number means, player killed the boss this week.</em>
+            </div>
+          </div>
 
           <div class="panel panel-default">
             <div class="panel-heading">
@@ -137,7 +143,7 @@ Chart.defaults.global.responsive = true;
 % my $people_with_7_7_N = stash ('people_with_7_7_N');
 
 var chart_options = {
-  legendTemplate : "<ul class=\"<%%=name.toLowerCase()%>-legend\"><%% for (var i=0; i<segments.length; i++){%><li><span style=\"display: inline-block; width: 10px; height: 10px; background-color:<%%=segments[i].fillColor%>\"></span> <%%if(segments[i].label){%><%%=segments[i].label%><%%}%></li><%%}%></ul>"
+  legendTemplate : "<ul style=\"list-style-type: none;\" class=\"<%%=name.toLowerCase()%>-legend\"><%% for (var i=0; i<segments.length; i++){%><li><span style=\"display: inline-block; width: 10px; height: 10px; background-color:<%%=segments[i].fillColor%>\"></span> <%%if(segments[i].label){%><%%=segments[i].label%><%%}%></li><%%}%></ul>"
 };
 
 var ctx = $("#imp_chart").get(0).getContext("2d");
