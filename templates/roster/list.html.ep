@@ -23,7 +23,7 @@
           <tr>
             <td><a href="#" class="color-c<%= $character->{class} %>"><%= $character->{name} %></a></td>
             <td><%= class_name ($character->{class}, $character->{talents}) %></td>
-            <td><%= $character->{eilvl} %></td>
+            <td><%= $character->{eilvl} %>/<%= $character->{ailvl} %></td>
           </tr>
           % }
         </tbody>
