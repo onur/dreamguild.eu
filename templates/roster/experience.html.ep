@@ -88,7 +88,7 @@
 
           <div class="panel panel-default">
             <div class="panel-body">
-              <em>Hover a character to see detailed kill information. <span class="text-success">Green</span> number means, player killed the boss this week.</em>
+              <em>Hover a character to see detailed kill information. <span class="text-success">Green</span> number means, player killed boss in this raid lockout.</em>
             </div>
           </div>
 
