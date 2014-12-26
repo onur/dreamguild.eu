@@ -139,7 +139,9 @@ sub update_roster {
       is_main       => 0,
 
       # FIXME: everyones realm is grim-batol
-      realm         => 'grim-batol'
+      realm         => 'grim-batol',
+
+      sim_dps       => 0
 
     );
 
@@ -147,6 +149,7 @@ sub update_roster {
       my $row = DreamGuild::DB::Roster->load ($uid);
       delete ($user{uid});
       delete ($user{is_main});
+      delete ($user{sim_dps});
       $row->update (%user);
     } else {
       my $row = DreamGuild::DB::Roster->new (%user)->insert;
