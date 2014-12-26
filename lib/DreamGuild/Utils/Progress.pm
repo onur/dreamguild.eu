@@ -102,6 +102,7 @@ sub get_total_progress {
         $users->{$_->{uid}}->{main} = $_->{name};
         $users->{$_->{uid}}->{main_class} = $_->{class};
         $users->{$_->{uid}}->{main_thumbnail} = $_->{thumbnail};
+        $users->{$_->{uid}}->{main_ilvl} = $_->{ailvl};
       }
 
       return 1;
