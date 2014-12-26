@@ -257,6 +257,9 @@ sub save_total_progress {
       $row->[0]->update (%data);
     }
 
+    DreamGuild::DB->do ('INSERT OR IGNORE INTO progress_history VALUES (?, ?, ?)',
+                        {}, $uid, $data{points}, time ());
+
   }
 
   DreamGuild::DB->commit;
