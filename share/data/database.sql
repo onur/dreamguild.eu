@@ -46,7 +46,8 @@ CREATE TABLE roster (
   last_update INTEGER DEFAULT 0,
   is_main        INTEGER DEFAULT 0,
   lottery_ticket INTEGER DEFAULT 0,
-  realm      TEXT NOT NULL
+  realm      TEXT NOT NULL,
+  sim_dps    INTEGER DEFAULT 0
 );
 
 
