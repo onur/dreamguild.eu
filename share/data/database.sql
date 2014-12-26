@@ -67,10 +67,10 @@ CREATE TABLE ilvl_history (
 
 
 CREATE TABLE progress_history (
-  cid        INTEGER DEFAULT 0,
+  uid        INTEGER DEFAULT 0,
   points     INTEGER DEFAULT 0,
   time       INTEGER DEFAULT 0,
-  UNIQUE     (cid, points)
+  UNIQUE     (uid, points)
 );
 
 
