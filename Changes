@@ -1,5 +1,5 @@
 
-0.027  2014-12-21  UNRELEASED
+0.027  2014-12-26
   - Use new battle.net API.
   - Remove sleep after each request in roster utility.
   - New recruitment admin options. Not active yet.
@@ -18,6 +18,8 @@
   - Add experience table.
   - Use latest version of bootstrap: 3.3.1
   - Make roster dropdown in navbar and move lottery to this dropdown.
+  - Show also average ilvl in roster page.
+  - Add sim dps column into roster table.
 
 0.026  2014-11-12
   - Hotfix release.
