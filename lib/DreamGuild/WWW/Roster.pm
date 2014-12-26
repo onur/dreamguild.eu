@@ -192,12 +192,17 @@ sub experience {
    'Imperator Mar\'gok'
   );
 
-  # count of people with 6/7HC
+  # count of progress
   my $people_with_6_7_H = 0;
   my $people_with_7_7_H = 0;
   my $people_with_7_7_N = 0;
   my $total_xp = 0;
-  my $exit = 0;
+
+  # ilvl chart
+  my $people_with_660p = 0;
+  my $people_with_650p = 0;
+  my $people_with_630p = 0;
+
   for my $uid (keys %{$progress}) {
     # probably a for would be better
     # but I think this is much more readable and reliable
@@ -226,6 +231,17 @@ sub experience {
       $people_with_7_7_N++
     }
 
+    if ($progress->{$uid}->{main_ilvl}) {
+      if ($progress->{$uid}->{main_ilvl} >= 660) {
+        $people_with_660p++;
+      } elsif ($progress->{$uid}->{main_ilvl} >= 650) {
+        $people_with_650p++;
+      } elsif ($progress->{$uid}->{main_ilvl} >= 630) {
+        $people_with_630p++;
+      }
+    }
+
+
     $total_xp += $progress->{$uid}->{points};
   }
 
@@ -234,6 +250,9 @@ sub experience {
                  people_with_6_7_H => $people_with_6_7_H,
                  people_with_7_7_H => $people_with_7_7_H,
                  people_with_7_7_N => $people_with_7_7_N,
+                 people_with_660p  => $people_with_660p,
+                 people_with_650p  => $people_with_650p,
+                 people_with_630p  => $people_with_630p,
                  progress => $progress);
 }
 
