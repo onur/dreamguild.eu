@@ -99,10 +99,12 @@ sub get_total_progress {
       };
 
       if ($_->{is_main}) {
+        # FIXME: need one {main} hash and put all main info to that hash
         $users->{$_->{uid}}->{main} = $_->{name};
         $users->{$_->{uid}}->{main_class} = $_->{class};
         $users->{$_->{uid}}->{main_thumbnail} = $_->{thumbnail};
         $users->{$_->{uid}}->{main_ilvl} = $_->{ailvl};
+        $users->{$_->{uid}}->{main_sim_dps} = $_->{sim_dps};
       }
 
       return 1;
