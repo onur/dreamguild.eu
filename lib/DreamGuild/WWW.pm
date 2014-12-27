@@ -122,6 +122,8 @@ sub startup {
 
   $r->get ('/changes')->to (cb => \&about);
 
+  $r->get ('/simc')->to ('Pages#simc');
+
   $r->get ('/user/theme')->to ('User#theme');
   $r->post ('/user/theme')->to ('User#theme_save');
 
