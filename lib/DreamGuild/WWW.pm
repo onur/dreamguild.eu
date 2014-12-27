@@ -159,6 +159,9 @@ sub startup {
 
   $admin_bridge->get ('/recruitment')->to ('Admin#recruitment');
 
+  $admin_bridge->get ('/simc')->to ('Admin#simc');
+  $admin_bridge->post ('/simc')->to ('Admin#simc_post');
+
   # Pages
   $r->get ('/:slug')->to ('Pages#page');
 }
