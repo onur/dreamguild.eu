@@ -50,7 +50,7 @@
               <ul class="dropdown-menu">
                 <li><a href="/roster">Roster</a></li>
                 <li><a href="/experience">Experience</a></li>
-                <li><a href="/simdps">Simulation Craft</a></li>
+                <li><a href="/simc">Simulation Craft</a></li>
                 <% if ($user && $user->{level} >= 5) { %>
                 <li><a href="/lottery">Lottery</a></li>
                 <% } %>
