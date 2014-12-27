@@ -14,7 +14,8 @@ WriteMakefile (
         'LWP::UserAgent'  => 0,
         'Digest::SHA'     => 0,
         'JSON::XS'        => 0,
-        'File::Path'      => 0
+        'File::Path'      => 0,
+        'XML::Parser'     => 0
     },
     EXE_FILES           => [ 'script/dreamguild', 'script/dreamguild-www' ],
     dist                => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
