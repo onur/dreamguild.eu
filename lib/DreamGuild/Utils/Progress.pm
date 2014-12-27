@@ -87,6 +87,12 @@ sub get_total_progress {
       unless (defined ($users->{$_->{uid}})) {
         $users->{$_->{uid}} = {};
         $users->{$_->{uid}}->{characters} = [];
+
+        $users->{$_->{uid}}->{main} = '';
+        $users->{$_->{uid}}->{main_class} = 0;
+        $users->{$_->{uid}}->{main_thumbnail} = '';
+        $users->{$_->{uid}}->{main_ilvl} = 0;
+        $users->{$_->{uid}}->{main_sim_dps} = 0;
       }
 
       push @{$users->{$_->{uid}}->{characters}}, {
