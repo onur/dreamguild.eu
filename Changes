@@ -1,4 +1,7 @@
 
+0.028  2014-12-27
+  - Add simulation craft support.
+
 0.027  2014-12-26
   - Use new battle.net API.
   - Remove sleep after each request in roster utility.
