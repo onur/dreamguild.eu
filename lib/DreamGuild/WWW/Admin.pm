@@ -4,6 +4,7 @@ use Mojo::Base 'Mojolicious::Controller';
 
 use DreamGuild::DB;
 use JSON::XS;
+use XML::Parser;
 
 
 
@@ -318,6 +319,49 @@ sub recruitment {
     [ 'Druid', 'Balance', 'Feral', 'Guardian', 'Restoration' ]
   ];
   $self->render (classes => $classes);
+}
+
+
+sub simc {
+  my $self = shift;
+  $self->render;
+}
+
+
+sub simc_post {
+  my $self = shift;
+  my $content = $self->param ('content');
+
+  my $players = {};
+  my %opts = (
+    player_by_dps => 0
+  );
+
+  my $start = sub {
+    my ($p, $tag, %attr) = @_;
+    $opts{player_by_dps} = 1 if $tag eq 'player_by_dps';
+
+    $players->{$attr{name}} = $attr{dps}
+        if ($tag eq 'player' && $opts{player_by_dps});
+  };
+  my $end = sub {
+    my ($p, $tag) = @_;
+    $opts{player_by_dps} = 0 if $tag eq 'player_by_dps';
+  };
+
+  my $parser = XML::Parser->new (Handlers => { Start => $start,
+                                               End   => $end });
+  $parser->parse ($content);
+
+  DreamGuild::DB->begin;
+  for my $player (keys %{$players}) {
+    DreamGuild::DB->do ('UPDATE roster SET sim_dps = ? WHERE name = ?', {},
+                        $players->{$player}, $player);
+  }
+  DreamGuild::DB->commit;
+
+  $self->flash (text => 'Simc successfully updated');
+  $self->redirect_to ('/admin');
 }
 
 
