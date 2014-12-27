@@ -94,6 +94,15 @@
 
           <div class="panel panel-default">
             <div class="panel-heading">
+              <h3 class="panel-title">Top Damage Dealers</h3>
+            </div>
+            <div class="panel-body">
+              <canvas id="sim_dps_chart"></canvas>
+            </div>
+          </div>
+
+          <div class="panel panel-default">
+            <div class="panel-heading">
               <h3 class="panel-title">Highmaul</h3>
             </div>
             <div class="panel-body" id="imp_chart_holder">
@@ -214,6 +223,35 @@ var ilvl_data = [
 var ilvl_chart = new Chart(ilvl_ctx).Pie(ilvl_data, chart_options);
 var ilvl_chart_legend = ilvl_chart.generateLegend ();
 $('#ilvl_chart_holder').append (ilvl_chart_legend);
+
+
+%# SIM_DPS
+% my @sorted_by_simdps = sort { $progress->{$b}->{main_sim_dps} <=> $progress->{$a}->{main_sim_dps} } keys (%{$progress});
+var sim_dps_data = {
+    labels: [
+      % my $sim_dps_count = 0;
+      % for my $uid (@sorted_by_simdps) {
+        "<%= $progress->{$uid}->{main} %>"<% if ($sim_dps_count++ < 10) { %>,<% } else { last; } %>
+      % }
+    ],
+    datasets: [
+        {
+            label: "Player",
+            fillColor: "rgba(151,187,205,0.5)",
+            strokeColor: "rgba(151,187,205,0.8)",
+            highlightFill: "rgba(151,187,205,0.75)",
+            highlightStroke: "rgba(151,187,205,1)",
+            data: [
+              % $sim_dps_count = 0;
+              % for my $uid (@sorted_by_simdps) {
+                <%= int ($progress->{$uid}->{main_sim_dps}) %><% if ($sim_dps_count++ < 10) { %>,<% } else { last; } %>
+              % }
+            ]
+        }
+    ]
+};
+var sim_dps_ctx = $("#sim_dps_chart").get(0).getContext("2d");
+new Chart(sim_dps_ctx).Bar(sim_dps_data, {});
 
 </script>
 
