@@ -6,6 +6,7 @@
   <a href="/admin/pages" class="list-group-item<%= title eq 'Pages' ? ' active' : '' %>">Pages</a>
   <a href="/admin/options/questions" class="list-group-item<%= title eq 'Option: questions' ? ' active' : '' %>">Questions</a>
   <a href="/admin/options/recruitment" class="list-group-item<%= title eq 'Option: recruitment' ? ' active' : '' %>">Recruitment</a>
+  <a href="/admin/simc" class="list-group-item<%= title eq 'Simc' ? ' active' : '' %>">Simc</a>
   <a href="/changes" class="list-group-item<%= title eq 'Changes' ? ' active' : '' %>">Changes</a>
 </div>
 
