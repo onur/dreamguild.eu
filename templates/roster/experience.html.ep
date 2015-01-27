@@ -204,34 +204,41 @@ $('#imp_chart_holder').append (progress_legend);
 
 var ilvl_ctx = $("#ilvl_chart").get(0).getContext("2d");
 
+% my $people_with_680p = stash ('people_with_680p');
+% my $people_with_670p = stash ('people_with_670p');
 % my $people_with_660p = stash ('people_with_660p');
 % my $people_with_650p = stash ('people_with_650p');
-% my $people_with_630p = stash ('people_with_630p');
 
 var ilvl_data = [
   {
-    value: <%= $people_with_660p %>,
+    value: <%= $people_with_680p %>,
     color:"#a335ee",
     highlight: "#a335ee",
-    label: "660+"
+    label: "680+"
+  },
+  {
+    value: <%= $people_with_670p %>,
+    color:"#0070dd",
+    highlight: "#0070dd",
+    label: "670-680"
+  },
+  {
+    value: <%= $people_with_660p %>,
+    color: "#1eff00",
+    highlight: "#1eff00",
+    label: "660-670"
   },
   {
     value: <%= $people_with_650p %>,
-    color:"#0070dd",
-    highlight: "#0070dd",
+    color: "#C4FF8A",
+    highlight: "#C4FF8A",
     label: "650-660"
   },
   {
-    value: <%= $people_with_630p %>,
-    color: "#1eff00",
-    highlight: "#1eff00",
-    label: "630-650"
-  },
-  {
-    value: <%= $total_people - $people_with_630p - $people_with_650p - $people_with_660p %>,
+    value: <%= $total_people - $people_with_680p - $people_with_670p - $people_with_660p - $people_with_650p %>,
     color: "#9d9d9d",
     highlight: "#9d9d9d",
-    label: "630-"
+    label: "650-"
   }
 ];
 var ilvl_chart = new Chart(ilvl_ctx).Pie(ilvl_data, chart_options);
