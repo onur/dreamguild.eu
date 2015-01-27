@@ -34,7 +34,7 @@
         </thead>
         <tbody>
           % for my $uid (@sorted_by_rank) {
-          %   next unless $progress->{$uid}->{points};
+          %   next unless $progress->{$uid}->{points} and $progress->{$uid}->{main};
           <tr>
             <td class="text-right"><%= $progress->{$uid}->{rank} %></td>
             <td>
