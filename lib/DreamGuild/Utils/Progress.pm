@@ -82,7 +82,7 @@ sub get_total_progress {
   my $users = {};
 
   DreamGuild::DB::Roster->iterate (
-    'where level = 100',
+    'where level = 100 AND progress != \'\'',
     sub {
       unless (defined ($users->{$_->{uid}})) {
         $users->{$_->{uid}} = {};
