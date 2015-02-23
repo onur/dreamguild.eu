@@ -15,6 +15,7 @@ sub new {
 
 sub weekly {
   DreamGuild::DB->clear_accounts;
+  DreamGuild::DB->clear_characters;
 
   # Update progress
   my $progress = DreamGuild::Utils::Progress->new;
