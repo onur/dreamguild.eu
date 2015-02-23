@@ -3,6 +3,7 @@ package DreamGuild::DB;
 
 use strict;
 use warnings;
+use Data::Dumper;
 
 use ORLite {
   file    => 'share/data/database.db',
@@ -60,6 +61,26 @@ sub clear_accounts {
   );
 
   DreamGuild::DB->commit;
+
+}
+
+
+# This function will remove characters that is not exist or inactive in guild
+sub clear_characters {
+
+  my $last_update = DreamGuild::DB->get_option('roster_last_update');
+
+  my $deleted_chars = DreamGuild::DB::Roster->select('where last_update < ?',
+                                                     $last_update);
+
+  # delete accounts if it is main
+  for (@{$deleted_chars}) {
+    next unless $_->{is_main};
+    next unless $_->{uid};
+    DreamGuild::DB::User->delete_where('id = ?', $_->{uid});
+  }
+
+  DreamGuild::DB::Roster->delete_where('last_update < ?', $last_update);
 
 }
 
