@@ -1,4 +1,9 @@
 
+0.030  2015-02-23
+  - Add ilvl difference page (still in development).
+  - Clear accounts and inactive/removed characters on maintenance.
+  - Fix bug on experience page with excluding blank progresses.
+
 0.029  2015-21-27
   - Show only registered users in experience page.
   - Show 680+ ilvl count in experience page.
