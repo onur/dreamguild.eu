@@ -261,4 +261,106 @@ sub experience {
 }
 
 
+
+sub ilvl_difference {
+
+  my $self = shift;
+
+  my $characters = {};
+  my $ilvls = {};
+  my $classes = {};
+
+  DreamGuild::DB->iterate (
+    'SELECT name, class, ilvl, time FROM ilvl_history ' .
+    'JOIN roster ON ilvl_history.cid = roster.id WHERE ilvl > 0 ' .
+    'ORDER BY time DESC',
+    sub {
+      $characters->{$_->[0]} = [] unless defined $characters->{$_->[0]};
+      push @{$characters->{$_->[0]}}, [ $_->[1], $_->[2], $_->[3] ];
+    }
+  );
+
+
+  for my $character (keys %{$characters}) {
+
+    $classes->{$character} = $characters->{$character}->[0]->[0]
+      if (defined $characters->{$character}->[0]->[0]);
+    
+    for (@{$characters->{$character}}) {
+
+      my @time = localtime ($_->[2]);
+      $time[5] += 1900;
+      $time[4]++;
+
+      $time[4] = "0$time[4]" if $time[4] < 10;
+      $time[3] = "0$time[3]" if $time[3] < 10;
+
+      my $time_str = "$time[5]-$time[4]-$time[3]";
+
+      $ilvls->{$time_str} = {} unless defined $ilvls->{$time_str};
+
+      $ilvls->{$time_str}->{$character} = $_->[1];
+
+
+    }
+    
+  }
+
+  # Rest is for chartjs
+  my @labels = sort (keys (%{$ilvls}));
+  my $chartjs_data = {};
+
+  for my $character (keys (%{$classes})) {
+
+    my $previous_ilvl = 0;
+
+    $chartjs_data->{$character} = [];
+
+    for my $time (@labels) {
+
+      my $ilvl = $previous_ilvl;
+
+      if (defined ($ilvls->{$time}->{$character})) {
+        $ilvl = $previous_ilvl = $ilvls->{$time}->{$character};
+      }
+
+      push @{$chartjs_data->{$character}}, $ilvl;
+
+    }
+
+  }
+
+  # write data into CSV
+  open my $fh, ">/tmp/data.csv";
+  # header
+  print $fh "Player,";
+  my $c = 0;
+  for (@labels) {
+    print $fh "$_," if ++$c % 7 == 0;
+  }
+  print $fh $labels[-1];
+  print $fh "\n";
+  for my $character (sort (keys (%{$classes}))) {
+    next if ($chartjs_data->{$character}->[-1] < 670);
+    print $fh "$character,";
+    $c = 0;
+    for my $ilvl (@{$chartjs_data->{$character}}) {
+      if (++$c % 7 == 0) {
+        print $fh "," if $ilvl == 0;
+        print $fh "$ilvl," if $ilvl > 0;
+      }
+    }
+    print $fh $chartjs_data->{$character}->[-1];
+    print $fh "\n";
+  }
+  close $fh;
+
+  $self->render (js_chartjs   => 1,
+                 labels       => [ @labels ],
+                 chartjs_data => $chartjs_data,
+                 classes      => $classes);
+
+}
+
+
 1;
