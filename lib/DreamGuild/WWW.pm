@@ -5,7 +5,7 @@ use DreamGuild::DB;
 use DreamGuild::WWW::Helpers;
 
 
-our $VERSION = '0.029';
+our $VERSION = '0.030';
 
 
 sub before_filter {
@@ -95,6 +95,7 @@ sub startup {
 
   $r->get ('/roster')->to('Roster#list');
   $r->get ('/experience')->to('Roster#experience');
+  $r->get ('/ilvl')->to('Roster#ilvl_difference');
   $r->get ('/lottery')->to('Roster#lottery');
   $r->get ('/lottery/:id')->to('Roster#lottery_result');
 
