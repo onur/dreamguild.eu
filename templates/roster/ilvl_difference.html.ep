@@ -35,19 +35,13 @@ var data = {
       % }
     ],
     datasets: [
-      % my $c = 0;
       % for my $character (sort (keys (%{$classes}))) {
+        %   next if $chartjs_data->{$character}->[-1] < 670;
         {
             label: "<%= $character %>",
-            fillColor: "rgba(220,220,220,0.2)",
-            strokeColor: "rgba(220,220,220,1)",
-            pointColor: "rgba(220,220,220,1)",
-            pointStrokeColor: "#fff",
-            pointHighlightFill: "#fff",
-            pointHighlightStroke: "rgba(220,220,220,1)",
             data: [
               % $c = 0;
-              <% for my $ilvl (@{$chartjs_data->{$character}}) { %>"<%= $ilvl %>", <% } %>
+              <% for my $ilvl (@{$chartjs_data->{$character}}) { next unless (++$c % 7 == 0); %>"<%= $ilvl %>", <% } %>
             ]
         },
       % }
@@ -56,13 +50,13 @@ var data = {
 
 
 
-/*
 var ilvl_ctx = $("#ilvl_chart").get(0).getContext("2d");
 ilvl_ctx.canvas.width = 1200;
 ilvl_ctx.height = 800;
 $("#ilvl_chart").css ('width', '1200px !important');
 $("#ilvl_chart").css ('height', '800px !important');
 new Chart(ilvl_ctx).Line(data);
-*/
+
+ilvl_ctx.height = 800;
 
 </script>
